@@ -1,0 +1,17 @@
+# =========== sottoprogramma sumb6 =========== 
+# somma due cifre in base 6, contenute in %AL ed %AH, 
+# ed un riporto entrante in %DL, e mette la somma in %AL
+# ed il riporto uscente in %DL
+# in: AL, AH (cifre), DL (Cin)
+# out: AL (risultato), DL (Cout)
+			
+sumb6:		
+	ADD %AH, %AL
+	ADD %DL, %AL
+	MOV $0, %DL
+	CMP $6, %AL
+	JB  finesumb6	
+	SUB $6, %AL
+	MOV $1, %DL
+finesumb6:
+	RET
