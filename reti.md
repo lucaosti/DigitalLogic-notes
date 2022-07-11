@@ -45,3 +45,4 @@
   - Sintetizzabili con un Latch SR e una rete combinatoria
 
 - **D flip-flop**:
+  - 
