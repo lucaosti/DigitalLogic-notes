@@ -117,4 +117,13 @@
   - Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
   - Costituiscono la parte non volatile dello spazio di memoria.
   - Possono essere descritti come memorie RAM tolto tutto quello necessario alla scrittura dei dati.
-  - 
+  - I D-latch sono sostituiti da generatori di costante. Si distinguono 3 tipi:
+    - PROM;
+    - EPROM;
+    - EEPROM;<br>
+	A seconda del metodo di programmazione.
+
+- **ROM programmabili**:
+  - PROM: La matrice di connesione è fatta da fusibili, che possono essere fatti saltare in modo selettivo in modo da inserire in ciascuna cella il lvalore desiderato. [NON PUÒ ESSERE RIPETUTA]
+  - EPROM: Le connessioni sono fatte non con fusibili, ma con dispositivi elettronici, che sono programmabili per via elettrica e cancellabile tramite esposizione a raggi ultravioletti. [PUÒ ESSERE RIPETUTA]
+  - EEPROM: Possono essere programmate e cancellate tramite segnali elettrici appositi.
