@@ -95,5 +95,26 @@
       	- le variabili di comando sono i **fili di indirizzo**;
   	- Le uscite di ciascuno dei multiplexer vanno bloccate con porte tri-state. Dovranno essere abilitate quando sto leggendo dalla memoria;
   	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ($c = 1$).
-  - Descriviamo la temporizzazione del ciclo di lettura della memoria.
-    - 
+  - Descriviamo la temporizzazione del ciclo di lettura della memoria:
+    - Ad un certo istante, gli indirizzi si stabilizzano al valore della cella che voglio leggere ed arriva il comando di $/mr$.
+	- Nel frattempo, in quando funzione combinatoria di altri bit, $/s$ balla e arriva con un po' di ritardo.
+	- Quando sia $/mr$ che $/s$ sono a $0$, le porte tri-state vanno in conduzione e i multiplexer sulle uscite vanno a regime.
+	- Da quel punto in poi i dati sono buoni.
+	- Quando $/mr$ viene tirato su, i dati tornano in alta impedenza e a quel punto gli indirizzi di $/s$ possono ballare a piacimento, tanto non succede niente.
+  - Descriviamo la temporizazione del ciclo di scrittura della memoria:
+    - Devo attendere che $/s$ e gli indirizzi siano stabili prima di portare giù $/mw$.
+    - I dati possono ballare a piacimento ma devono essere stabili prima di portare giù $/mw$, poiché corrisponde, con un minimo ritardo, al fronte di discesa di $c$ all'interno dei D-latch.
+
+- **Collegamento al bus e maschere**:
+  - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore ne impostano il valore.
+  - Il piedino $/s$ di un modulo di RAM serve appunto a poter realizzare uno spazio di memoria grande usando moduli di memoria più piccoli.
+  - Supponiamo di avere un bus indirizzi a 32 bit e di voler montare un modulo di RAM 256Mx8 bit a partire dall'indirizzo 0xE0000000. Il modulo avrà 28 fili di indirizzo ed un filo di select $/s$ e dovrà rispondere agli indirizzi nell'intervallo [0xE0000000 - 0xEFFFFFFF]:
+    - I 28 fili di indirizzo meno significativi del bus andranno in ingresso al modulo di RAM;
+    - I restanti 4 fili di indirizzo più significativi andranno in ingresso ad una maschera, che genera il select per il modulo di RAM.
+  - La maschera deve riconoscere la configurazione di bit richiesta (0xE == B1110), pertanto deve essere $/s = \bar{a_{31}}+\bar{a_{30}}+\bar{a_{29}}+a_{28}$.
+
+- **Memomorie Read-Only** (ROM):
+  - Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
+  - Costituiscono la parte non volatile dello spazio di memoria.
+  - Possono essere descritti come memorie RAM tolto tutto quello necessario alla scrittura dei dati.
+  - 
