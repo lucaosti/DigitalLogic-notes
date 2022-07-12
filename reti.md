@@ -1,5 +1,17 @@
 # Reti combinatorie
 
+- **Tri-state**:
+  - $2$ ingressi, $in$ ed $en$;
+  - $1$ uscita.
+  - Tabella di verità:
+
+	| In | En | Out |
+	|---|---|---|
+	| 0 | 0 | Z |
+	| 1 | 0 | Z |
+	| 0 | 1 | 0 |
+	| 1 | 1 | 1 |
+
 - **Decoder**:
 	- $N$ ingressi: codifica in base $2$ dell'uscita;
 	- $2^N$ uscite: $1$ nell'uscita, $0$ altrove.
@@ -11,7 +23,6 @@
 - **Multiplexer**:
 	- $N+2^N$ ingresssi: $2^N$ ($x$), $N$ variabili di comando, codifica in base $2$;
 	- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato.
-
 
 # Reti sequenziali
 - **Latch SR** detto anche **flip-flop SR**:
@@ -25,7 +36,7 @@
 		| 1 | 1 | - | -  |
 		| 1 | 0 | 1 | 0  |
 
-	- Tabella di applicazione (che voglio ottenere e come)
+	- Tabella di applicazione (che voglio ottenere e come):
 		| q | q' | s | r |
 		|---|----|---|---|
 		| 0 | 0  | 0 | - |
@@ -66,13 +77,23 @@
     - un certo numero di **fili di indirizzo**, che sono ingressi;
     - un certo numero di **fili di dati**, che sono fili di ingresso/uscita (andranno forchettati con porte tri-state);
     - Due segnali **attivi bassi** di **memory read** e **memory write**;
-    - Un segnale attivo basso di **select**, che viene attivato quando la memoria è selezionata: quando $/s$ vale $1$, la memoria è insensibile a tutti gli ingressi; quando vale 0, la memoria è selezionata e quindi reagisce agli ingressi.
+    - Un segnale attivo basso di **select**, che viene attivato quando la memoria è selezionata: quando $/s$ vale $1$, la memoria è insensibile a tutti gli ingressi; quando vale $0$, la memoria è selezionata e quindi reagisce agli ingressi.
     - Il comportamento della memoria è deciso da $/s, /mw, /mr$:
-    
-	| /s | /mr | /mw | Azione                                                     | b | c |
-	|----|-----|-----|------------------------------------------------------------|---|---|
-	| 1  | -   | -   | Nessuna azione (memoria non selezionata)                   | 0 | 0 |
-	| 0  | 1   | 1   | Nessuna azione (memoria selezionata, nessun ciclo in corso | 0 | 0 |
-	| 0  | 0   | 1   | ciclo di lettura in corso                                  | 1 | 0 |
-	| 0  | 1   | 0   | ciclo di scrittura in corso                                | 0 | 1 |
-	| 0  | 0   | 0   | Non definito                                               | - | - |
+  
+		| /s | /mr | /mw | Azione                                                     | b | c |
+		|----|-----|-----|------------------------------------------------------------|---|---|
+		| 1  | -   | -   | Nessuna azione (memoria non selezionata)                   | 0 | 0 |
+		| 0  | 1   | 1   | Nessuna azione (memoria selezionata, nessun ciclo in corso | 0 | 0 |
+		| 0  | 0   | 1   | Ciclo di lettura in corso                                  | 1 | 0 |
+		| 0  | 1   | 0   | Ciclo di scrittura in corso                                | 0 | 1 |
+		| 0  | 0   | 0   | Non definito                                               | - | - |
+
+  - Vediamo come è realizzata:
+  	- Disegnare la matrice di D-latch. Una riga è una locazione, bia 0 a destra, bit 3 a sinistra;
+  	- Le uscite dei D-latch dovranno essere selezionate una riga alla volta, per finire sui fili dei dati in uscita. Ci vuole un multiplexer per ogni bit, in cui:
+      	- gli ingressi sono le uscite dei D-latch;
+      	- le variabili di comando sono i **fili di indirizzo**;
+  	- Le uscite di ciascuno dei multiplexer vanno bloccate con porte tri-state. Dovranno essere abilitate quando sto leggendo dalla memoria;
+  	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ($c = 1$).
+  - Descriviamo la temporizzazione del ciclo di lettura della memoria.
+    - 
