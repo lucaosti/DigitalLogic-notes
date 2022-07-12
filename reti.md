@@ -41,8 +41,11 @@
 - **D-Latch trasparente**:
   - $2$ Ingressi, $d$ ed $c$;
   - $1$ Uscita, $q$.
-  - Quando la c è settata, la rete è trasparente, quando c vale 0, memorizza l'ultimo bit che è passato in d.
-  - Sintetizzabili con un Latch SR e una rete combinatoria
+  - Quando la $c$ è settata, la rete è trasparente, quando $c$ vale $0$, memorizza l'ultimo bit che è passato in $d$.
+  - Sintetizzabili con un Latch SR e una rete combinatoria.
 
 - **D flip-flop**:
-  - 
+  - $2$ Ingressi, $d$ ed $p$;
+  - $1$ Uscita, $q$.
+  - Quando $p$ ha un fronmte in salita, memorizza d, attendi un po' ed adegua l'uscita.
+  - Si prende un D-Latch, e si premette alla variabile $c$ un formatore di impulsi, in modo tale che, al fronte di salita di $p$, il D-Latch vada brevemente in trasparenza e memorizzi $d$. Poi si ritarda l'uscita di un ritardo $\Delta$ maggiore dell'intervallo del $P+$.
