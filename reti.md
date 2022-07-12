@@ -19,19 +19,19 @@
 	- $2$ Uscite, $q$ e $qN$, la seconda la negazione della prima.
 	- Tabella di verità:
 		| s | r | q | qN |
-		|---|---|---|---|
-		| 0 | 0 | q  | $\bar{q}$ |
-		| 0 | 1 | 0 | 1 |
-		| 1 | 1 | - | - |
-		| 1 | 0 | 1 | 0 |
+		|---|---|---|----|
+		| 0 | 0 | q | $\bar{q}$ |
+		| 0 | 1 | 0 | 1  |
+		| 1 | 1 | - | -  |
+		| 1 | 0 | 1 | 0  |
 
 	- Tabella di applicazione (che voglio ottenere e come)
 		| q | q' | s | r |
-		|---|---|---|---|
-		|0|0|0|-|
-		|0|1|1|0|
-		|1|0|0|1|
-		|1|1|-|0|
+		|---|----|---|---|
+		| 0 | 0  | 0 | - |
+		| 0 | 1  | 1 | 0 |
+		| 1 | 0  | 0 | 1 |
+		| 1 | 1  | - | 0 |
 
 	- È necessario applicare alla rete altri due ingressi attivi bassi, /reset e /preclear:
     	- /preset = /preclear = 1, l'elemento funziona normalmente;
@@ -59,3 +59,20 @@
   - Per la sintesi si possono usare anche due D-latch, in configurazione master-slave:
     - $p = 0$, il **master campiona e lo slave conserva**;
     - $p = 1$, il **master conserva e lo slave campiona**;
+***
+- **Memorie RAM statiche** (RAM statiche o S-RAM):
+  - Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **non** simultaneamente;
+  - Dal punto di vista dell'utente, una memoria è dotata dei seguenti collegamenti:
+    - un certo numero di **fili di indirizzo**, che sono ingressi;
+    - un certo numero di **fili di dati**, che sono fili di ingresso/uscita (andranno forchettati con porte tri-state);
+    - Due segnali **attivi bassi** di **memory read** e **memory write**;
+    - Un segnale attivo basso di **select**, che viene attivato quando la memoria è selezionata: quando $/s$ vale $1$, la memoria è insensibile a tutti gli ingressi; quando vale 0, la memoria è selezionata e quindi reagisce agli ingressi.
+    - Il comportamento della memoria è deciso da $/s, /mw, /mr$:
+    
+	| /s | /mr | /mw | Azione                                                     | b | c |
+	|----|-----|-----|------------------------------------------------------------|---|---|
+	| 1  | -   | -   | Nessuna azione (memoria non selezionata)                   | 0 | 0 |
+	| 0  | 1   | 1   | Nessuna azione (memoria selezionata, nessun ciclo in corso | 0 | 0 |
+	| 0  | 0   | 1   | ciclo di lettura in corso                                  | 1 | 0 |
+	| 0  | 1   | 0   | ciclo di scrittura in corso                                | 0 | 1 |
+	| 0  | 0   | 0   | Non definito                                               | - | - |
