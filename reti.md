@@ -43,9 +43,19 @@
   - $1$ Uscita, $q$.
   - Quando la $c$ è settata, la rete è trasparente, quando $c$ vale $0$, memorizza l'ultimo bit che è passato in $d$.
   - Sintetizzabili con un Latch SR e una rete combinatoria.
+  - Il pilotaggio deve avvenire nel rispetto di alcune regole:
+    - Si deve tenere $d$ costante a cavallo della transizione di $c$ da $1$ a $0$. I tempi per cui deve essere costante (prima e dopo) sono chiamati rispettivamente $T_{setup}$ e $T_{hold}$;
 
 - **D flip-flop**:
   - $2$ Ingressi, $d$ ed $p$;
   - $1$ Uscita, $q$.
   - Quando $p$ ha un fronmte in salita, memorizza d, attendi un po' ed adegua l'uscita.
-  - Si prende un D-Latch, e si premette alla variabile $c$ un formatore di impulsi, in modo tale che, al fronte di salita di $p$, il D-Latch vada brevemente in trasparenza e memorizzi $d$. Poi si ritarda l'uscita di un ritardo $\Delta$ maggiore dell'intervallo del $P+$.
+  - Si prende un D-latch, e si premette alla variabile $c$ un formatore di impulsi, in modo tale che, al fronte di salita di $p$, il D-latch vada brevemente in trasparenza e memorizzi $d$. Poi si ritarda l'uscita di un ritardo $\Delta$ maggiore dell'intervallo del $P+$.
+  - Il pilotaggio deve avvenire nel rispetto di alcune regole:
+    - A cavallo del fronte di salita di $p$, la variabile $d$ deve rimanere costante. I nomi dei tempi per cui deve rimanere costante prima e dopo il fronte di salita sono rispettivamente $T_{setup}$ e $T_{hold}$;
+    - Tra le due transiazioni in salita della variabile $p$ deve passare abbastanza tempo perché l'uscita si possa adeguare;
+  - Il ritardo con cui si adegua l'uscita, misurato a partire dal fronte di salita di $p$, si chiama $T_{prop}$ ed è $T_{prop} > T_{hold}$, da cui la non trasparenza della rete;
+  - L'uscita di un D-FF **non** oscilla mai;
+  - Per la sintesi si possono usare anche due D-latch, in configurazione master-slave:
+    - $p = 0$, il **master campiona e lo slave conserva**;
+    - $p = 1$, il **master conserva e lo slave campiona**;
