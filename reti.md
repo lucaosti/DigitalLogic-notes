@@ -234,5 +234,22 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
     - variano in maniera netta, senza oscillazioni;
     - rimangono stabili per l'intero ciclo di clock;
     - sono non trasparenti.
-  - Le prpprietà:
-    - 
+  - Le proprietà:
+    - Ha una legge di evoluzione del tempo del tipo $A:X \times S \rightarrow S$, che mappa quindi una coppia (stato d'ingresso, stato interno) in un nuovo stato di uscita;
+    - Una legge di evoluzione nel tempo del tipo $B: X \times S \rightarrow Z$, che mappa quindi una coppia (stato ingresso, stato interno) in un nuovo stato interno;
+    - Si adegua alla seguente legge di temporizzazione:<br>
+    Dato $S$, stato interno presente (marcato) ad un certo istante, e dato $X$ stato di ingresso ad un certo istante precedente l'arrivo di un segnale di sincronizzazione,
+      1. individuare sia il nuovo stato interno da marcare $S'=A(S,X)$, sia il nuovo stato di uscita $Z = B(S,X)$;
+      2. attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
+      3. promuovere $S'$ al rango di stato interno marcato, e promuovere $Z$ al rango di nuovo stato di uscita.
+
+|$S[t_{i+1}] = A(X[t_i], S[t_i])$|
+|---|
+|$Z[t_{i+1}] = B(X[t_i], S[t_i])$|
+
+<br>
+
+![](img/4.png)
+
+<br>
+
