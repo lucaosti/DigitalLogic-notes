@@ -143,7 +143,8 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
   - Questa regola ci dice che non posso fare il clock veloce quanto voglio. <br>
   Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a formare gli ingressi ai registri, dovrò dare il tempo a chi pilota la rete di:
     - produrre un nuovo stato di ingresso;
-    - farlo arrivare, attraverso le reti combinatorie, fino agli ingressi dei registri.
+    - farlo 
+    - arrivare, attraverso le reti combinatorie, fino agli ingressi dei registri.
   - Definiamo i seguenti ritardi:
     - $T_{in-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi tra un piedino di ingresso fino all'imgresso di un registro;
     - $T_{reg-to-reg}$: (...) l'uscita di un registro e l'ingresso di un registro;
@@ -153,5 +154,58 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
     - ingressi costanti [$t_i-T_{setup}$ , $t_i+T_{hold}$];
     - vincolo di pilotaggio in ingresso: chi pilota gli ingressi deve avere almeno un $T_{a-monte}$ per poterli cambiare;
     - vincolo di pilotaggio in uscita: chi usa le uscite deve averle stabili per un tempo $T_{a-valle}$ per poterci fare qualcosa.
+<br>
+<br>
 
-![](1.png)
+![](img/1.png)
+
+<br>
+
+
+- **Contatori**:
+  - Un contatore è una RSS il cui stato di uscita può essere visto come un numero naturale ad $n$ cifre in base $\beta$, secondo una qualche codifica.
+  - Ad ogni ciclo di clock, il contatore fa la seguente cosa:
+    - incrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore up);
+    - decrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore down);
+    - incrementa o decrementa di 1 (modulo $\beta^n$), il valore di uscita a seconda del valore di una variabile di comando (contatore up/down).
+- **Registri multifunzionali**:
+  - È una rete che, all'arrivo del clock, memorizza nel registro stesso una tra K funzioni combinatorie possibili, scelta impostando un certo numero di variabili di comando $W = \lceil \log_2K \rceil$. Si realizza con un multiplexer a $K$ ingressi;
+- **Modello di MOORE**:
+  1. un insieme di $N$ variabili logiche in ingresso;
+  2. un insieme di $M$ variabili logiche di uscita;
+  3. un _meccanismo di marcatura_, che ad ogni istante marca uno stato interno presente, scelto tra un insieme finito di $K$ stati interni $S = \{S_0,...,S_{K-1} \}$;
+  4. Una legge di _evoluzione del tempo_ del tipo $A : X \times S \rarr S$, che mappa quindi una coppia (stato di ingresso, stato interno) in un nuovo stato interno;
+  5. Una legge di _evoluzione del tempo_ del tipo $B : S \rarr Z$, che decide lo stato di uscita basandosi sullo stato interno;
+  6. La rete riceve segnali di sincronizzazione, come transizioni da 0 a 1 del segnale di clock;
+  7. Si adegua alla seguente **legge di temporizzazione**:
+     - "Dato $S$, stato interno marcato ad un certo istante, e dato $X$ ingresso ad un certo istante immediatamente precedente all'arrivo di un segnale di sincronizzazione,
+     - individuare il nuovo stato interno da marcare $S' = A(S,X)$;
+     - attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
+     - promuovere $S'$ al rango di stato interno marcato;
+     - E, inoltre, individuare continuamente $Z=B(S)$ e presentarlo in uscita.
+<br>
+<br>
+
+![](img/2.png)
+
+<br>
+
+- **Flip-Flop JK**:
+  - Il FF JK è una rete sequenziale sincronizzata con due ingressi ed un'uscita che, all'arrivo del clock, valuta i suoi due ingressi $j$ e $k$ e si comporta come segue:
+
+    | jk | Azione in uscita |
+    |----|------------------|
+    | 00 | Conserva         |
+    | 10 | Setta            |
+    | 01 | Resetta          |
+    | 11 | Commuta          |
+  - Tabella di applicazione:
+
+    | q  | q' | j  | k  |
+    |----|----|----|----|
+    | 0  | 0  | 0  | -  |
+    | 0  | 1  | 1  | -  |
+    | 1  | 0  | -  | 1  |
+    | 1  | 1  | -  | 0  |
+
+  - FF JK è una rete di Moore poiché l'uscita non è funzione combinatoria degli ingressi ma del registro;
