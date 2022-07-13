@@ -128,3 +128,30 @@
   - EPROM: Le connessioni sono fatte non con fusibili, ma con dispositivi elettronici, che sono programmabili per via elettrica e cancellabile tramite esposizione a raggi ultravioletti. [PUÒ ESSERE RIPETUTA]
   - EEPROM: Possono essere programmate e cancellate tramite segnali elettrici appositi.
 ***
+# Reti sequenziali sincronizzate (RSS)
+Si evolvono soltanto in corrispondenza di istanti temporali ben precisi, detti _istanti di sincronizzazione_.<br>
+L'evento che sincornizza è, di solito, il fronte di salita del clock;
+
+- **Registri**:
+  - Definisco un registro a $W$ bit come una collezione di $W$ D-flip-flop positive-edge-triggered, che hanno:
+    - ingressi $d_i$ ed uscite $q_i$ separati (indipendenti);
+    - ingresso $p$ comune (di sincronizzazione), che posso evitare di annoverare tra gli ingressi.
+  - Un registro può essere visto come una rete sequenziale sincronizzata, in cui l'ingresso $p$ funge da segnale di sincronizzazione.
+- **Temporizzazione RSS**:
+  - L'unica regola di pilotaggio che dobbiamo garantire è:
+    - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in [$t_i - T_{setup}$ , $t_i + T_{hold}$], $\forall i$.
+  - Questa regola ci dice che non posso fare il clock veloce quanto voglio. <br>
+  Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a formare gli ingressi ai registri, dovrò dare il tempo a chi pilota la rete di:
+    - produrre un nuovo stato di ingresso;
+    - farlo arrivare, attraverso le reti combinatorie, fino agli ingressi dei registri.
+  - Definiamo i seguenti ritardi:
+    - $T_{in-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi tra un piedino di ingresso fino all'imgresso di un registro;
+    - $T_{reg-to-reg}$: (...) l'uscita di un registro e l'ingresso di un registro;
+    - $T_{in-to-out}$: (...) un piedino di ingresso e un piedino di uscita;
+    - $T_{reg-to-out}$: (...) l'uscita di un registro e un piedino di uscita.
+  - Ho $3$ vincoli temporali:
+    - ingressi costanti [$t_i-T_{setup}$ , $t_i+T_{hold}$];
+    - vincolo di pilotaggio in ingresso: chi pilota gli ingressi deve avere almeno un $T_{a-monte}$ per poterli cambiare;
+    - vincolo di pilotaggio in uscita: chi usa le uscite deve averle stabili per un tempo $T_{a-valle}$ per poterci fare qualcosa.
+
+![](1.png)
