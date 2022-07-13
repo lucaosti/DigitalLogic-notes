@@ -174,8 +174,8 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
   1. un insieme di $N$ variabili logiche in ingresso;
   2. un insieme di $M$ variabili logiche di uscita;
   3. un _meccanismo di marcatura_, che ad ogni istante marca uno stato interno presente, scelto tra un insieme finito di $K$ stati interni $S = \{S_0,...,S_{K-1} \}$;
-  4. Una legge di _evoluzione del tempo_ del tipo $A : X \times S \rarr S$, che mappa quindi una coppia (stato di ingresso, stato interno) in un nuovo stato interno;
-  5. Una legge di _evoluzione del tempo_ del tipo $B : S \rarr Z$, che decide lo stato di uscita basandosi sullo stato interno;
+  4. Una legge di _evoluzione del tempo_ del tipo $A : X \times S \rightarrow S$, che mappa quindi una coppia (stato di ingresso, stato interno) in un nuovo stato interno;
+  5. Una legge di _evoluzione del tempo_ del tipo $B : S \rightarrow Z$, che decide lo stato di uscita basandosi sullo stato interno;
   6. La rete riceve segnali di sincronizzazione, come transizioni da 0 a 1 del segnale di clock;
   7. Si adegua alla seguente **legge di temporizzazione**:
      - "Dato $S$, stato interno marcato ad un certo istante, e dato $X$ ingresso ad un certo istante immediatamente precedente all'arrivo di un segnale di sincronizzazione,
