@@ -186,6 +186,10 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 <br>
 <br>
 
+|$S[t_{i+1}] = A(X[t_i], S[t_i])$|
+|---|
+|$Z[t_i] = B(S[t_i])$|
+
 ![](img/2.png)
 
 <br>
@@ -208,4 +212,19 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
     | 1  | 0  | -  | 1  |
     | 1  | 1  | -  | 0  |
 
-  - FF JK è una rete di Moore poiché l'uscita non è funzione combinatoria degli ingressi ma del registro;
+  - FF JK è una rete di Moore poiché l'uscita non è funzione combinatoria degli ingressi ma del registro.
+
+- **Modello di Mealy**:
+  - Nel modello di Moore, l'uscita è funzione soltanto dello stato interno presente, tramite la legge $B:S \rightarrow Z$. Se si consente a tale legge di essere più generale, scrivendo $B : X \times S \rightarrow Z$, si ottengono reti realizzate secondo il modello di Mealy.
+  - Il vantaggio di questo modello è che al variare dell'ingresso posso produrre un nuovo stato di uscita senza dover aspettare il succesivo fronte del clock.
+
+|$S[t_{i+1}] = A(X[t_i], S[t_i])$|
+|---|
+|$Z[t_i] = B(X[t_i], S[t_i])$|
+
+<br>
+<br>
+
+![](img/3.png)
+
+<br>
