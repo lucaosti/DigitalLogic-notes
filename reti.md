@@ -183,12 +183,12 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
      - attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
      - promuovere $S'$ al rango di stato interno marcato;
      - E, inoltre, individuare continuamente $Z=B(S)$ e presentarlo in uscita.
-<br>
-<br>
 
 |$S[t_{i+1}] = A(X[t_i], S[t_i])$|
 |---|
 |$Z[t_i] = B(S[t_i])$|
+
+<br>
 
 ![](img/2.png)
 
@@ -223,8 +223,16 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 |$Z[t_i] = B(X[t_i], S[t_i])$|
 
 <br>
-<br>
 
 ![](img/3.png)
 
 <br>
+
+- **Modello di Mealy ritardato**:
+  - Si parte da una rete di Mealy, e si mette in uscita un registro OUTR. In questo modo, le uscite:
+    - variano sempre all'arrivo del clock, dopo un tempo $T_{prop}$ ;
+    - variano in maniera netta, senza oscillazioni;
+    - rimangono stabili per l'intero ciclo di clock;
+    - sono non trasparenti.
+  - Le prpprietà:
+    - 
