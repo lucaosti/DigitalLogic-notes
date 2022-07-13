@@ -252,4 +252,26 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 ![](img/4.png)
 
 <br>
+***
 
+# La struttura del calcolatore
+Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-calcolatore completo di processore, memoria, interfacce e dispositivi di ingresso-uscita.
+- **Il sottostistema di I/O**: 
+  - Si occupa di gestire la codifica delle informazioni ed il loro scambio con il mondo esterno;
+  - All'interno di questo sottosistema distinguiamo interfacce e dispositivi;
+    - Le interfacce gestiscono i vari dispositivi;
+    - I dispositivi effettuano la codifica;
+- **La memoria principale**:
+  - Contiene in ogni momento le istruzioni e i dati che il processore elabora;
+- **Il processore**: 
+  - Ciclicamente preleva un'istruzione dalla memoria e la esegue, finché non trova "HLT";
+  - Al reset deve partire in modo consistente, cioé:
+    - Deve iniziare a leggere la memoria da una locazione ben precisa;
+    - In quella locazione ci deve essere già scritto del codice, in maniera indelebile;
+- **La rete di interconnessione**:
+  - Mette in comunicazione tutti questi moduli, trasportando i segnali generati da uno verso l'altro;
+
+## Visione da parte del programmatore
+- La memoria appare come uno spazio lineare di $2^{24}$ locazioni di un byte, per un totale di $16$ MB;
+- Lo spazio di I/O, cioè l'insieme dei registri d'interfaccia che il processore può teoricamente indirizzare appare al programmatore come uno spazio lineare di $2^{16}$ locazioni o porte;
+- 
