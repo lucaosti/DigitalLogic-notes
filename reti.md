@@ -381,3 +381,8 @@ I cicli di scrittura e lettura nello spazio di I/O sono simili, ma non identici:
 
 ***
 # Interfacce
+Sono di 3 tripi:
+- **Parallele**, che sono in grado di inviare/ricevere $1$ byte alla volta;
+- **Seriali**, che sono in grado di inviare/ricevere $1$ bit alla volta;
+- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**: che trasformano gruppi di bit in tensioni e viceversa;
+
