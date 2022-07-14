@@ -275,4 +275,53 @@ Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-
 ## Visione da parte del programmatore
 - La memoria appare come uno spazio lineare di $2^{24}$ locazioni di un byte, per un totale di $16$ MB;
 - Lo spazio di I/O, cioè l'insieme dei registri d'interfaccia che il processore può teoricamente indirizzare appare al programmatore come uno spazio lineare di $2^{16}$ locazioni o porte;
-- 
+- Il processore ha 3 tipi di registro:
+  - Registri accumulatore: destinati a contenere operandi di elaborazione. [AH ed AL]
+  - Registro dei flag: sarà ad $8$ bit e di questi 4 sono:
+    - CF(0);
+    - ZF(1);
+    - SF(2);
+    - OF(3);
+  - Registri puntatore:
+    - IP (instruction pointer): contiene l'indirizzo della prossima istruzione da eseguire;
+    - SP (stack pointer): contiene l'indirizzo del top della pila;
+    - DP (data pointer): contiene l'indirizzo di operandi, a seconda della modalità di indirizzamento;
+
+## Linguaggio macchina 
+Istruzioni assembler:
+$$OPCODE\ source,\ destination$$
+$source$ potrebbe mancare.
+
+- Per le **istruzioni operative**:
+  - Indirizzamento a registro: uno o entrambi gli operandi sono registri;
+  - Indirizzamento immediato: l'operando $sorgente$ è specificato direttamente nell'istruzione come costante (es: $0x10$);
+  - Indirizzamento di memoria:<br>
+  valido per sorgente **o** destinatario, MAI entrambi
+    - diretto: l'indirizzo è specificato direttamente nell'istruzione;
+    - indiretto: la locazione di memoria ha indirizzo contenuto nel registro DP;
+  - Indirizzamento porte I/O:
+    - si indirizzano in modo diretto, specificando l'offset della porta dentro l'istruzione stessa;
+- Per le **istruzioni di conttrollo**:
+  - Alterano il flusso dell'esecuzione del programma, che normalmente procederebbe in sequenza;
+
+Ciascuna istruzione macchina è lunga almeno un byte, che codifica:
+- Il tipo di operazione, rilevante in fase di esecuzione;
+- Il modo in cui si devono recuperare gli operando, detto formato dell'istruzione, che è invece rilevante in fase di fetch;
+
+I formati possibili per il processore sono 8, il che vuol dire che nel primo byte:
+- i primi $3$ bit codificano il formato;
+- i restanti cinque codificano il codice operativo [32 possibili $OPCODE$];
+
+In particolare, i formati sono:
+- F0 (000): pesano **1 byte** e rientrano tutte le istruzioni per le quali il processore non deve compiere nessuna azione per procurarsi gli operandi, in quanto:
+  - gli operandi sono regitri, oppure;
+  - le istruzioni non hanno operandi (HTL, NOP, RET);
+- Formato F2 (010): pesano **1 byte** e raggruppano le istruzioni in cui l'operando sorgente si trova in memoria, indirizzato in maniera indiretta tramite il registro puntatore DP;
+- Formato F3 (011): pesano **1 byte** e raggruppano le istrusioni in cui l'operando destinatario è indirizzato in modo indiretto, usando il registro puntatore DP;
+- Formato F4 (100): pesano **2 byte** e raggruppano le istruzioni in cui l'operando sorgente è indirizzato in modo immediato, e sta du 8 bit;
+- Formato F5 (101): pesano **4 byte** e raggruppano tutte le istruzioni in cui l'operando sorgente è indirizzato in modo diretto;
+- Formato F6 (110): pesano **4 byte** e raggruppano tutte le istruzioni in cui l'operando destinatario è in memoria, indirizzato in modo diretto.
+- Formato F7 (111): pesano **4 byte** e raggruppano tutte le istruzioni di controllo (CALL, JMP, Jcon) in cui ho un indirizzo di salto;
+- Formato F1 (001): raggruppa tutte le istruzioni che mancano. Istruzioni relative allo spazio di I/O, per le quali è necessario prelevare in memoria l'indirizzo a 16 bit della porta di I/O sorgente/destinatario.
+
+## Architettura del calcolatore
