@@ -252,6 +252,7 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 ![](img/4.png)
 
 <br>
+
 ***
 
 # La struttura del calcolatore
