@@ -325,3 +325,59 @@ In particolare, i formati sono:
 - Formato F1 (001): raggruppa tutte le istruzioni che mancano. Istruzioni relative allo spazio di I/O, per le quali è necessario prelevare in memoria l'indirizzo a 16 bit della porta di I/O sorgente/destinatario.
 
 ## Architettura del calcolatore
+- **Fili di indirizzo**: 24, sono uscite per il processore, il quale imposterà gli indirizzi delle locazioni di memoria o delle porte di I/O dove vuole leggere e scrivere, ed ingressi per il resto del mondo;
+- **Fili di dati**: tutti attivi bassi, /mr, /mw (per leggere e scrivere in memoria), /ior, /iow (per leggere e scrivere in I/O); sono uscite per il processore ingressi per gli altri;
+- **Segnale di clock**;
+- **Fili di comunicazione tra la memoria video e l'adattatore grafico**;
+
+## Spazio di memoria
+Lo spazio di memoria fisica, grande 16MB, è implementato con tecnologia RAM, in parte EPROM ed in parte come memoria video;
+La logica combinatoria che genera il segnale di abilitazione (/s) per un modulo a partire dagli indirizzi prende il nome di maschera:
+- Sul bus non c'è nessun gilo di select;
+- Il chip RAM copre anche gli indirizzi coperti da EPROM e dalla memoria video.
+
+## Spazio di I/O
+Lo spazio di I/O è realizzato tramite interfacce, che fungono da raccordo tra il bus e i dispositivi di I/O.<br>
+Saranno simili anche le temporizzazioni per i cicli di lettura e scrittura:
+- in una RAM si può leggere e scrivere qualunque locazione;
+- se un'interfaccia implementa una sola porta, non sono necessari i fili di indirizzo (basta /s);
+
+Dal lato dispositivo, i collegamenti variano da interfaccia a interfaccia. Il motivo poer cui al bus si attaccano le interfacce, è duplice:
+- i dispositivi hanno velocità molto diversa tra loro, e sono spesso più lenti del processore;
+- i dispositivi hanno modalità di trasferimento dati molto diverse tra loro;
+
+## Processore
+Contiene un certo numero di registri, tra cui:
+- STAR, registro di stato, essento il processore una RSS;
+- MJR;
+- Instraction registers (OPCODE, SOURCE; DEST_ADDR), vengono riempiti in fase di fetch:
+  - OPCODE: codice operativo dell'istruzione;
+  - SOURCE: l'operando sorgente;
+  - DEST_ADDR: indirizzo dell'operando destinatario;
+- Ho dei registri che sostengono le uscite, come deve essere in una RSS;
+- Un registro DIR, per abilitare la tri-state quando il processore deve effettuare scritture sul bus;
+- Dei registri di appoggio APPx e NUMLOC, che servono per i cicli di lettura/scrittura;
+
+Al reset, si inizializzano:
+- i registri IP ed F, in modo da partire con un'evoluzione consistente;
+- tutti i registri che hanno a che fare con variabili di controllo del bus dovranno essere inizializzati in modo coerente: /MR, /MW, /IOR, /IOW dovranno contenere tutti 1;
+- I fili di dati vanno posti in alta impedenza. DIR deve contenere 0;
+- STAR verrà inizializzato con l'etichetta del promo statement della fase di fetch;
+
+Fase di Fetch:
+- Preleva un byte, quello indicato da IP;
+- Incrementa IP, modulo $2^{24}$;
+- controlla che quel byte corrisponda ad un opcode, sennò di ferma;
+- inserisce il byte letto nel registro OPCODE, e valuta il formato dell'istruzione, a seconda di questo:
+  - si procura un operando sorgente a 8 bit e lo inserisce in SOURCE;
+  - si procura l'indirizzo dell'operando destinatario e lo inserisce in DEST_ADDR;
+
+## Lettura e scrittura in I/O
+Durante la fase di fetch, il processore legge in memoria; durante quella esecuzione, il processore dovrà leggere e scrivere in memoria (MOV) o nello spazio di I/O (IN,OUT);
+I cicli di scrittura e lettura nello spazio di I/O sono simili, ma non identici: ci sono importanti differenze:
+- Gli indirizzi sono a 16 bit, e si usano /ior e /iow non /mr e /mw;
+- Nel ciclo di lettura gli indirizzi devono esser eprinti un clock prima del comando di lettura;
+- Nel ciclo di scrittura i dati devono essere già pronti sul fronte di discesa si /iow;
+
+***
+# Interfacce
