@@ -457,3 +457,11 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 
 > Non si può aumentare a dismisura i bit all'interno di una trama, poiché si creerebbero problemi dovuti all'imprecisione dei clock.
 
+<br>
+
+## FI e FO
+
+![FI e FO](img/5.png)
+
+<br>
+
