@@ -465,3 +465,4 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 
 <br>
 
+# Conversione analogico/digitale e digitale/analogico
