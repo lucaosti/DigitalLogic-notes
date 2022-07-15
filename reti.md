@@ -466,3 +466,34 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 <br>
 
 # Conversione analogico/digitale e digitale/analogico
+Nel mondo fisico, di norma, l'informazione è associata a grandezze analogiche che variano con continuità; <br>
+All'interno del computer, invece, le informazioni sono associate a stringhe di bit, cioé grandezze digitali, che variano in modo discreto.
+
+La tensione *v* da convertire sarà su una scala di FSR volts (Full-Scale Range). Il numero *x* nel quale la tensione sarà convertita è su N bit; tipicamente 8 o 16, mentre FSR tra 5 e 30.
+
+Si possono distinguere:
+- la **conversione unipolare**: $v \in [0,\ FSR],\ x \in [0,\ 2^N-1]$;
+- la **conversione bipolare**: $v \in [-\frac{FSR}{2},\ \frac{FSR}{2}],\ x \in [-2^{N-1},\ 2^{N-1}-1]$;
+
+Definiamo $K = \frac{FSR}{2^N}$, costante di proporzionalità tra i due intervalli. Una conversione *ideale*, sarebbe $v = K \cdot x$.<br>
+In realtà, dovremo accontentarci di $|v-K \cdot x| \leq err$; con $err$ detto errore di conversione.
+
+Gli errori di conversione possono essere:
+- imprecisione a livello circuitale: i convertitori sono circuiti con resistenze, fili, reattanze, che non si comportano in maniera ideale; Ci sarà un'imprecisione dovuta alla non idealità dei componenti. Presente in **entrambi**, si chiama problema di **non linearità**;
+- **Quantizzazione**: nella coversione **A/D** (e soltanto in questa!), devo convertire una grandezza continua in una discreta. Facendo questo si perde dell'informazione a causa dell'arrotondamento.
+
+L'errore di non **linearità** deve essere più piccolo di $\frac{K}{2}$.<br>
+L'errore massimo di **quantizzazione** è indipendente dalla natura del convertitore (A/D). Data una costante K, è pari a $\frac{K}{2}$. Infatti, se divido il FSR in $2^N$ intervalli larghi $K$ e converto tutto un intervallo nello stesso numero, la conversione sarà:
+- esatta, per la tensione al centro dell'intervallo;
+- errata, di $\plusmn \frac{K}{2}$ per le tensioni agli estremi.
+
+Riassumento, abbiamo:
+- conversione D/A: $err \leq \frac{K}{2}$ (soltanto errore di linearità);
+- conversione A/D: $err \leq \frac{K}{2} + \frac{K}{2} = K$ (errore di non linearità e di quantizzazione);
+
+A livello di tempi di risposta, i convertitori hanno le seguenti performance:
+- D/A: essendo circuiti combinatori, sono velocissimi;
+- A/D: hanno tempi di risposta variabili, perché sono circuiti sequenziali che possono avere architetture diverse.
+
+> I convertitori bipolari lavorano rappresentando i numeri interi in traslazione, ossia l'intero $x$ è rappresentato $X = x+2^{N-1}$: per trasformarlo in complemento a 2, basta negare il bit più significativo.
+
