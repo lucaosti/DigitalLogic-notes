@@ -496,4 +496,3 @@ A livello di tempi di risposta, i convertitori hanno le seguenti performance:
 - A/D: hanno tempi di risposta variabili, perché sono circuiti sequenziali che possono avere architetture diverse.
 
 > I convertitori bipolari lavorano rappresentando i numeri interi in traslazione, ossia l'intero $x$ è rappresentato $X = x+2^{N-1}$: per trasformarlo in complemento a 2, basta negare il bit più significativo.
-
