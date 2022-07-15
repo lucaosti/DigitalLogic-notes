@@ -432,5 +432,28 @@ In questo caso i registri RBR e TBR sono mappati sullo stesso indirizzo interno,
 
 Da un punto di vista fisico, il mezzo trasmissivo sul quale esce l'informazione si presenta come un insieme di due linee: una linea di massa, che funge da riferimento, ed una che porta una tensione riferita a massa; Sono leciti due valori sulla linea:
 - **Marking**, 1 logico;
-- **Spacing**, 0 logico;
+- **Spacing**, 0 logico.
+
+La trasmissione di un bit consiste nel tenere la linea in uno stato di marking o spacing per un determinato tempo T, detto tempo di bit;
+Un insieme di bit scambiato si chiama trama o frame; per adesso supponiamo che una trama sia costituita da un byte, trasmesso dal meno significativo al più.
+
+Affinché il mezzo trasmissivo possa sotenere trasmissione in entrambe le direzioni contemporaneamente, sono necessari tre fili, due dei quali portano le tensioni riferite a massa;
+
+Come funziona la sincronizzazione? È possibile utilizzare 2 metodi:
+- Condividere un clock: è quello che si fa sul bus;
+- Aggiungere linee dedicate alla sincronizzazione (/dav, rfd);
+
+Per implementare una di queste soluzioni ci vogliono più di due fili, e noi vogliamo usarne soltanto due. Il problema si risolve in questo modo:
+- Entrambi i lati della comunicazione devono concordare sul tempo di bit T;
+- Entrambi i lati della comunicazione devono concordare sul numero di bit di cui si compone una trama;
+- Una trama deve essere resa riconoscibile. In particolare, è necessario che entrambi concordino sul modo di rendere noto che una trama è iniziata:
+  - La linea sta, normalmente, in uno stato di marking; Quando voglio iniziare la trasmissione di una trama, la porto nello stato di spacing. Ciò significa che ogni trama inizia con il bit 0, che non fa parte della trama: bit di start;
+  - Analogamente, quando ho trasmesso l'ultimo bit di una trama, devo riportare la linea in uno stato di marking per almeno un tempo di bit: bit di stop;
+
+Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evitare di incappare in errori dovuti alla salita o alla discesa; quindi dovrò:
+- aspettare 3/2 T da quando la linea transisce a spacing per la prima volta (bit di start, più metà primo da campionare);
+- campionare il valore della linea;
+- aspettare di nuovo T, e così via per tutti i bit utili della trama;
+
+> Non si può aumentare a dismisura i bit all'interno di una trama, poiché si creerebbero problemi dovuti all'imprecisione dei clock.
 
