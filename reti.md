@@ -418,3 +418,19 @@ Le due tri-state non sono mai in conduzione contemporaneamente, e sono entrambe 
 
 
 ### Intefaccie parallele con HandShake - Uscita
+Il flag FO vale uno quando nel registro TBR può essere scritto un nuovo dato. Ci vuole un filo di indirizzo, perché ci sono due registri, e quindi è necessario distinguerli.<br>
+Vediamo come è fatta l'interfaccia al suo interno:
+- C'è una rete combinatoria che ha un ruolo analogo a quella dell'interfaccia di ingresso. L'unica differenza è che stavolta $e_B$ non serve ad abilitare le tri-state, perché i dati vanno nella direzione opposta.
+- Si gestisce prima l'handshake con il processore e, finito quello, quello con il dispositivo; si noti che il contenuto di TBR balla, ma /dav viene tenuto a 1, quindi il dispositivo non può leggerlo.
+
+## Interfaccia parallela di ingresso-uscita
+In questo caso i registri RBR e TBR sono mappati sullo stesso indirizzo interno, e sono acceduti rispettivamente in lettura e scrittura. I due flag FI e FO danno corpo a due bit in un unico registro di controllo, detto RTSR.
+
+# Interfaccia seriale start/stop
+- Riceve dal bus un byte (perché il processore scrive byte in opportuni registri di I/O) e trasmette all'esterno sequenza di bit;
+- Riceve dall'esterno sequenze di bit e presenta al processore byte componendo dquelle sequenze di bit in un registro che si possa leggere;
+
+Da un punto di vista fisico, il mezzo trasmissivo sul quale esce l'informazione si presenta come un insieme di due linee: una linea di massa, che funge da riferimento, ed una che porta una tensione riferita a massa; Sono leciti due valori sulla linea:
+- **Marking**, 1 logico;
+- **Spacing**, 0 logico;
+
