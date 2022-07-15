@@ -384,5 +384,37 @@ I cicli di scrittura e lettura nello spazio di I/O sono simili, ma non identici:
 Sono di 3 tripi:
 - **Parallele**, che sono in grado di inviare/ricevere $1$ byte alla volta;
 - **Seriali**, che sono in grado di inviare/ricevere $1$ bit alla volta;
-- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**: che trasformano gruppi di bit in tensioni e viceversa;
+- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**, che trasformano gruppi di bit in tensioni e viceversa;
 
+## Interfacce parallele
+Prendiamo il tipo più semplice di interfaccia parallela in **ingresso**.<br>
+Un'interfaccia che da corpo ad una sola porta, dalla quale si può soltanto leggere.<br>
+Dal punto di vista dei collegamenti con il processore essa avrà bisogno di:
+- un segnale di **select**, al quale va l'uscita della maschera, tramite la quale il progettista decide quale deve essere l'offset della porta di ingresso dell'interfaccia;
+- un filo di /ior;
+- otto fili di dati;
+- nessun filo di indirizzo, poiché ha;
+- una porta sola;
+
+Dal lato del dispositivo con il quale si interfaccia, ci saranno 8 fili di ingresso, che chiamiamo _"byte_in"_, tramite i quali il dispositivo interno fa arrivare i dati. <br>
+Questi dati saranno inseriti dal dispositivo nel registro _RBR_.
+
+Dualmente, il tipo più semplice di interfaccia parallela di uscita è un'interfaccia che da corpo ad una sola porta, nella quale si può solo scrivere; dal punto di vista dei collegamenti col processore, abbiamo:
+- un segnale di **select**, al quale va l'uscita della maschera tramite la quale il progettista decide quale deve essere l'offset della porta di uscita dell'interfaccia;
+- un filo di /iow;
+- otto fili di dati;
+- nessun filo di indirizzo, poiché ha;
+- una porta sola;
+
+Dal lato del dispositivo con il quale si interfaccia, ci saranno 8 fili di uscita, che chiamiamo _"byte_out"_, tramite i quali il interfaccia fa arrivare i dati al dispositivo. <br>
+Questi dati saranno scritti dal processore nel registro _TBR_.
+
+### Intefaccie parallele con HandShake - Ingresso
+Sono dotate di meccanismi di sincronizzazione: dal lato del processore, hanno un flag di ingresso pieno, che il processore accede a controllo di programma. <br>
+Dal lato del dispositivo, hanno dei fili di handshake in più, uguali a quelli già visti nell'esempio di "produttore e consumatore"; In questo l'**interfaccia è un consumatore** rispetto al dispositivo. <br>
+L'interfaccia di ingresso avrà solo /ior (non /iow) ed un filo di dati per distinguere gli accessi a RSR e RBR;<br>
+La RC interna deve, per prima cosa, generare i segnali di abilitazione per le tri-state quando il processore accede in lettura a RBR o RSR.
+Le due tri-state non sono mai in conduzione contemporaneamente, e sono entrambe in alta impedenza quando non ci sono accessi all'interfaccia.
+
+
+### Intefaccie parallele con HandShake - Uscita
