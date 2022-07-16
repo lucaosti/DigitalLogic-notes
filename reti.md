@@ -485,7 +485,7 @@ Gli errori di conversione possono essere:
 L'errore di non **linearità** deve essere più piccolo di $\frac{K}{2}$.<br>
 L'errore massimo di **quantizzazione** è indipendente dalla natura del convertitore (A/D). Data una costante K, è pari a $\frac{K}{2}$. Infatti, se divido il FSR in $2^N$ intervalli larghi $K$ e converto tutto un intervallo nello stesso numero, la conversione sarà:
 - esatta, per la tensione al centro dell'intervallo;
-- errata, di $\plusmn \frac{K}{2}$ per le tensioni agli estremi.
+- errata, di $\pm \frac{K}{2}$ per le tensioni agli estremi.
 
 Riassumento, abbiamo:
 - conversione D/A: $err \leq \frac{K}{2}$ (soltanto errore di linearità);
