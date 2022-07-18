@@ -428,7 +428,7 @@ In questo caso i registri RBR e TBR sono mappati sullo stesso indirizzo interno,
 
 # Interfaccia seriale start/stop
 - Riceve dal bus un byte (perché il processore scrive byte in opportuni registri di I/O) e trasmette all'esterno sequenza di bit;
-- Riceve dall'esterno sequenze di bit e presenta al processore byte componendo dquelle sequenze di bit in un registro che si possa leggere;
+- Riceve dall'esterno sequenze di bit e presenta al processore byte componendo quelle sequenze di bit in un registro che si possa leggere;
 
 Da un punto di vista fisico, il mezzo trasmissivo sul quale esce l'informazione si presenta come un insieme di due linee: una linea di massa, che funge da riferimento, ed una che porta una tensione riferita a massa; Sono leciti due valori sulla linea:
 - **Marking**, 1 logico;
