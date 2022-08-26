@@ -49,6 +49,10 @@
     	- /preset = 0, la rete va in S1;
     	- /preclear = 0, la rete si porta in S1.
 
+![Latch SR](img/6.png)
+
+<br>
+
 - **D-Latch trasparente**:
   - $2$ Ingressi, $d$ ed $c$;
   - $1$ Uscita, $q$.
@@ -56,6 +60,10 @@
   - Sintetizzabili con un Latch SR e una rete combinatoria.
   - Il pilotaggio deve avvenire nel rispetto di alcune regole:
     - Si deve tenere $d$ costante a cavallo della transizione di $c$ da $1$ a $0$. I tempi per cui deve essere costante (prima e dopo) sono chiamati rispettivamente $T_{setup}$ e $T_{hold}$;
+
+![D-Latch Trasparente](img/7.png)
+
+<br>
 
 - **D flip-flop**:
   - $2$ Ingressi, $d$ ed $p$;
@@ -70,6 +78,11 @@
   - Per la sintesi si possono usare anche due D-latch, in configurazione master-slave:
     - $p = 0$, il **master campiona e lo slave conserva**;
     - $p = 1$, il **master conserva e lo slave campiona**;
+
+![D flip-flop](img/8.png)
+
+<br>
+
 ***
 - **Memorie RAM statiche** (RAM statiche o S-RAM):
   - Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **non** simultaneamente;
@@ -88,6 +101,12 @@
 		| 0  | 1   | 0   | Ciclo di scrittura in corso                                | 0 | 1 |
 		| 0  | 0   | 0   | Non definito                                               | - | - |
 
+    <br>
+
+    ![RAM Statica](img/9.png)
+
+    <br>
+
   - Vediamo come è realizzata:
   	- Disegnare la matrice di D-latch. Una riga è una locazione, bia 0 a destra, bit 3 a sinistra;
   	- Le uscite dei D-latch dovranno essere selezionate una riga alla volta, per finire sui fili dei dati in uscita. Ci vuole un multiplexer per ogni bit, in cui:
@@ -104,6 +123,12 @@
   - Descriviamo la temporizazione del ciclo di scrittura della memoria:
     - Devo attendere che $/s$ e gli indirizzi siano stabili prima di portare giù $/mw$.
     - I dati possono ballare a piacimento ma devono essere stabili prima di portare giù $/mw$, poiché corrisponde, con un minimo ritardo, al fronte di discesa di $c$ all'interno dei D-latch.
+
+    <br>
+
+    ![RAM](img/10.png)
+
+    <br>
 
 - **Collegamento al bus e maschere**:
   - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore ne impostano il valore.
