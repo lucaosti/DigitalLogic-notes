@@ -358,7 +358,7 @@ In particolare, i formati sono:
 ## Spazio di memoria
 Lo spazio di memoria fisica, grande 16MB, è implementato con tecnologia RAM, in parte EPROM ed in parte come memoria video;
 La logica combinatoria che genera il segnale di abilitazione (/s) per un modulo a partire dagli indirizzi prende il nome di maschera:
-- Sul bus non c'è nessun gilo di select;
+- Sul bus non c'è nessun filo di select;
 - Il chip RAM copre anche gli indirizzi coperti da EPROM e dalla memoria video.
 
 ## Spazio di I/O
@@ -392,7 +392,7 @@ Al reset, si inizializzano:
 Fase di Fetch:
 - Preleva un byte, quello indicato da IP;
 - Incrementa IP, modulo $2^{24}$;
-- controlla che quel byte corrisponda ad un opcode, sennò di ferma;
+- controlla che quel byte corrisponda ad un opcode, sennò si ferma;
 - inserisce il byte letto nel registro OPCODE, e valuta il formato dell'istruzione, a seconda di questo:
   - si procura un operando sorgente a 8 bit e lo inserisce in SOURCE;
   - si procura l'indirizzo dell'operando destinatario e lo inserisce in DEST_ADDR;
