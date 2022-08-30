@@ -486,7 +486,11 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 
 ## FI e FO
 
-![FI e FO](img/5.png)
+**FI**, inizialmente a **0**; l'interfaccia lo setta quando il dispositivo scrive in **RBR**, in modo da segnalare la presenza di nuovi dati.
+Quando il processore, accede al registro, l'interfaccia riporta FI a **0**.
+
+**FO**, inizialmente a **1**; l'interfaccia lo resetta quando il processore scrive in **TBR**, a segnalare che il dispositivo non l'ha ancora processato.
+Quando il dispositivo, accede al registro TBR, l'interfaccia riporta FO a **1**.
 
 <br>
 
