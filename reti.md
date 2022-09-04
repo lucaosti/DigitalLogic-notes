@@ -306,7 +306,19 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
+![](img/21.jpg)
+
+<br>
+
 ![](img/3.png)
+
+<br>
+
+![](img/22.jpg)
+
+<br>
+
+![](img/23.jpg)
 
 <br>
 
@@ -331,7 +343,7 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-![](img/21.jpg)
+![](img/24.jpg)
 
 <br>
 
@@ -339,11 +351,11 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-![](img/22.jpg)
+![](img/25.jpg)
 
 <br>
 
-![](img/23.jpg)
+![](img/26.jpg)
 
 <br>
 
