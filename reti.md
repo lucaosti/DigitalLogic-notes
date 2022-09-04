@@ -54,12 +54,17 @@
 		| 1 | 0  | 0 | 1 |
 		| 1 | 1  | - | 0 |
 
-	- È necessario applicare alla rete altri due ingressi attivi bassi, /reset e /preclear:
-    	- /preset = /preclear = 1, l'elemento funziona normalmente;
-    	- /preset = 0, la rete va in S1;
-    	- /preclear = 0, la rete si porta in S1.
+	- È necessario applicare alla rete altri due ingressi attivi bassi, /preset e /preclear:
+    	- $/preset = /preclear = 1$, l'elemento funziona normalmente;
+    	- $/preset = 0$, la rete va in S1;
+    	- $/preclear = 0$, la rete si porta in S0;
+    	- $/preset = /preclear = 0$, errore di pilotaggio.
 
 ![Latch SR](img/6.png)
+<br>
+Temporizzazione Latch SR.
+
+![Temporizzazione Latch SR](img/13.jpg)
 
 <br>
 
@@ -73,12 +78,16 @@
 
 ![D-Latch Trasparente](img/7.png)
 
+Temporizzazione D-Latch Trasparente.
+
+![Temporizzazione D-Latch Trasparente](img/14.jpg)
+
 <br>
 
 - **D flip-flop**:
   - $2$ Ingressi, $d$ ed $p$;
   - $1$ Uscita, $q$.
-  - Quando $p$ ha un fronmte in salita, memorizza d, attendi un po' ed adegua l'uscita.
+  - Quando $p$ ha un fronte in salita, memorizza d, attendi un po' ed adegua l'uscita.
   - Si prende un D-latch, e si premette alla variabile $c$ un formatore di impulsi, in modo tale che, al fronte di salita di $p$, il D-latch vada brevemente in trasparenza e memorizzi $d$. Poi si ritarda l'uscita di un ritardo $\Delta$ maggiore dell'intervallo del $P+$.
   - Il pilotaggio deve avvenire nel rispetto di alcune regole:
     - A cavallo del fronte di salita di $p$, la variabile $d$ deve rimanere costante. I nomi dei tempi per cui deve rimanere costante prima e dopo il fronte di salita sono rispettivamente $T_{setup}$ e $T_{hold}$;
@@ -90,6 +99,10 @@
     - $p = 1$, il **master conserva e lo slave campiona**;
 
 ![D flip-flop](img/8.png)
+
+Temporizzazione D flip-flop.
+
+![Temporizzazione D flip-flop](img/15.jpg)
 
 <br>
 
@@ -124,19 +137,20 @@
       	- le variabili di comando sono i **fili di indirizzo**;
   	- Le uscite di ciascuno dei multiplexer vanno bloccate con porte tri-state. Dovranno essere abilitate quando sto leggendo dalla memoria;
   	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ($c = 1$).
-  - Descriviamo la temporizzazione del ciclo di lettura della memoria:
+
+    <br>
+
+    ![RAM](img/10.png)
+
+  - Descriviamo la temporizzazione del **ciclo di lettura della memoria**:
     - Ad un certo istante, gli indirizzi si stabilizzano al valore della cella che voglio leggere ed arriva il comando di $/mr$.
 	- Nel frattempo, in quando funzione combinatoria di altri bit, $/s$ balla e arriva con un po' di ritardo.
 	- Quando sia $/mr$ che $/s$ sono a $0$, le porte tri-state vanno in conduzione e i multiplexer sulle uscite vanno a regime.
 	- Da quel punto in poi i dati sono buoni.
 	- Quando $/mr$ viene tirato su, i dati tornano in alta impedenza e a quel punto gli indirizzi di $/s$ possono ballare a piacimento, tanto non succede niente.
-  - Descriviamo la temporizazione del ciclo di scrittura della memoria:
+  - Descriviamo la temporizazione del **ciclo di scrittura della memoria**:
     - Devo attendere che $/s$ e gli indirizzi siano stabili prima di portare giù $/mw$.
     - I dati possono ballare a piacimento ma devono essere stabili prima di portare giù $/mw$, poiché corrisponde, con un minimo ritardo, al fronte di discesa di $c$ all'interno dei D-latch.
-
-    <br>
-
-    ![RAM](img/10.png)
 
     <br>
 
@@ -145,12 +159,18 @@
     <br>
 
 - **Collegamento al bus e maschere**:
-  - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore ne impostano il valore.
+  - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore (e talvolta altri moduli) ne impostano il valore.
   - Il piedino $/s$ di un modulo di RAM serve appunto a poter realizzare uno spazio di memoria grande usando moduli di memoria più piccoli.
   - Supponiamo di avere un bus indirizzi a 32 bit e di voler montare un modulo di RAM 256Mx8 bit a partire dall'indirizzo 0xE0000000. Il modulo avrà 28 fili di indirizzo ed un filo di select $/s$ e dovrà rispondere agli indirizzi nell'intervallo [0xE0000000 - 0xEFFFFFFF]:
     - I 28 fili di indirizzo meno significativi del bus andranno in ingresso al modulo di RAM;
     - I restanti 4 fili di indirizzo più significativi andranno in ingresso ad una maschera, che genera il select per il modulo di RAM.
   - La maschera deve riconoscere la configurazione di bit richiesta (0xE == B1110), pertanto deve essere $/s = \bar{a_{31}}+\bar{a_{30}}+\bar{a_{29}}+a_{28}$.
+
+  <br>
+  
+  ![Collegamento BUS della RAM](img/16.JPG)
+
+  <br>
 
 - **Memomorie Read-Only** (ROM):
   - Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
@@ -159,13 +179,23 @@
   - I D-latch sono sostituiti da generatori di costante. Si distinguono 3 tipi:
     - PROM;
     - EPROM;
-    - EEPROM;<br>
+    - EEPROM;
+
 	A seconda del metodo di programmazione.
+
+  <br>
+  
+  ![ROM](img/17.JPG)
+
+  <br>
 
 - **ROM programmabili**:
   - PROM: La matrice di connesione è fatta da fusibili, che possono essere fatti saltare in modo selettivo in modo da inserire in ciascuna cella il lvalore desiderato. [NON PUÒ ESSERE RIPETUTA]
   - EPROM: Le connessioni sono fatte non con fusibili, ma con dispositivi elettronici, che sono programmabili per via elettrica e cancellabile tramite esposizione a raggi ultravioletti. [PUÒ ESSERE RIPETUTA]
   - EEPROM: Possono essere programmate e cancellate tramite segnali elettrici appositi.
+
+<br>
+
 ***
 # Reti sequenziali sincronizzate (RSS)
 Si evolvono soltanto in corrispondenza di istanti temporali ben precisi, detti _istanti di sincronizzazione_.<br>
@@ -186,20 +216,19 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
     - arrivare, attraverso le reti combinatorie, fino agli ingressi dei registri.
   - Definiamo i seguenti ritardi:
     - $T_{in-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi tra un piedino di ingresso fino all'imgresso di un registro;
-    - $T_{reg-to-reg}$: (...) l'uscita di un registro e l'ingresso di un registro;
-    - $T_{in-to-out}$: (...) un piedino di ingresso e un piedino di uscita;
-    - $T_{reg-to-out}$: (...) l'uscita di un registro e un piedino di uscita.
+    - $T_{reg-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e l'ingresso di un registro;
+    - $T_{in-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi un piedino di ingresso e un piedino di uscita;
+    - $T_{reg-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e un piedino di uscita.
   - Ho $3$ vincoli temporali:
     - ingressi costanti [$t_i-T_{setup}$ , $t_i+T_{hold}$];
     - vincolo di pilotaggio in ingresso: chi pilota gli ingressi deve avere almeno un $T_{a-monte}$ per poterli cambiare;
     - vincolo di pilotaggio in uscita: chi usa le uscite deve averle stabili per un tempo $T_{a-valle}$ per poterci fare qualcosa.
-<br>
-<br>
-
-![](img/1.png)
 
 <br>
 
+![Temporizzazione di una RSS](img/1.png)
+
+<br>
 
 - **Contatori**:
   - Un contatore è una RSS il cui stato di uscita può essere visto come un numero naturale ad $n$ cifre in base $\beta$, secondo una qualche codifica.
@@ -207,8 +236,10 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
     - incrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore up);
     - decrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore down);
     - incrementa o decrementa di 1 (modulo $\beta^n$), il valore di uscita a seconda del valore di una variabile di comando (contatore up/down).
+
 - **Registri multifunzionali**:
   - È una rete che, all'arrivo del clock, memorizza nel registro stesso una tra K funzioni combinatorie possibili, scelta impostando un certo numero di variabili di comando $W = \lceil \log_2K \rceil$. Si realizza con un multiplexer a $K$ ingressi;
+
 - **Modello di MOORE**:
   1. un insieme di $N$ variabili logiche in ingresso;
   2. un insieme di $M$ variabili logiche di uscita;
@@ -217,7 +248,7 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
   5. Una legge di _evoluzione del tempo_ del tipo $B : S \rightarrow Z$, che decide lo stato di uscita basandosi sullo stato interno;
   6. La rete riceve segnali di sincronizzazione, come transizioni da 0 a 1 del segnale di clock;
   7. Si adegua alla seguente **legge di temporizzazione**:
-     - "Dato $S$, stato interno marcato ad un certo istante, e dato $X$ ingresso ad un certo istante immediatamente precedente all'arrivo di un segnale di sincronizzazione,
+     - "Dato $S$, stato interno marcato ad un certo istante, e dato $X$ ingresso ad un certo istante immediatamente precedente all'arrivo di un segnale di sincronizzazione;
      - individuare il nuovo stato interno da marcare $S' = A(S,X)$;
      - attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
      - promuovere $S'$ al rango di stato interno marcato;
@@ -229,7 +260,19 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 
 <br>
 
+![](img/19.jpg)
+
+<br>
+
 ![](img/2.png)
+Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può essere ignorata.
+<br>
+
+![](img/18.jpg)
+
+<br>
+
+![](img/20.jpg)
 
 <br>
 
@@ -288,7 +331,19 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 
 <br>
 
+![](img/21.jpg)
+
+<br>
+
 ![](img/4.png)
+
+<br>
+
+![](img/22.jpg)
+
+<br>
+
+![](img/23.jpg)
 
 <br>
 
