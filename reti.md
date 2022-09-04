@@ -1,3 +1,13 @@
+# NAND e NOR
+
+![NAND e NOR](img/12.png)
+
+<br>
+
+- La sintesi a **NAND** si ottiene  partendo da **SP** e complementando 2 volte, applicando De Morgan una volta.
+
+- La sintesi a **NOR** si ottiene  partendo da **PS** e complementando 2 volte, applicando De Morgan una volta.
+
 # Reti combinatorie
 
 - **Tri-state**:
@@ -127,6 +137,10 @@
     <br>
 
     ![RAM](img/10.png)
+
+    <br>
+
+    ![Temporizzazione RAM](img/11.png)
 
     <br>
 
