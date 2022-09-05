@@ -60,6 +60,9 @@
     	- $/preclear = 0$, la rete si porta in S0;
     	- $/preset = /preclear = 0$, errore di pilotaggio.
 
+Quindi:
+$$ Z_s = \bar{/preset}+(/preclear \cdot s) \newline Z_r = \bar{/preclear}+(/preset \cdot s) $$
+
 ![Latch SR](img/6.png)
 <br>
 Temporizzazione Latch SR.
@@ -106,9 +109,16 @@ Temporizzazione D flip-flop.
 
 <br>
 
+  - È possibile creare un D flip-flop mettendo in cascata due D-Latch in configurazione master-slave.
+
+![D flip-flop master slave](img/27.jpeg)
+
+  - $p = 0$, il master campiona e lo slave conserva;
+  - $p = 1$, il master conserva e lo slave campiona;
+
 ***
 - **Memorie RAM statiche** (RAM statiche o S-RAM):
-  - Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **non** simultaneamente;
+  - Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **NON** simultaneamente;
   - Dal punto di vista dell'utente, una memoria è dotata dei seguenti collegamenti:
     - un certo numero di **fili di indirizzo**, che sono ingressi;
     - un certo numero di **fili di dati**, che sono fili di ingresso/uscita (andranno forchettati con porte tri-state);
@@ -190,9 +200,9 @@ Temporizzazione D flip-flop.
   <br>
 
 - **ROM programmabili**:
-  - PROM: La matrice di connesione è fatta da fusibili, che possono essere fatti saltare in modo selettivo in modo da inserire in ciascuna cella il lvalore desiderato. [NON PUÒ ESSERE RIPETUTA]
-  - EPROM: Le connessioni sono fatte non con fusibili, ma con dispositivi elettronici, che sono programmabili per via elettrica e cancellabile tramite esposizione a raggi ultravioletti. [PUÒ ESSERE RIPETUTA]
-  - EEPROM: Possono essere programmate e cancellate tramite segnali elettrici appositi.
+  - **PROM**: La matrice di connesione è fatta da fusibili, che possono essere fatti saltare in modo selettivo in modo da inserire in ciascuna cella il lvalore desiderato. [NON PUÒ ESSERE RIPETUTA]
+  - **EPROM**: Le connessioni sono fatte non con fusibili, ma con dispositivi elettronici, che sono programmabili per via elettrica e cancellabile tramite esposizione a raggi ultravioletti. [PUÒ ESSERE RIPETUTA, MA NON DALL'UTENTE]
+  - **EEPROM**: Possono essere programmate e cancellate tramite segnali elettrici appositi. [PUÒ ESSERE RIPETUTA DALL'UTENTE]
 
 <br>
 
@@ -240,6 +250,8 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 - **Registri multifunzionali**:
   - È una rete che, all'arrivo del clock, memorizza nel registro stesso una tra K funzioni combinatorie possibili, scelta impostando un certo numero di variabili di comando $W = \lceil \log_2K \rceil$. Si realizza con un multiplexer a $K$ ingressi;
 
+<br>
+
 - **Modello di MOORE**:
   1. un insieme di $N$ variabili logiche in ingresso;
   2. un insieme di $M$ variabili logiche di uscita;
@@ -285,6 +297,7 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
     | 10 | Setta            |
     | 01 | Resetta          |
     | 11 | Commuta          |
+
   - Tabella di applicazione:
 
     | q  | q' | j  | k  |
@@ -485,6 +498,14 @@ I cicli di scrittura e lettura nello spazio di I/O sono simili, ma non identici:
 - Nel ciclo di lettura gli indirizzi devono esser eprinti un clock prima del comando di lettura;
 - Nel ciclo di scrittura i dati devono essere già pronti sul fronte di discesa si /iow;
 
+### Lettura:
+![Lettura](img/28.jpeg)
+![Lettura](img/29.jpeg)
+
+### Scrittura:
+![Lettura](img/30.jpeg)
+![Lettura](img/31.jpeg)
+
 ***
 # Interfacce
 Sono di 3 tripi:
@@ -529,10 +550,10 @@ Vediamo come è fatta l'interfaccia al suo interno:
 - C'è una rete combinatoria che ha un ruolo analogo a quella dell'interfaccia di ingresso. L'unica differenza è che stavolta $e_B$ non serve ad abilitare le tri-state, perché i dati vanno nella direzione opposta.
 - Si gestisce prima l'handshake con il processore e, finito quello, quello con il dispositivo; si noti che il contenuto di TBR balla, ma /dav viene tenuto a 1, quindi il dispositivo non può leggerlo.
 
-## Interfaccia parallela di ingresso-uscita
+### Interfaccia parallela di ingresso-uscita
 In questo caso i registri RBR e TBR sono mappati sullo stesso indirizzo interno, e sono acceduti rispettivamente in lettura e scrittura. I due flag FI e FO danno corpo a due bit in un unico registro di controllo, detto RTSR.
 
-# Interfaccia seriale start/stop
+## Interfaccia seriale start/stop
 - Riceve dal bus un byte (perché il processore scrive byte in opportuni registri di I/O) e trasmette all'esterno sequenza di bit;
 - Riceve dall'esterno sequenze di bit e presenta al processore byte componendo quelle sequenze di bit in un registro che si possa leggere;
 
@@ -565,7 +586,7 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 
 <br>
 
-## FI e FO
+### FI e FO
 
 **FI**, inizialmente a **0**; l'interfaccia lo setta quando il dispositivo scrive in **RBR**, in modo da segnalare la presenza di nuovi dati.
 Quando il processore, accede al registro, l'interfaccia riporta FI a **0**.
@@ -575,7 +596,7 @@ Quando il dispositivo, accede al registro TBR, l'interfaccia riporta FO a **1**.
 
 <br>
 
-# Conversione analogico/digitale e digitale/analogico
+## Conversione analogico/digitale e digitale/analogico
 Nel mondo fisico, di norma, l'informazione è associata a grandezze analogiche che variano con continuità; <br>
 All'interno del computer, invece, le informazioni sono associate a stringhe di bit, cioé grandezze digitali, che variano in modo discreto.
 
