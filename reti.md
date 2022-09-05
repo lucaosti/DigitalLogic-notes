@@ -513,6 +513,27 @@ Sono di 3 tripi:
 - **Seriali**, che sono in grado di inviare/ricevere $1$ bit alla volta;
 - **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**, che trasformano gruppi di bit in tensioni e viceversa;
 
+<br>
+
+## Le interfacce hanno alcuni dettagli in comune:
+- 2 Registri per permettere il passaggio dei dati:
+  - Recive Buffer Register **RBR**;
+  - Transmit Buffer Register **TBR**;
+- Ciò, però, non permette la sincronizzazione tra il processore ed il dispositivo, quindi integriamo il collegamento con:
+  - Recive Status Register;
+  - Transmit Status Register;
+  - Spesso collassati in un unico registro: **RTSR**.
+  - Di ciascun registro è significativo un solo bit, il che da la possibilità di collassarli.
+    - Sono detti rispettivamente **FI** e **FO** e funzionano come segue:
+
+### FI e FO
+
+**FI**, inizialmente a **0**; l'interfaccia lo setta quando il dispositivo scrive in **RBR**, in modo da segnalare la presenza di nuovi dati.
+Quando il processore, accede al registro, l'interfaccia riporta FI a **0**.
+
+**FO**, inizialmente a **1**; l'interfaccia lo resetta quando il processore scrive in **TBR**, a segnalare che il dispositivo non l'ha ancora processato.
+Quando il dispositivo, accede al registro TBR, l'interfaccia riporta FO a **1**.
+
 ## Interfacce parallele
 Prendiamo il tipo più semplice di interfaccia parallela in **ingresso**.<br>
 Un'interfaccia che da corpo ad una sola porta, dalla quale si può soltanto leggere.<br>
@@ -543,6 +564,8 @@ L'interfaccia di ingresso avrà solo /ior (non /iow) ed un filo di dati per dist
 La RC interna deve, per prima cosa, generare i segnali di abilitazione per le tri-state quando il processore accede in lettura a RBR o RSR.
 Le due tri-state non sono mai in conduzione contemporaneamente, e sono entrambe in alta impedenza quando non ci sono accessi all'interfaccia.
 
+![Intefaccie parallele con HandShake - Ingresso](img/32.jpeg)
+![Temporizzazione Intefaccie parallele con HandShake - Ingresso](img/33.jpeg)
 
 ### Intefaccie parallele con HandShake - Uscita
 Il flag FO vale uno quando nel registro TBR può essere scritto un nuovo dato. Ci vuole un filo di indirizzo, perché ci sono due registri, e quindi è necessario distinguerli.<br>
@@ -550,8 +573,12 @@ Vediamo come è fatta l'interfaccia al suo interno:
 - C'è una rete combinatoria che ha un ruolo analogo a quella dell'interfaccia di ingresso. L'unica differenza è che stavolta $e_B$ non serve ad abilitare le tri-state, perché i dati vanno nella direzione opposta.
 - Si gestisce prima l'handshake con il processore e, finito quello, quello con il dispositivo; si noti che il contenuto di TBR balla, ma /dav viene tenuto a 1, quindi il dispositivo non può leggerlo.
 
-### Interfaccia parallela di ingresso-uscita
+![Intefaccie parallele con HandShake - Uscita](img/34.jpeg)
+
+### Interfaccia parallela di Ingresso-Uscita
 In questo caso i registri RBR e TBR sono mappati sullo stesso indirizzo interno, e sono acceduti rispettivamente in lettura e scrittura. I due flag FI e FO danno corpo a due bit in un unico registro di controllo, detto RTSR.
+
+![Intefaccie parallele con HandShake - Ingresso-Uscita](img/35.jpeg)
 
 ## Interfaccia seriale start/stop
 - Riceve dal bus un byte (perché il processore scrive byte in opportuni registri di I/O) e trasmette all'esterno sequenza di bit;
@@ -584,15 +611,8 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 
 > Non si può aumentare a dismisura i bit all'interno di una trama, poiché si creerebbero problemi dovuti all'imprecisione dei clock.
 
-<br>
-
-### FI e FO
-
-**FI**, inizialmente a **0**; l'interfaccia lo setta quando il dispositivo scrive in **RBR**, in modo da segnalare la presenza di nuovi dati.
-Quando il processore, accede al registro, l'interfaccia riporta FI a **0**.
-
-**FO**, inizialmente a **1**; l'interfaccia lo resetta quando il processore scrive in **TBR**, a segnalare che il dispositivo non l'ha ancora processato.
-Quando il dispositivo, accede al registro TBR, l'interfaccia riporta FO a **1**.
+![Interfaccia seriale start/stop](img/36.jpeg)
+![Interfaccia seriale start/stop](img/37.jpeg)
 
 <br>
 
