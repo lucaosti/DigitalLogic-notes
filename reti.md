@@ -467,21 +467,21 @@ Dal lato dispositivo, i collegamenti variano da interfaccia a interfaccia. Il mo
 
 ## Processore
 Contiene un certo numero di registri, tra cui:
-- STAR, registro di stato, essento il processore una RSS;
-- MJR;
-- Instraction registers (OPCODE, SOURCE; DEST_ADDR), vengono riempiti in fase di fetch:
-  - OPCODE: codice operativo dell'istruzione;
-  - SOURCE: l'operando sorgente;
-  - DEST_ADDR: indirizzo dell'operando destinatario;
-- Ho dei registri che sostengono le uscite, come deve essere in una RSS;
-- Un registro DIR, per abilitare la tri-state quando il processore deve effettuare scritture sul bus;
-- Dei registri di appoggio APPx e NUMLOC, che servono per i cicli di lettura/scrittura;
+- **STAR**, registro di stato, essento il processore una RSS;
+- **MJR**;
+- **Instraction registers** (OPCODE, SOURCE; DEST_ADDR), vengono riempiti in fase di fetch:
+  - **OPCODE**: codice operativo dell'istruzione;
+  - **SOURCE**: l'operando sorgente;
+  - **DEST_ADDR**: indirizzo dell'operando destinatario;
+- Ho dei registri che sostengono le **uscite**, come deve essere in una RSS;
+- Un registro **DIR**, per abilitare la tri-state quando il processore deve effettuare scritture sul bus;
+- Dei registri di appoggio **APPx** e **NUMLOC**, che servono per i cicli di lettura/scrittura;
 
 Al reset, si inizializzano:
-- i registri IP ed F, in modo da partire con un'evoluzione consistente;
-- tutti i registri che hanno a che fare con variabili di controllo del bus dovranno essere inizializzati in modo coerente: /MR, /MW, /IOR, /IOW dovranno contenere tutti 1;
-- I fili di dati vanno posti in alta impedenza. DIR deve contenere 0;
-- STAR verrà inizializzato con l'etichetta del promo statement della fase di fetch;
+- i registri **IP** ed **F**, in modo da partire con un'evoluzione consistente;
+- tutti i registri che hanno a che fare con variabili di controllo del bus dovranno essere inizializzati in modo coerente: **/MR**, **/MW**, **/IOR**, **/IOW** dovranno contenere tutti 1;
+- I **fili di dati** vanno posti in alta impedenza. **DIR** deve contenere 0;
+- **STAR** verrà inizializzato con l'etichetta del promo statement della fase di fetch;
 
 Fase di Fetch:
 - Preleva un byte, quello indicato da IP;
