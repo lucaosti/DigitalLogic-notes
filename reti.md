@@ -637,12 +637,51 @@ Per campionare i bit, mi conviene farlo a circa metà del tempo di bit, per evit
 - campionare il valore della linea;
 - aspettare di nuovo T, e così via per tutti i bit utili della trama;
 
-> Non si può aumentare a dismisura i bit all'interno di una trama, poiché si creerebbero problemi dovuti all'imprecisione dei clock.
+> Non si può aumentare a dismisura i bit all'interno di una trama, poiché si creerebbero problemi dovuti all'imprecisione dei clock. Dopo un po' arriveremmo vicino al fronte di salita o discesa.
 
 ![Interfaccia seriale start/stop](img/36.jpeg)
 ![Interfaccia seriale start/stop](img/37.jpeg)
 
 <br>
+
+### Descrizione del trasmettitore
+- Accetta un nuovo byte dalla sottointerfaccia parallela di uscita, con la quale ha un handshake;
+- Trasmette tutti i bit di quel byte sul mezzo trasmissivo tramite il filo txd.
+
+Il tramettitore ha pertanto bisogno di alcuni registri:
+- **TXD**, registro ad 1 bit per sostenere l'uscita;
+- **RFD**, registro ad 1 bit che sostiene il segnale di uscita dell'handshake;
+- **BUFFER**, è il registro nel quale tengo tutto il byte da trasmettere. Pertanto, deve essere largo almeno 8 bit. Conviene fargli contenere l'intera trama (*n+1*);
+- **COUNT**, nel quale tengo il conto dei bit che ancora devo inviare, tipicamente 4 bit per contenere 10.
+
+Posso ipotizzare che il tramettitore abbia un clock pari al tempo di bit.
+
+Le ipotesi al reset, sono:
+- */dav = 1*, dalla parte dell'interfaccia;
+- *rfd = 1* e *txd = 1*, da parte del trasmettitore.
+
+![Verilog trasmettitore](img/41.png)
+
+### Descrizione del ricevitore
+- Non è in grado di controllare il flusso di dati in ingresso dalla linea serialeò. Pertanto non ha nessun senso che gestisca un handshake completo con la sottointerfaccia parallela;
+- Abbiamo supposto che il trasmettitore avesse un clock con periodo pari al tempo di bit.
+- Ciclicamente:
+  - Deve campionare i bit a metà del tempo di bit;
+  - Capisce che la trama è iniziata quando vede un fronte di discesa da marking a spacing;
+  - Quindi, campiona il primo bit dopo $\frac{3}{2}T$ da quando vede l'inizio della trama e poi i bit successivi ogni $T$.
+
+Ci vogliono i registri:
+- **DAV_**, che sostiene l'uscita;
+- **BUFFER**, nel quale campiono la trama di bit;
+- **COUNT**, nel quale tengo conto di quanti bit ho campionato;
+- **WAIT**, che serve per contare il numero di cicli di clock che devo attendere per campionare il prossimo.
+
+Per quanto riguarda l'handshake con la sottointerfaccia parallela di ingresso:
+- I dati saranno validi quando avrò letto **tutti i bit utili**, a quel punto abbasso */dav*;
+- Dopo che ho atteso l'arrivo del bit di stop, in teoria ogni clock è buono perché la linea si abbassi a indicare l'inizio della successiva trama. A quel punto alzo */dav* e se il dato non è stato letto, verrà sovrascritto.
+
+![Flusso ricevitore](img/42.png)
+![Verilog ricevitore](img/43.png)
 
 ## Conversione analogico/digitale e digitale/analogico
 Nel mondo fisico, di norma, l'informazione è associata a grandezze analogiche che variano con continuità; <br>
@@ -658,7 +697,7 @@ Definiamo $K = \frac{FSR}{2^N}$, costante di proporzionalità tra i due interval
 In realtà, dovremo accontentarci di $|v-K \cdot x| \leq err$; con $err$ detto errore di conversione.
 
 Gli errori di conversione possono essere:
-- imprecisione a livello circuitale: i convertitori sono circuiti con resistenze, fili, reattanze, che non si comportano in maniera ideale; Ci sarà un'imprecisione dovuta alla non idealità dei componenti. Presente in **entrambi**, si chiama problema di **non linearità**;
+- **Non linearità**: imprecisione a livello circuitale. I convertitori sono circuiti con resistenze, fili, reattanze, che non si comportano in maniera ideale; Ci sarà un'imprecisione dovuta alla non idealità dei componenti. Presente in **entrambi**;
 - **Quantizzazione**: nella coversione **A/D** (e soltanto in questa!), devo convertire una grandezza continua in una discreta. Facendo questo si perde dell'informazione a causa dell'arrotondamento.
 
 L'errore di non **linearità** deve essere più piccolo di $\frac{K}{2}$.<br>
@@ -667,11 +706,39 @@ L'errore massimo di **quantizzazione** è indipendente dalla natura del converti
 - errata, di $\pm \frac{K}{2}$ per le tensioni agli estremi.
 
 Riassumento, abbiamo:
-- conversione D/A: $err \leq \frac{K}{2}$ (soltanto errore di linearità);
-- conversione A/D: $err \leq \frac{K}{2} + \frac{K}{2} = K$ (errore di non linearità e di quantizzazione);
+- **conversione D/A**: $err \leq \frac{K}{2}$ (soltanto errore di linearità);
+- **conversione A/D**: $err \leq \frac{K}{2} + \frac{K}{2} = K$ (errore di non linearità e di quantizzazione);
 
 A livello di tempi di risposta, i convertitori hanno le seguenti performance:
 - D/A: essendo circuiti combinatori, sono velocissimi;
 - A/D: hanno tempi di risposta variabili, perché sono circuiti sequenziali che possono avere architetture diverse.
 
 > I convertitori bipolari lavorano rappresentando i numeri interi in traslazione, ossia l'intero $x$ è rappresentato $X = x+2^{N-1}$: per trasformarlo in complemento a 2, basta negare il bit più significativo.
+
+## Convertitore Digitale/Analogico e relativa interfaccia di conversione
+La resistenza è pari ad R.
+Quindi 
+$$i_0 = \frac{FSR}{2^N} \cdot \frac{1}{R} = \frac{K}{R}$$
+
+Abbiamo un amplificatore operazionale, cioé un oggetto attivo che:
+- Non fa passare corrente al suo interno;
+- in uscita da una tensione $V^{OUT} = \alpha \cdot (V^+ - V^-)$ con $\alpha > 1$
+![D/A](img/44.png)
+Da che si conclude che:
+$$i = i_0 \cdot \sum_{i = 0}^{N - 1} 2^i \cdot x_i$$
+Altro non è che la rappresentazione posizionale in base 2 di un naturale X, sostituendo il valore trovato prima di $i_0$ si trova subito:
+$$i = \frac{K}{R} \cdot X$$
+e otteniamo:
+$$\frac{K}{R} \cdot X = \frac{V_{pol}+V}{R} => V = K \cdot X - V_{pol} => V = K \cdot (X-V_{pol} \cdot \frac{2^N}{FSR})$$
+Quindi:
+- se imposto $V_{pol} = 0$, ho un convertitore unipolare $V = K \cdot X$;
+- se imposto $V_{pol} = \frac{FSR}{2}$, ottengo un convertitore bipolare con $V = K \cdot (X-2^{N-1})$.
+
+### Convertitore Analogico/Digitale e relativa interfaccia di conversione
+Al suo interno ha, inoltre, un **convertitore D/A** (dello stesso tipo del con- vertitore A/D: bipolare se quest’ultimo è bipolare, etc.), con il quale fa una cosa estremamente semplice: quando riceve una tensione di ingresso, il *SAR* comincia una ricerca logaritmica per “indovinare” il byte corrispondente alla tensione fornita.
+
+Usando l'algoritmo della bisezione, ogni passaggio aggiungo un bit, in ordine decrescente.
+
+Guardiamo adesso l’interfaccia di conversione A/D, che include al suo interno il convertitore. Dal punto di vista funzionale, sarà un’interfaccia di ingresso/uscita: infatti, la tensione convertita in numero è un ingresso per il processore, così come il segnale di eoc, ma il processore deve poter scri- vere per poter iniziare una conversione. Ci vorranno quindi due registri:
+- Recive Status and Control Register (RSCR), a 8 bit, con due bit significativi: SOC (bit 1) ed EOC (bit 0), che può essere letto.
+- Recive Buffer Register (RBR), a 8 bit, che -quando EOC = 1- contiene il byte che converte l'ultima tensione di ingresso vista, secondo la legge del convertitore.
