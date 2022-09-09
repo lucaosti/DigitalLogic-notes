@@ -182,6 +182,23 @@ Temporizzazione D flip-flop.
 
   <br>
 
+  Lettura e scrittura nella memoria:
+  
+### Lettura:
+  <br>
+  
+  ![Collegamento BUS della RAM](img/38.jpg)
+  ![Collegamento BUS della RAM](img/39.jpg)
+
+  <br>
+
+### Scrittura:
+  <br>
+  
+  ![Collegamento BUS della RAM](img/40.jpg)
+
+  <br>
+
 - **Memomorie Read-Only** (ROM):
   - Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
   - Costituiscono la parte non volatile dello spazio di memoria.
@@ -452,16 +469,19 @@ In particolare, i formati sono:
 ## Spazio di memoria
 Lo spazio di memoria fisica, grande 16MB, è implementato con tecnologia RAM, in parte EPROM ed in parte come memoria video;
 La logica combinatoria che genera il segnale di abilitazione (/s) per un modulo a partire dagli indirizzi prende il nome di maschera:
-- Sul bus non c'è nessun filo di select;
-- Il chip RAM copre anche gli indirizzi coperti da EPROM e dalla memoria video.
+- Sul bus non c'è nessun filo di select, ma verrà generato in modo combinatorio a partire da _alcuni_ fili di indirizzo più significativi;
+- Il chip RAM copre anche gli indirizzi coperti da EPROM e dalla memoria video, quando però il processore imposta uno di quelli indirizzi, la maschera che produce il select del chip di RAM non risponde (e quindi non gli abilita).
 
 ## Spazio di I/O
-Lo spazio di I/O è realizzato tramite interfacce, che fungono da raccordo tra il bus e i dispositivi di I/O.<br>
-Saranno simili anche le temporizzazioni per i cicli di lettura e scrittura:
-- in una RAM si può leggere e scrivere qualunque locazione;
-- se un'interfaccia implementa una sola porta, non sono necessari i fili di indirizzo (basta /s);
+Lo spazio di I/O è realizzato fisicamente tramite interfacce, che fungono da raccordo tra il bus e i dispositivi di I/O.
 
-Dal lato dispositivo, i collegamenti variano da interfaccia a interfaccia. Il motivo poer cui al bus si attaccano le interfacce, è duplice:
+Per quanto riguarda i collegamenti dal lato del bus, saranno del tutto identici a quelli di una piccola memoria RAM, di poche locazioni. Le poche locazioni che si trovano nelle interfacce prendono il nome di porte di ingresso uscita.
+
+Saranno simili anche le temporizzazioni per i cicli di lettura e scrittura:
+- in una RAM si può leggere e scrivere qualunque locazione, mentre spesso nell'interfacce solo alcune porte supportano  soltanto la lettura (IN) o soltanto la scrittura (OUT). Se un'interfaccia ha invece solo porte di lettura o solo porte di scrittura, possiamo fare a meno di uno dei due fili */iow* / */ior*;
+- se un'interfaccia implementa una sola porta, non sono necessari i fili di indirizzo (basta */s*);
+
+Dal lato dispositivo, i collegamenti variano da interfaccia a interfaccia. Il motivo per cui al bus si attaccano le interfacce, è duplice:
 - i dispositivi hanno velocità molto diversa tra loro, e sono spesso più lenti del processore;
 - i dispositivi hanno modalità di trasferimento dati molto diverse tra loro;
 
@@ -484,16 +504,24 @@ Al reset, si inizializzano:
 - **STAR** verrà inizializzato con l'etichetta del promo statement della fase di fetch;
 
 Fase di Fetch:
-- Preleva un byte, quello indicato da IP;
-- Incrementa IP, modulo $2^{24}$;
-- controlla che quel byte corrisponda ad un opcode, sennò si ferma;
-- inserisce il byte letto nel registro OPCODE, e valuta il formato dell'istruzione, a seconda di questo:
-  - si procura un operando sorgente a 8 bit e lo inserisce in SOURCE;
-  - si procura l'indirizzo dell'operando destinatario e lo inserisce in DEST_ADDR;
+- Preleva un byte, quello indicato da **IP**;
+- **Incrementa IP**, modulo $2^{24}$;
+- controlla che quel **byte corrisponda ad un opcode**, sennò si ferma;
+- **inserisce il byte letto nel registro OPCODE**, e valuta il formato dell'istruzione, a seconda di questo:
+  - **si procura un operando sorgente** a 8 bit e lo inserisce in SOURCE;
+  - **si procura l'indirizzo dell'operando destinatario** e lo inserisce in DEST_ADDR;
+  - Oppure se in F0, nulla e in F1 cose particolari.
+- Come ultima cosa, si guarda l'OPCODE e si capisce quale istruzione dobbiamo realmente eseguire. Come già osservato, gestire la dase di fetch in questo modo consente di eseguire nella stessa maniera operazioni che sono simili per fase di esecuzione, ma diverse per modalità di indirizzamento degli operandi.
+
+Fase di esecuzione:
+- Il processore esegue l'istruzione che ha decodificato, e poi torna nella fase di fetch, a meno che non stia eseguendo l'istruzione di HLT, nel qual caso si blocca e potrà essere sbloccato da un nuovo reset.
 
 ## Lettura e scrittura in I/O
 Durante la fase di fetch, il processore legge in memoria; durante quella esecuzione, il processore dovrà leggere e scrivere in memoria (MOV) o nello spazio di I/O (IN,OUT);
-I cicli di scrittura e lettura nello spazio di I/O sono simili, ma non identici: ci sono importanti differenze:
+
+C’è una **differenza sostanziale** nel ciclo di lettura. Gli indirizzi devono essere pronti un clock prima del comando di lettura (fronte di discesa di /ior). Il motivo è da ricercarsi nel particolare funzionamento delle interfacce. In alcuni casi, leggere dei dati da una porta comporta la loro riscrittura da parte del dispositivo esterno.
+
+I cicli di scrittura e lettura nello spazio di I/O, rispetto a quelli in memoria, sono simili, ma non identici. Ci sono importanti differenze:
 - Gli indirizzi sono a 16 bit, e si usano /ior e /iow non /mr e /mw;
 - Nel ciclo di lettura gli indirizzi devono esser eprinti un clock prima del comando di lettura;
 - Nel ciclo di scrittura i dati devono essere già pronti sul fronte di discesa si /iow;
