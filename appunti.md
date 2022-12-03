@@ -10,6 +10,18 @@
 
 # Reti combinatorie
 
+- **Invertitore**:
+	| x | z |
+	|---|---|
+	| 0 | 1 |
+	| 1 | 0 |
+
+- **Elemento neutro**:
+	| x | z |
+	|---|---|
+	| 0 | 0 |
+	| 1 | 1 |
+
 - **Tri-state**:
   - $2$ ingressi, $in$ ed $en$;
   - $1$ uscita.
@@ -33,6 +45,28 @@
 - **Multiplexer**:
 	- $N+2^N$ ingresssi: $2^N$ ($x$), $N$ variabili di comando, codifica in base $2$;
 	- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato.
+
+## Algebra di Boole
+
+### Prodotto logico (AND)
+$$
+0 \cdot 0 = 0 \newline
+0 \cdot 1 = 0 \newline
+1 \cdot 0 = 0 \newline
+1 \cdot 1 = 1 \newline
+$$
+
+
+### Somma logica (OR)
+$$
+0 + 0 = 0 \newline
+0 + 1 = 1 \newline
+1 + 0 = 1 \newline
+1 + 1 = 1 \newline
+$$
+
+### Proprietà
+![](img/45.png)
 
 # Reti sequenziali
 - **Latch SR** detto anche **flip-flop SR**:
