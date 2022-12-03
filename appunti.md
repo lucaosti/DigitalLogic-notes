@@ -4,10 +4,6 @@
 
 <br>
 
-- La sintesi a **NAND** si ottiene  partendo da **SP** e complementando 2 volte, applicando De Morgan una volta.
-
-- La sintesi a **NOR** si ottiene  partendo da **PS** e complementando 2 volte, applicando De Morgan una volta.
-
 # Reti combinatorie
 
 ## Assioma 
@@ -107,6 +103,19 @@ $$
 $$
 Dimostrazione:
 ![](img/46.png)
+
+## Sintesi
+
+- La sintesi a **NAND** si ottiene  partendo da **SP** e complementando 2 volte, 
+applicando De Morgan una volta.
+
+- La sintesi a **NOR** si ottiene  partendo da **PS** e complementando 2 volte, 
+applicando De Morgan una volta.
+
+### Svolgimento
+
+
+***
 
 # Reti sequenziali
 - **Latch SR** detto anche **flip-flop SR**:
