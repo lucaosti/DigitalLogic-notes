@@ -1,4 +1,4 @@
-# NAND e NOR
+# NAND e NORa
 
 ![NAND e NOR](img/12.png)
 
