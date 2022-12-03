@@ -10,41 +10,54 @@
 
 # Reti combinatorie
 
-- **Invertitore**:
-	| x | z |
-	|---|---|
-	| 0 | 1 |
-	| 1 | 0 |
+## Definizioni
 
-- **Elemento neutro**:
-	| x | z |
-	|---|---|
-	| 0 | 0 |
-	| 1 | 1 |
+### Descrizione di una rete
+Modo formale per dire che cosa fa quella rete, qual è cioè il suo comportamento osservabile. Una tabella di verità, ad esempio, per una rete combinatoria.
 
-- **Tri-state**:
-  - $2$ ingressi, $in$ ed $en$;
-  - $1$ uscita.
-  - Tabella di verità:
+### Sintesi di una rete
+Progetto della realizzazione fisica di quella rete, cioè la decisione di quali porte inserire e in che modo connetterle per far si che la rete si comporti secondo specifiche.
 
-	| In | En | Out |
-	|---|---|---|
-	| 0 | 0 | Z |
-	| 1 | 0 | Z |
-	| 0 | 1 | 0 |
-	| 1 | 1 | 1 |
+## Reti elementari interessanti
 
-- **Decoder**:
-	- $N$ ingressi: codifica in base $2$ dell'uscita;
-	- $2^N$ uscite: $1$ nell'uscita, $0$ altrove.
+### Reti a più ingressi
+Per costruire una rete elementare, come OR o AND, a $2^N$ ingressi è sufficiente una logica ad $N$ livelli, ossia il $log_2(nIngressi)$.
 
-- **Demultiplexer**:
-	- $N+1$ ingressi: ($x$) ed $N$ variabili di comando, codifica in base $2$ dell'uscita;
-	- $2^N$ uscite: ($x$) dalla porta corrispondente.
+### Invertitore
+| x | z |
+|---|---|
+| 0 | 1 |
+| 1 | 0 |
 
-- **Multiplexer**:
-	- $N+2^N$ ingresssi: $2^N$ ($x$), $N$ variabili di comando, codifica in base $2$;
-	- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato.
+### Elemento neutro
+| x | z |
+|---|---|
+| 0 | 0 |
+| 1 | 1 |
+
+### Tri-state
+- $2$ ingressi, $in$ ed $en$;
+- $1$ uscita.
+- Tabella di verità:
+
+| In | En | Out |
+|---|---|---|
+| 0 | 0 | Z |
+| 1 | 0 | Z |
+| 0 | 1 | 0 |
+| 1 | 1 | 1 |
+
+### Decoder
+- $N$ ingressi: codifica in base $2$ dell'uscita;
+- $2^N$ uscite: $1$ nell'uscita, $0$ altrove.
+
+### Demultiplexer
+- $N+1$ ingressi: ($x$) ed $N$ variabili di comando, codifica in base $2$ dell'uscita;
+- $2^N$ uscite: ($x$) dalla porta corrispondente.
+
+### Multiplexer
+- $N+2^N$ ingresssi: $2^N$ ($x$), $N$ variabili di comando, codifica in base $2$;
+- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato.
 
 ## Algebra di Boole
 
