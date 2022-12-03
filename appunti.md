@@ -114,6 +114,10 @@ applicando De Morgan una volta.
 
 ### Svolgimento
 
+#### Forma SP (Somma di prodotti)
+
+
+#### Forma SP (Prodotto di somme)
 
 ***
 
