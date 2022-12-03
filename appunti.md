@@ -49,7 +49,9 @@ Per costruire una rete elementare, come OR o AND, a $2^N$ ingressi è sufficient
 
 ### Decoder
 - $N$ ingressi: codifica in base $2$ dell'uscita;
-- $2^N$ uscite: $1$ nell'uscita, $0$ altrove.
+- $p = 2^N$ uscite: $1$ nell'uscita, $0$ altrove.
+
+Esiste anche una versione con enabler, che fa diventare $N+1$ gli ingressi, in caso di enabler $=0$, il decoder ha 0 in tutte le uscite, a prescindere da tutte le altre variabili.
 
 ### Demultiplexer
 - $N+1$ ingressi: ($x$) ed $N$ variabili di comando, codifica in base $2$ dell'uscita;
@@ -63,8 +65,8 @@ Per costruire una rete elementare, come OR o AND, a $2^N$ ingressi è sufficient
 
 ### Complemento
 $$
-\bar{0} = 1 \newline
-\bar{1} = 0
+\overline{0} = 1 \newline
+\overline{1} = 0
 $$
 
 ### Prodotto logico (AND)
@@ -87,6 +89,17 @@ $$
 ### Proprietà
 ![](img/45.png)
 
+### Teoremi di De Morgan
+$$
+\overline{x_0 \cdot x_1 \cdot... \cdot x_{N-1}} = \overline{x_0} + \overline{x_1} +... + \overline{x_{N-1}}
+
+\newline
+
+\overline{x_0 + x_1 +... + x_{N-1}} = \overline{x_0} \cdot \overline{x_1} \cdot... \cdot \overline{x_{N-1}}
+$$
+Dimostrazione:
+![](img/46.png)
+
 # Reti sequenziali
 - **Latch SR** detto anche **flip-flop SR**:
 	- $2$ Ingressi, $s$ ed $r$ rispettivamente "set" e "reset", entrambe attive alte;
@@ -94,7 +107,7 @@ $$
 	- Tabella di verità:
 		| s | r | q | qN |
 		|---|---|---|----|
-		| 0 | 0 | q | $\bar{q}$ |
+		| 0 | 0 | q | $\overline{q}$ |
 		| 0 | 1 | 0 | 1  |
 		| 1 | 1 | - | -  |
 		| 1 | 0 | 1 | 0  |
@@ -114,7 +127,7 @@ $$
     	- $/preset = /preclear = 0$, errore di pilotaggio.
 
 Quindi:
-$$ Z_s = \bar{/preset}+(/preclear \cdot s) \newline Z_r = \bar{/preclear}+(/preset \cdot s) $$
+$$ Z_s = \overline{/preset}+(/preclear \cdot s) \newline Z_r = \overline{/preclear}+(/preset \cdot s) $$
 
 ![Latch SR](img/6.png)
 <br>
@@ -227,7 +240,7 @@ Temporizzazione D flip-flop.
   - Supponiamo di avere un bus indirizzi a 32 bit e di voler montare un modulo di RAM 256Mx8 bit a partire dall'indirizzo 0xE0000000. Il modulo avrà 28 fili di indirizzo ed un filo di select $/s$ e dovrà rispondere agli indirizzi nell'intervallo [0xE0000000 - 0xEFFFFFFF]:
     - I 28 fili di indirizzo meno significativi del bus andranno in ingresso al modulo di RAM;
     - I restanti 4 fili di indirizzo più significativi andranno in ingresso ad una maschera, che genera il select per il modulo di RAM.
-  - La maschera deve riconoscere la configurazione di bit richiesta (0xE == B1110), pertanto deve essere $/s = \bar{a_{31}}+\bar{a_{30}}+\bar{a_{29}}+a_{28}$.
+  - La maschera deve riconoscere la configurazione di bit richiesta (0xE == B1110), pertanto deve essere $/s = \overline{a_{31}}+\overline{a_{30}}+\overline{a_{29}}+a_{28}$.
 
   <br>
   
