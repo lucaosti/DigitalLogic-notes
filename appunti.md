@@ -1,4 +1,4 @@
-# NAND e NOR
+# Porte elementari a NAND e NOR
 
 ![NAND e NOR](img/12.png)
 
