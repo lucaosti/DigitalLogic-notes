@@ -10,6 +10,14 @@
 
 # Reti combinatorie
 
+## Assioma 
+1. Un multiplexer si realizza con porte AND, OR, NOT ed è una rete a due livelli di logica;
+2. Un multiplexer realizza una qualunque rete combinatoria ad un'uscita;
+3. Una rete combinatoria a più uscite può essere scomposta in reti ad un'uscita messe "in parallelo".
+
+Quindi:
+> **Ogni rete combinatoria** può essere costruita combinando AND, OR, NOT in al più **due livelli** di logica.
+
 ## Definizioni
 
 ### Descrizione di una rete
@@ -54,12 +62,12 @@ Per costruire una rete elementare, come OR o AND, a $2^N$ ingressi è sufficient
 Esiste anche una versione con enabler, che fa diventare $N+1$ gli ingressi, in caso di enabler $=0$, il decoder ha 0 in tutte le uscite, a prescindere da tutte le altre variabili.
 
 ### Demultiplexer
-- $N+1$ ingressi: ($x$) ed $N$ variabili di comando, codifica in base $2$ dell'uscita;
-- $2^N$ uscite: ($x$) dalla porta corrispondente.
+- $N+1$ ingressi: $x$, valore (anche detta variabile da commutare), ed $N$, codifica in base $2$ dell'uscita (anche dette variabili di comando);
+- $p = 2^N$ uscite: dove esce $x$ dalla uscita corrispondente.
 
 ### Multiplexer
-- $N+2^N$ ingresssi: $2^N$ ($x$), $N$ variabili di comando, codifica in base $2$;
-- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato.
+- $N+2^N$ ingresssi: $2^N$ $x$ (variabili da commutare), $N$ variabili di comando, codifica in base $2$ (della variabile che va commutata);
+- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato dalle variabili di comando.
 
 ## Algebra di Boole
 
