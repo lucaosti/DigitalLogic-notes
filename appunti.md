@@ -61,12 +61,18 @@ Per costruire una rete elementare, come OR o AND, a $2^N$ ingressi è sufficient
 
 ## Algebra di Boole
 
+### Complemento
+$$
+\bar{0} = 1 \newline
+\bar{1} = 0
+$$
+
 ### Prodotto logico (AND)
 $$
 0 \cdot 0 = 0 \newline
 0 \cdot 1 = 0 \newline
 1 \cdot 0 = 0 \newline
-1 \cdot 1 = 1 \newline
+1 \cdot 1 = 1
 $$
 
 
@@ -75,7 +81,7 @@ $$
 0 + 0 = 0 \newline
 0 + 1 = 1 \newline
 1 + 0 = 1 \newline
-1 + 1 = 1 \newline
+1 + 1 = 1
 $$
 
 ### Proprietà
