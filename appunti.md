@@ -133,6 +133,10 @@ La lista degli implicanti principali **costa meno** della forma canonica SP.
 - **Lista di copertura**: insieme di sottocubi che coprono tutti i sottocubi di ordine 1;
 - **Lista di copertura non ridondante**: tale che se tolgo un sottocubo non è più una lista di copertura.
 
+> Esiste una corrispondenza biunivoca tra implicanti principali della legge F e sottocubi principali della mappa di Karnaugh.
+
+Sottocubo (principale) di ordine $p$ $\iff$ implicante principale di $N-(log_2p)$ variabili.
+
 ***
 
 # Reti sequenziali
