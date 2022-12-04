@@ -147,7 +147,14 @@ ottenuta al punto precedente, quella cioè che calcolava $\overline{F}$.
 logica.
 
 ### Dal punto di vista algebrico
+Dal punto di vista algebrico, le cose funzionano in questo modo:
+- Scrivo la legge $\overline{F}$ in forma SP: $\overline{z} = P_1+...+P_k$, in cui i $P_i$ sono prodotti di variabili.
+- Applico De Morgan, ottenendo: $z = \overline{\overline{z}} = \overline{P_1+...+P_k} = \overline{P_1}\cdot...\cdot\overline{P_k}$
+- Applico ancora De Morgan per ottenere, da $\overline{P_i} = \overline{\prod x_j} =\sum \overline{x_j}$
 
+La rete così ottenuta è in forma PS, e se:
+- $\overline{F}$ è in forma canonica SP, allora F è in forma canonica PS;
+- la sintesi SP di $\overline{F}$ è di costo minimo (tra le possibili sintesi SP), lo è anche la sintesi PS di F (tra le possibili sintesi PS).
 
 ***
 
