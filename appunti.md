@@ -125,6 +125,14 @@ La lista degli implicanti principali **costa meno** della forma canonica SP.
 3. Ottengo una sintesi della legge F inserendo un invertitore in uscita alla rete ottenuta al punto precedente, quella cioè che calcolava $\overline{F}$.
 4. Applico i Teoremi di De Morgan all’indietro, a partire dall’ultimo livello di logica.
 
+## Mappe di Karnaugh
+
+### Definizioni
+
+- **Sottocubo principale**: un sottocubo tale per cui non esiste nessun sottocubo più grande che lo copre completamente;
+- **Lista di copertura**: insieme di sottocubi che coprono tutti i sottocubi di ordine 1;
+- **Lista di copertura non ridondante**: tale che se tolgo un sottocubo non è più una lista di copertura.
+
 ***
 
 # Reti sequenziali
