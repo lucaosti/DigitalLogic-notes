@@ -24,7 +24,7 @@
   - [Mappe di Karnaugh](#mappe-di-karnaugh)
     - [Definizioni](#definizioni-1)
     - [Definizione e classificazione di implicanti e sottocubi](#definizione-e-classificazione-di-implicanti-e-sottocubi)
-  - [Sintesi PS (duale del SP $\\Rightarrow$ hanno lo stesso costo sia a porte che a diodi)](#sintesi-ps-duale-del-sp-rightarrow-hanno-lo-stesso-costo-sia-a-porte-che-a-diodi)
+  - [Sintesi PS (duale del SP cioé hanno lo stesso costo sia a porte che a diodi)](#sintesi-ps-duale-del-sp-cioé-hanno-lo-stesso-costo-sia-a-porte-che-a-diodi)
     - [Forma PS (Prodotto di somme)](#forma-ps-prodotto-di-somme)
     - [Dal punto di vista algebrico](#dal-punto-di-vista-algebrico)
   - [Circuiti di ritardo e impulso](#circuiti-di-ritardo-e-impulso)
@@ -191,7 +191,7 @@ Sottocubo (principale) di ordine $p$ $\iff$ implicante principale di $N-(log_2p)
 ### Definizione e classificazione di implicanti e sottocubi
 ![](img/48.png)
 
-## Sintesi PS (duale del SP $\Rightarrow$ hanno lo stesso costo sia a porte che a diodi)
+## Sintesi PS (duale del SP cioé hanno lo stesso costo sia a porte che a diodi)
 
 ### Forma PS (Prodotto di somme)
 1. Data la legge F, ricavo la legge $\overline{F}$, cioè la legge che fa corrispondere 
