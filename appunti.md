@@ -1,4 +1,4 @@
-# Porte elementari a NAND e NOR
+# Porte logiche universali (NAND e NOR)
 
 ![](img/12.png)
 
@@ -134,7 +134,7 @@ Sottocubo (principale) di ordine $p$ $\iff$ implicante principale di $N-(log_2p)
 ### Definizione e classificazione di implicanti e sottocubi
 ![](img/48.png)
 
-## Sintesi PS
+## Sintesi PS (duale del SP $\Rightarrow$ hanno lo stesso costo sia a porte che a diodi)
 
 ### Forma PS (Prodotto di somme)
 1. Data la legge F, ricavo la legge $\overline{F}$, cioè la legge che fa corrispondere 
