@@ -279,7 +279,24 @@ Esiste poiché il circuito necessario è molto più semplice dell'*adder*. <br>
 Ha un solo libello di logica.
 
 ## Sottrazione
+Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $b_{in}$, $0\le b_{in}\le 1$, voglio calcolare il numero naturale $Z = X-Y-b_{in}$, **ammesso che esista**.
 
+Per quanto riguarda la rappresentabilità, $-\beta^n \le X-Y-b_{in}\le \beta^n-1$. Quindi, $Z$ può anche non essere un numero naturale, cosa che sappiamo bene dall’aritmetica (i naturali non sono un insieme chiuso rispetto alla sottrazione).
+
+Pertanto, definisco:
+$$
+-b_{out} = \biggr\lfloor \frac{X-Y-b_{in}}{\beta^n} \biggr\rfloor
+$$
+ed ottengo che $b_{out} \in \{0,1\}$, indipendentemente dalla base.
+
+Per calcolare la differenza di due numeri, procedo come segue: <br>
+Osservo che $Y+\overline{Y} = \beta^n-1$ (definizione di complemento). Dal che derivo che $-Y = \overline{Y}-\beta^n+1$. <br>
+Sostituendo questìultima  nell'espressione riquadrata sopra, si ottiene:
+$$
+(1-b_{out})\cdot \beta^n+D = X+\overline{Y}+(1-b_{in}) \\ \overline{b_{out}} \cdot \beta^n+D = X+\overline{Y}+\overline{b_{in}}
+$$
+
+![](img/59.png)
 
 ***
 # Reti sequenziali
