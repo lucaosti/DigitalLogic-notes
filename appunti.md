@@ -216,11 +216,20 @@ La rete così ottenuta è in forma PS, e se:
 - la sintesi SP di $\overline{F}$ è di costo minimo (tra le possibili sintesi SP), lo è anche la sintesi PS di F (tra le possibili sintesi PS).
 
 ## Circuiti di ritardo e impulso
+
 ### Ritardi
+Abbiamo $\Delta^+$, ossia ritardo sulla transizione $0\to 1$.
 ![](img/49.png)
+
+Abbiamo $\Delta^-$, ossia ritardo sulla transizione $1\to 0$.
 ![](img/50.png)
+
 ### Impulsi
+
+Abbiamo $P^+$, ossia impulso sulla transizione $0\to 1$.
 ![](img/51.png)
+
+Abbiamo $P^-$, ossia impulso sulla transizione $1\to 0$.
 ![](img/52.png)
 
 ***
