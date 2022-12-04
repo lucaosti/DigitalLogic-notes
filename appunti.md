@@ -43,6 +43,9 @@
   - [Divisione](#divisione)
     - [Divisore base 2](#divisore-base-2)
   - [Rappresentazione dei numeri interi](#rappresentazione-dei-numeri-interi)
+    - [Traslazione](#traslazione)
+    - [Complemento alla radice](#complemento-alla-radice)
+    - [Modulo e segno](#modulo-e-segno)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -381,6 +384,21 @@ Sotto l'ipotesi $X < 2 \cdot Y$.
 Il rilevatore di fattibilità (la parte di rete che genera l’uscita *no_div*) è l’uscita *flag_min* di un comparatore tra $X$ e $2\cdot Y$ (non disegnata per semplicità).
 
 ## Rappresentazione dei numeri interi
+### Traslazione
+$L: A = a + \frac{\beta^n}{2}$, dove $\frac{\beta^n}{2}$ è il fattore di polarizzazione.
+
+### Complemento alla radice
+$$
+L: A = 
+\begin{cases}
+a & 0 \le a < \frac{\beta^n}{2} \\
+\beta^n+a & -\frac{\beta^n}{2} \le a < 0
+\end{cases}
+$$
+
+![](img/67.png)
+
+### Modulo e segno
 
 
 ***
