@@ -109,13 +109,12 @@ Per costruire una rete elementare, come OR o AND, a $2^N$ ingressi è sufficient
 - $2$ ingressi, $in$ ed $en$;
 - $1$ uscita.
 - Tabella di verità:
-
-| In | En | Out |
-|---|---|---|
-| 0 | 0 | Z |
-| 1 | 0 | Z |
-| 0 | 1 | 0 |
-| 1 | 1 | 1 |
+  | In | En | Out |
+  |---|---|---|
+  | 0 | 0 | Z |
+  | 1 | 0 | Z |
+  | 0 | 1 | 0 |
+  | 1 | 1 | 1 |
 
 ### Decoder
 - $N$ ingressi: codifica in base $2$ dell'uscita;
