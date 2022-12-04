@@ -37,6 +37,7 @@
     - [Full Adder in base 2](#full-adder-in-base-2)
     - [Incrementatore](#incrementatore)
   - [Sottrazione](#sottrazione)
+    - [Comparatore di numeri naturali](#comparatore-di-numeri-naturali)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -302,6 +303,9 @@ Ossia:
 - Se il riporto uscente di detta somma è pari a $0$, la differenza non è un numero naturale, ed il prestito uscente, ottenuto complementando il riporto uscente della somma, è uno.
 
 ![](img/59.png)
+
+### Comparatore di numeri naturali
+
 
 ***
 # Reti sequenziali
