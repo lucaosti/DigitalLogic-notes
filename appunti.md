@@ -2,7 +2,11 @@
 
 ![](img/12.png)
 
-<br>
+- La sintesi a **NAND** si ottiene  partendo da **SP** e complementando 2 volte, 
+applicando De Morgan una volta.
+
+- La sintesi a **NOR** si ottiene  partendo da **PS** e complementando 2 volte, 
+applicando De Morgan una volta.
 
 # Reti combinatorie
 
@@ -105,12 +109,6 @@ Dimostrazione:
 ![](img/46.png)
 
 ## Sintesi SP
-
-- La sintesi a **NAND** si ottiene  partendo da **SP** e complementando 2 volte, 
-applicando De Morgan una volta.
-
-- La sintesi a **NOR** si ottiene  partendo da **PS** e complementando 2 volte, 
-applicando De Morgan una volta.
 
 ### Svolgimento
 
