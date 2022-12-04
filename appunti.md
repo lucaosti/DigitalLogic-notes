@@ -52,6 +52,15 @@
   - [Calcolo dell'opposto](#calcolo-dellopposto)
     - [Calcolo dell'opposto in base 2](#calcolo-dellopposto-in-base-2)
   - [Estensione di campo](#estensione-di-campo)
+  - [Riduzione di campo](#riduzione-di-campo)
+  - [Shift Logico ed Aritmetico](#shift-logico-ed-aritmetico)
+  - [Somma per interi](#somma-per-interi)
+  - [Sottrazione per interi](#sottrazione-per-interi)
+  - [Comparazione di numeri interi](#comparazione-di-numeri-interi)
+  - [Moltiplicazione e Divisione per interi](#moltiplicazione-e-divisione-per-interi)
+    - [Conversione da MS a CR](#conversione-da-ms-a-cr)
+    - [Moltiplicazione per interi](#moltiplicazione-per-interi)
+    - [Divisione per interi](#divisione-per-interi)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -463,6 +472,45 @@ In questo caso, per l'overflow, è sufficiente fare una AND: <br>
 $a_{n-1} = b_{n-1} = 1$ NON SI PUÒ FARE
 
 ## Estensione di campo
+$$
+A^{EST} = \begin{cases}
+  a & 0\le a < \frac{\beta^n}{2}
+  \\
+  \beta^{n+1}+a & -\frac{\beta^n}{2}\le a < 0
+\end{cases}
+$$
+
+Quindi aggiungo, in caso di valori positivi, uno $0$ in testa, in caso di valori negativi $\beta-1$.
+
+## Riduzione di campo
+La condizione per la riducibilità è:
+
+$$
+ow = 0 \leftrightarrow (a_n = 0\ \wedge\ a_{n-1}<\frac{\beta}{2})\ \lor\ (a_n = \beta-1\ \wedge\ a_{n-1} \ge \frac{\beta}{2})
+$$
+
+In caso di $ow = 0$, la rappresentazione è data dalle cifre meno significative di $A$.
+
+## Shift Logico ed Aritmetico
+Per moltiplicare e dividere i numeri naturali per la base è sufficiente usare lo shift logico.<br>
+Per moltiplicare e dividere i numeri interi per la base è necessario usare lo shift aritmetico, che controlla il segno e lo mantiene.
+
+![](img/72.png)
+
+## Somma per interi
+
+## Sottrazione per interi
+
+## Comparazione di numeri interi
+
+## Moltiplicazione e Divisione per interi
+
+### Conversione da MS a CR
+
+### Moltiplicazione per interi
+
+### Divisione per interi
+
 
 
 ***
