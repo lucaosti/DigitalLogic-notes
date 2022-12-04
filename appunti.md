@@ -48,6 +48,8 @@
     - [Complemento alla radice](#complemento-alla-radice)
     - [Proprietà del complemento alla radice](#proprietà-del-complemento-alla-radice)
   - [Valore assoluto](#valore-assoluto)
+    - [Da CR a MS](#da-cr-a-ms)
+  - [Calcolo dell'opposto](#calcolo-dellopposto)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -390,6 +392,8 @@ Il rilevatore di fattibilità (la parte di rete che genera l’uscita *no_div*) 
 $L: A = a + \frac{\beta^n}{2}$, dove $\frac{\beta^n}{2}$ è il fattore di polarizzazione.
 
 ### Modulo e segno
+$n$ cifre per il modulo, $1$ per il segno.
+
 $(s,M) \leftrightarrow a$
 
 $$
@@ -430,6 +434,17 @@ A & a_{n-1} < \frac{\beta}{2} \\
 \overline{A}+1 & a_{n-1} \ge \frac{\beta}{2}
 \end{cases}
 $$
+
+In base $2$ è più semplice, infatti basta controllare la $a_{n-1}$ e invertire nel caso di uguaglianza a $1$.
+![](img/68.png)
+
+### Da CR a MS
+![](img/69.png)
+
+Sempre fattibile, poiché la rappresentazione in modulo e segno include quella in complemento alla radice.
+
+## Calcolo dell'opposto
+
 
 ***
 # Reti sequenziali
