@@ -38,7 +38,8 @@
     - [Incrementatore](#incrementatore)
   - [Sottrazione](#sottrazione)
     - [Comparatore di numeri naturali](#comparatore-di-numeri-naturali)
-  - [Moltiplicatore](#moltiplicatore)
+  - [Moltiplicazione](#moltiplicazione)
+  - [Divisione](#divisione)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -319,7 +320,7 @@ Quindi, il nostro comparatore avrà due uscite:
 - *flag_eq*, che vale $1$ se i due numeri da comparare sono uguali;
 - *flag_min*, che vale $1$ se $A < B$.
 
-## Moltiplicatore
+## Moltiplicazione
 Dati $X, C$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, C \le \beta^n-1$, e $Y$ naturale in base $\beta$ su $m$ cifre, quindi $0 \le Y \le \beta^m-1$.
 
 Voglio calcolare:
@@ -339,6 +340,9 @@ Possiamo moltiplicare un numero ad $n$ cifre con un numero ad una cifra realizza
 ![](img/61.png)
 
 Possiamo quindi realizzare la motiplicazione utlizzando soltanto moltiplicatori con addizionatore ad $n \times 1$ cifra.
+
+## Divisione
+Dati $X$ naturale in base $\beta$ su $n+m$ cifre, quindi $0 \le X \le \beta^{m+n}-1$, e $Y$ naturale in base $\beta$ su $m$ cifre, quindi $0 \le Y \le \beta^m-1$.
 
 ***
 # Reti sequenziali
