@@ -1,3 +1,62 @@
+- [Porte logiche universali (NAND e NOR)](#porte-logiche-universali-nand-e-nor)
+- [Reti combinatorie](#reti-combinatorie)
+  - [Assioma](#assioma)
+  - [Definizioni](#definizioni)
+    - [Descrizione di una rete](#descrizione-di-una-rete)
+    - [Sintesi di una rete](#sintesi-di-una-rete)
+  - [Reti elementari interessanti](#reti-elementari-interessanti)
+    - [Reti a più ingressi](#reti-a-più-ingressi)
+    - [Invertitore](#invertitore)
+    - [Elemento neutro](#elemento-neutro)
+    - [Tri-state](#tri-state)
+    - [Decoder](#decoder)
+    - [Demultiplexer](#demultiplexer)
+    - [Multiplexer](#multiplexer)
+  - [Algebra di Boole](#algebra-di-boole)
+    - [Complemento](#complemento)
+    - [Prodotto logico (AND)](#prodotto-logico-and)
+    - [Somma logica (OR)](#somma-logica-or)
+    - [Proprietà](#proprietà)
+    - [Teoremi di De Morgan](#teoremi-di-de-morgan)
+  - [Sintesi SP](#sintesi-sp)
+    - [Svolgimento](#svolgimento)
+      - [Forma SP (Somma di prodotti)](#forma-sp-somma-di-prodotti)
+  - [Mappe di Karnaugh](#mappe-di-karnaugh)
+    - [Definizioni](#definizioni-1)
+    - [Definizione e classificazione di implicanti e sottocubi](#definizione-e-classificazione-di-implicanti-e-sottocubi)
+  - [Sintesi PS (duale del SP $\\Rightarrow$ hanno lo stesso costo sia a porte che a diodi)](#sintesi-ps-duale-del-sp-rightarrow-hanno-lo-stesso-costo-sia-a-porte-che-a-diodi)
+    - [Forma PS (Prodotto di somme)](#forma-ps-prodotto-di-somme)
+    - [Dal punto di vista algebrico](#dal-punto-di-vista-algebrico)
+  - [Circuiti di ritardo e impulso](#circuiti-di-ritardo-e-impulso)
+- [Reti sequenziali](#reti-sequenziali)
+    - [Lettura:](#lettura)
+    - [Scrittura:](#scrittura)
+- [Reti sequenziali sincronizzate (RSS)](#reti-sequenziali-sincronizzate-rss)
+- [La struttura del calcolatore](#la-struttura-del-calcolatore)
+  - [Visione da parte del programmatore](#visione-da-parte-del-programmatore)
+  - [Linguaggio macchina](#linguaggio-macchina)
+  - [Architettura del calcolatore](#architettura-del-calcolatore)
+  - [Spazio di memoria](#spazio-di-memoria)
+  - [Spazio di I/O](#spazio-di-io)
+  - [Processore](#processore)
+  - [Lettura e scrittura in I/O](#lettura-e-scrittura-in-io)
+    - [Lettura:](#lettura-1)
+    - [Scrittura:](#scrittura-1)
+- [Interfacce](#interfacce)
+  - [Le interfacce hanno alcuni dettagli in comune:](#le-interfacce-hanno-alcuni-dettagli-in-comune)
+    - [FI e FO](#fi-e-fo)
+  - [Interfacce parallele](#interfacce-parallele)
+    - [Intefaccie parallele con HandShake - Ingresso](#intefaccie-parallele-con-handshake---ingresso)
+    - [Intefaccie parallele con HandShake - Uscita](#intefaccie-parallele-con-handshake---uscita)
+    - [Interfaccia parallela di Ingresso-Uscita](#interfaccia-parallela-di-ingresso-uscita)
+  - [Interfaccia seriale start/stop](#interfaccia-seriale-startstop)
+    - [Descrizione del trasmettitore](#descrizione-del-trasmettitore)
+    - [Descrizione del ricevitore](#descrizione-del-ricevitore)
+  - [Conversione analogico/digitale e digitale/analogico](#conversione-analogicodigitale-e-digitaleanalogico)
+  - [Convertitore Digitale/Analogico e relativa interfaccia di conversione](#convertitore-digitaleanalogico-e-relativa-interfaccia-di-conversione)
+    - [Convertitore Analogico/Digitale e relativa interfaccia di conversione](#convertitore-analogicodigitale-e-relativa-interfaccia-di-conversione)
+
+
 # Porte logiche universali (NAND e NOR)
 
 ![](img/12.png)
@@ -154,8 +213,10 @@ La rete così ottenuta è in forma PS, e se:
 - $\overline{F}$ è in forma canonica SP, allora F è in forma canonica PS;
 - la sintesi SP di $\overline{F}$ è di costo minimo (tra le possibili sintesi SP), lo è anche la sintesi PS di F (tra le possibili sintesi PS).
 
-***
+## Circuiti di ritardo e impulso
 
+
+***
 # Reti sequenziali
 - **Latch SR** detto anche **flip-flop SR**:
 	- $2$ Ingressi, $s$ ed $r$ rispettivamente "set" e "reset", entrambe attive alte;
