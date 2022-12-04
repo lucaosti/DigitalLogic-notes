@@ -104,7 +104,7 @@ $$
 Dimostrazione:
 ![](img/46.png)
 
-## Sintesi
+## Sintesi SP
 
 - La sintesi a **NAND** si ottiene  partendo da **SP** e complementando 2 volte, 
 applicando De Morgan una volta.
@@ -119,12 +119,6 @@ applicando De Morgan una volta.
 
 La lista degli implicanti principali **costa meno** della forma canonica SP.
 
-#### Forma SP (Prodotto di somme)
-1. Data la legge F, ricavo la legge $\overline{F}$, cioè la legge che fa corrispondere ad ogni stato di ingresso il complemento di quello che farebbe F. In pratica, scrivo la tabella di verità con 1 al posto dello 0.
-2. Realizzo una sintesi SP della legge $\overline{F}$.
-3. Ottengo una sintesi della legge F inserendo un invertitore in uscita alla rete ottenuta al punto precedente, quella cioè che calcolava $\overline{F}$.
-4. Applico i Teoremi di De Morgan all’indietro, a partire dall’ultimo livello di logica.
-
 ## Mappe di Karnaugh
 
 ### Definizioni
@@ -136,6 +130,24 @@ La lista degli implicanti principali **costa meno** della forma canonica SP.
 > Esiste una corrispondenza biunivoca tra implicanti principali della legge F e sottocubi principali della mappa di Karnaugh.
 
 Sottocubo (principale) di ordine $p$ $\iff$ implicante principale di $N-(log_2p)$ variabili.
+
+### Definizione e classificazione di implicanti e sottocubi
+![](img/48.png)
+
+## Sintesi PS
+
+### Forma PS (Prodotto di somme)
+1. Data la legge F, ricavo la legge $\overline{F}$, cioè la legge che fa corrispondere 
+ad ogni stato di ingresso il complemento di quello che farebbe F. In pratica, scrivo 
+la tabella di verità con 1 al posto dello 0.
+2. Realizzo una sintesi SP della legge $\overline{F}$.
+3. Ottengo una sintesi della legge F inserendo un invertitore in uscita alla rete 
+ottenuta al punto precedente, quella cioè che calcolava $\overline{F}$.
+4. Applico i Teoremi di De Morgan all’indietro, a partire dall’ultimo livello di 
+logica.
+
+### Dal punto di vista algebrico
+
 
 ***
 
