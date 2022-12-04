@@ -34,6 +34,7 @@
   - [Complemento](#complemento-1)
   - [Moltiplicazione e divisione per una **potenza della base**](#moltiplicazione-e-divisione-per-una-potenza-della-base)
   - [Addizione](#addizione)
+    - [Full Adder in base 2](#full-adder-in-base-2)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -257,7 +258,17 @@ costituito dalle $k$ cifre meno significative del numero di partenza.
 ![](img/56.png)
 
 ## Addizione
+![](img/57.png)
 
+Il riporto uscente va interpretato come segue:
+- Se il riporto è **zero**, la somma è rappresentabile su $n$ cifre, cioè sul numero di cifre degli
+operandi;
+- Se il riporto è **uno**, la somma non è rappresentabile su $n$ cifre, ma ce ne vuole una in più.
+
+$X$ e $Y$ **devono** essere dimensionati in modo uguale.
+
+### Full Adder in base 2
+![](img/58.png)
 
 ***
 # Reti sequenziali
