@@ -38,6 +38,7 @@
     - [Incrementatore](#incrementatore)
   - [Sottrazione](#sottrazione)
     - [Comparatore di numeri naturali](#comparatore-di-numeri-naturali)
+  - [Moltiplicatore](#moltiplicatore)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -305,6 +306,16 @@ Ossia:
 ![](img/59.png)
 
 ### Comparatore di numeri naturali
+I sottrattori vengono usati spesso come comparatori. Dati due numeri *naturali* $A$ e $B$, se voglio sapere se $A < B$, basta che li sottragga e guardi il prestito uscente. Se $b_{out} = 1$, allora $A$ è più piccolo. <br>
+Si noti che questo tipo di comparazione vale **soltanto per i naturali**. <br>
+<br>
+Se voglio testare se due numeri sono uguali, posso comunque prendere l’uscita del sottrattore e testare se $D$ è uguale alla codifica del numero $(000…000)$. Assumendo che la cifra $0$ in base $\beta$ sia codificata con $n$ variabili logiche pari a $0$ (il che è vero nella maggior parte dei casi), questo significa passare l’uscita del sottrattore ad una porta NOR ad un opportuno numero di ingressi. In quest’ultimo caso, però, si fa prima a fare lo XOR bit a bit delle codifiche di ciascuna cifra, portando tutte le uscite in ingresso ad una NOR.<br>
+<br>
+Quindi, il nostro comparatore avrà due uscite:
+- *flag_eq*, che vale $1$ se i due numeri da comparare sono uguali;
+- *flag_min*, che vale $1$ se $A < B$.
+
+## Moltiplicatore
 
 
 ***
