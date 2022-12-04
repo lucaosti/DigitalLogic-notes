@@ -42,6 +42,7 @@
     - [Moltiplicatore base 2](#moltiplicatore-base-2)
   - [Divisione](#divisione)
     - [Divisore base 2](#divisore-base-2)
+  - [Rappresentazione dei numeri interi](#rappresentazione-dei-numeri-interi)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -369,6 +370,17 @@ Come al solito è possibile scomporlo:
 ![](img/62.png)
 
 ### Divisore base 2
+Sotto l'ipotesi $X < 2 \cdot Y$.
+- Quoziente su una cifra;
+- Resto su $m$ cifre.
+
+![](img/65.png)
+
+![](img/66.png)
+
+Il rilevatore di fattibilità (la parte di rete che genera l’uscita *no_div*) è l’uscita *flag_min* di un comparatore tra $X$ e $2\cdot Y$ (non disegnata per semplicità).
+
+## Rappresentazione dei numeri interi
 
 
 ***
