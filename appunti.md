@@ -47,6 +47,7 @@
     - [Modulo e segno](#modulo-e-segno)
     - [Complemento alla radice](#complemento-alla-radice)
     - [Proprietà del complemento alla radice](#proprietà-del-complemento-alla-radice)
+  - [Valore assoluto](#valore-assoluto)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -416,6 +417,19 @@ $$
 Per capire il segno di un numero è sufficiente guardare la sua cifra più significativa:
 - $a_{n-1} < \frac{\beta^n}{2} \Leftrightarrow 0 \le A < \frac{\beta^n}{2}$;
 - $a_{n-1} < \frac{\beta^n}{2} \Leftrightarrow \frac{\beta^n}{2} \le A < \beta^n$.
+
+## Valore assoluto
+Voglio trovare il numero naturale $B = ABS(a)$. <br>
+Siccome $a \in [-\frac{\beta^n}{2},\frac{\beta^n}{2}-1], b \in [0, \frac{\beta^n}{2}]$, cioé su $n$ cifre.<br>
+
+> ATTENZIONE: $n-1$ cifre non bastano neanche in $\beta = 2$.
+
+$$
+B = ABS(a) = \begin{cases}
+A & a_{n-1} < \frac{\beta}{2} \\
+\overline{A}+1 & a_{n-1} \ge \frac{\beta}{2}
+\end{cases}
+$$
 
 ***
 # Reti sequenziali
