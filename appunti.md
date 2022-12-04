@@ -28,6 +28,8 @@
     - [Forma PS (Prodotto di somme)](#forma-ps-prodotto-di-somme)
     - [Dal punto di vista algebrico](#dal-punto-di-vista-algebrico)
   - [Circuiti di ritardo e impulso](#circuiti-di-ritardo-e-impulso)
+    - [Ritardi](#ritardi)
+    - [Impulsi](#impulsi)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -214,7 +216,12 @@ La rete così ottenuta è in forma PS, e se:
 - la sintesi SP di $\overline{F}$ è di costo minimo (tra le possibili sintesi SP), lo è anche la sintesi PS di F (tra le possibili sintesi PS).
 
 ## Circuiti di ritardo e impulso
-
+### Ritardi
+![](img/49.png)
+![](img/50.png)
+### Impulsi
+![](img/51.png)
+![](img/52.png)
 
 ***
 # Reti sequenziali
