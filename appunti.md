@@ -502,7 +502,7 @@ Temporizzazione D flip-flop.
 
   <br>
   
-  ![Collegamento BUS della RAM](img/16.JPG)
+  ![Collegamento BUS della RAM](img/16.jpg)
 
   <br>
 
@@ -536,7 +536,7 @@ Temporizzazione D flip-flop.
 
   <br>
   
-  ![ROM](img/17.JPG)
+  ![ROM](img/17.jpg)
 
   <br>
 
