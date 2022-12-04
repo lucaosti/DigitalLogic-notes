@@ -349,6 +349,13 @@ $$
 X = Q \cdot Y + R
 $$
 
+Dove $Q$ ed $R$ sono il quoziente ed il resto, e sono unici per il teorema della divisione con resto.
+
+La rete deve essere dotata di un'uscita che ne dichiara la **non fattibilità**, che chiameremo **no_div**.
+
+Assumendo $Y > 0$, su quante cifre dovranno essere $Q$ ed $R$?
+- $R$, dovrà stare su $m$ cifre;
+- $Q$, dovrà stare, al più, su $n + m$ cifre.
 
 ***
 # Reti sequenziali
