@@ -30,6 +30,7 @@
   - [Circuiti di ritardo e impulso](#circuiti-di-ritardo-e-impulso)
     - [Ritardi](#ritardi)
     - [Impulsi](#impulsi)
+- [Aritmetica del calcolatore](#aritmetica-del-calcolatore)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -231,6 +232,10 @@ Abbiamo $P^+$, ossia impulso sulla transizione $0\to 1$.
 
 Abbiamo $P^-$, ossia impulso sulla transizione $1\to 0$.
 ![](img/52.png)
+
+***
+# Aritmetica del calcolatore
+
 
 ***
 # Reti sequenziali
