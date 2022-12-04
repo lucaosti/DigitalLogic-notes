@@ -40,6 +40,7 @@
     - [Comparatore di numeri naturali](#comparatore-di-numeri-naturali)
   - [Moltiplicazione](#moltiplicazione)
   - [Divisione](#divisione)
+    - [Divisore base 2](#divisore-base-2)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -351,11 +352,19 @@ $$
 
 Dove $Q$ ed $R$ sono il quoziente ed il resto, e sono unici per il teorema della divisione con resto.
 
-La rete deve essere dotata di un'uscita che ne dichiara la **non fattibilità**, che chiameremo **no_div**.
-
 Assumendo $Y > 0$, su quante cifre dovranno essere $Q$ ed $R$?
 - $R$, dovrà stare su $m$ cifre;
-- $Q$, dovrà stare, al più, su $n + m$ cifre.
+- $Q$, dovrà stare, al più, su $n + m$ cifre. Ma voglio Q su $n$ cifre, quindi devo imporre $X<\beta^n \cdot Y$.
+
+La rete deve essere dotata di un'uscita che ne dichiara la **non fattibilità**, che 
+chiameremo **no_div**. <br>
+Per realizzarlo, basta imporre che sia settato ad $1$ nel caso che il quoziente non stia su $n$ cifre.
+
+Come al solito è possibile scomporlo:
+![](img/62.png)
+
+### Divisore base 2
+
 
 ***
 # Reti sequenziali
