@@ -123,6 +123,8 @@ applicando De Morgan una volta.
 3. Ottengo una sintesi della legge F inserendo un invertitore in uscita alla rete ottenuta al punto precedente, quella cioè che calcolava $\overline{F}$.
 4. Applico i Teoremi di De Morgan all’indietro, a partire dall’ultimo livello di logica.
 
+La lista degli implicanti principali **costa meno** della forma canonica SP.
+
 ## Metodo di Quine-McCluskey
 
 
