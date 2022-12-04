@@ -262,6 +262,8 @@ costituito dalle $k$ cifre meno significative del numero di partenza.
 ![](img/56.png)
 
 ## Addizione
+Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $C_{in}$, $0\le C_{in}\le 1$, voglio calcolare il numero naturale $Z = X+Y+C_{in}$.
+
 ![](img/57.png)
 
 Il riporto uscente va interpretato come segue:
@@ -269,7 +271,7 @@ Il riporto uscente va interpretato come segue:
 operandi;
 - Se il riporto è **uno**, la somma non è rappresentabile su $n$ cifre, ma ce ne vuole una in più.
 
-$X$ e $Y$ **devono** essere dimensionati in modo uguale.
+$X$ e $Y$ **devono** essere essere su $n$ cifre.
 
 ### Full Adder in base 2
 ![](img/58.png)
