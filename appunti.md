@@ -246,6 +246,14 @@ $\overline{A} = (\beta^n-1)-A$
 ![](img/53.png)
 
 ## Moltiplicazione e divisione per una potenza della base
+In qualunque base $\beta$:
+- **Moltiplicare** un numero per $\beta^k$ significa costruire un nuovo numero di $n+k$ cifre, di cui le $k$ meno significative sono $0$.
+![](img/54.png)
+- Il **quoziente** della divisione di un numero su $n$ cifre per $\beta^k$ è un numero costituito dalle $n-k$ cifre più significative del numero di partenza.
+![](img/55.png)
+- Il **resto** della divisione di un numero su $n$ cifre per $\beta^k$ è un numero 
+costituito dalle $k$ cifre meno significative del numero di partenza.
+![](img/56.png)
 
 
 ***
