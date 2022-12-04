@@ -32,7 +32,8 @@
     - [Impulsi](#impulsi)
 - [Aritmetica del calcolatore](#aritmetica-del-calcolatore)
   - [Complemento](#complemento-1)
-  - [Moltiplicazione e divisione per una potenza della base](#moltiplicazione-e-divisione-per-una-potenza-della-base)
+  - [Moltiplicazione e divisione per una **potenza della base**](#moltiplicazione-e-divisione-per-una-potenza-della-base)
+  - [Estensione di campo](#estensione-di-campo)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -245,7 +246,7 @@ $\overline{A} = (\beta^n-1)-A$
 
 ![](img/53.png)
 
-## Moltiplicazione e divisione per una potenza della base
+## Moltiplicazione e divisione per una **potenza della base**
 In qualunque base $\beta$:
 - **Moltiplicare** un numero per $\beta^k$ significa costruire un nuovo numero di $n+k$ cifre, di cui le $k$ meno significative sono $0$.
 ![](img/54.png)
@@ -254,6 +255,8 @@ In qualunque base $\beta$:
 - Il **resto** della divisione di un numero su $n$ cifre per $\beta^k$ è un numero 
 costituito dalle $k$ cifre meno significative del numero di partenza.
 ![](img/56.png)
+
+## Estensione di campo
 
 
 ***
