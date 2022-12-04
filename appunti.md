@@ -31,6 +31,8 @@
     - [Ritardi](#ritardi)
     - [Impulsi](#impulsi)
 - [Aritmetica del calcolatore](#aritmetica-del-calcolatore)
+  - [Complemento](#complemento-1)
+  - [Moltiplicazione e divisione per una potenza della base](#moltiplicazione-e-divisione-per-una-potenza-della-base)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -234,6 +236,16 @@ Abbiamo $P^-$, ossia impulso sulla transizione $1\to 0$.
 
 ***
 # Aritmetica del calcolatore
+
+- $\beta =$ base;
+- $n =$ numero di cifre.
+
+## Complemento
+$\overline{A} = (\beta^n-1)-A$
+
+![](img/53.png)
+
+## Moltiplicazione e divisione per una potenza della base
 
 
 ***
