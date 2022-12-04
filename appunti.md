@@ -320,7 +320,25 @@ Quindi, il nostro comparatore avrà due uscite:
 - *flag_min*, che vale $1$ se $A < B$.
 
 ## Moltiplicatore
-Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $C_{in}$, $0\le C_{in}\le 1$, voglio calcolare il numero naturale $Z = X+Y+C_{in}$.
+Dati $X, C$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, C \le \beta^n-1$, e $Y$ naturale in base $\beta$ su $m$ cifre, quindi $0 \le Y \le \beta^m-1$.
+
+Voglio calcolare:
+$$
+P = X\cdot Y + C
+$$
+
+![](img/60.png)
+
+Il prodotto è rappresentabile su $n+m$ cifre poiché:
+$$
+P = X\cdot Y + C \le (\beta^n-1) \cdot (\beta^m-1) + (\beta^n-1) = \beta^m \cdot (\beta^n-1) < \beta^{n+m}-1
+$$
+
+Possiamo moltiplicare un numero ad $n$ cifre con un numero ad una cifra realizzando:
+
+![](img/61.png)
+
+Possiamo quindi realizzare la motiplicazione utlizzando soltanto moltiplicatori con addizionatore ad $n \times 1$ cifra.
 
 ***
 # Reti sequenziali
