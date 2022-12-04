@@ -293,8 +293,13 @@ Per calcolare la differenza di due numeri, procedo come segue: <br>
 Osservo che $Y+\overline{Y} = \beta^n-1$ (definizione di complemento). Dal che derivo che $-Y = \overline{Y}-\beta^n+1$. <br>
 Sostituendo questìultima  nell'espressione riquadrata sopra, si ottiene:
 $$
-(1-b_{out})\cdot \beta^n+D = X+\overline{Y}+(1-b_{in}) \\ \overline{b_{out}} \cdot \beta^n+D = X+\overline{Y}+\overline{b_{in}}
+(1-b_{out})\cdot \beta^n+D = X+\overline{Y}+(1-b_{in}) \\ \Rightarrow \\\overline{b_{out}} \cdot \beta^n+D = X+\overline{Y}+\overline{b_{in}}
 $$
+
+Ossia:
+- La differenza tra $X$ ed $Y$, meno un eventuale prestito entrante, qualora essa sia un numero naturale, può essere ottenuta se sommo $X$ ed $Y$ complementato, più un eventuale riporto entrante, ottenuto complementando il prestito entrante.
+- Se il riporto uscente di detta somma è pari ad $1$, la differenza è un numero naturale pari a $D$, ed il prestito uscente, ottenuto complementando il riporto uscente della somma, è zero.
+- Se il riporto uscente di detta somma è pari a $0$, la differenza non è un numero naturale, ed il prestito uscente, ottenuto complementando il riporto uscente della somma, è uno.
 
 ![](img/59.png)
 
