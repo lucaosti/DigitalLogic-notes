@@ -44,8 +44,9 @@
     - [Divisore base 2](#divisore-base-2)
   - [Rappresentazione dei numeri interi](#rappresentazione-dei-numeri-interi)
     - [Traslazione](#traslazione)
-    - [Complemento alla radice](#complemento-alla-radice)
     - [Modulo e segno](#modulo-e-segno)
+    - [Complemento alla radice](#complemento-alla-radice)
+    - [Proprietà del complemento alla radice](#proprietà-del-complemento-alla-radice)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -387,17 +388,6 @@ Il rilevatore di fattibilità (la parte di rete che genera l’uscita *no_div*) 
 ### Traslazione
 $L: A = a + \frac{\beta^n}{2}$, dove $\frac{\beta^n}{2}$ è il fattore di polarizzazione.
 
-### Complemento alla radice
-$$
-L: A = 
-\begin{cases}
-a & 0 \le a < \frac{\beta^n}{2} \\
-\beta^n+a & -\frac{\beta^n}{2} \le a < 0
-\end{cases}
-$$
-
-![](img/67.png)
-
 ### Modulo e segno
 $(s,M) \leftrightarrow a$
 
@@ -410,6 +400,22 @@ s =
 \\
 M = abs(a)
 $$
+
+### Complemento alla radice
+$$
+L: A = 
+\begin{cases}
+a & 0 \le a < \frac{\beta^n}{2} \\
+\beta^n+a & -\frac{\beta^n}{2} \le a < 0
+\end{cases}
+$$
+
+![](img/67.png)
+
+### Proprietà del complemento alla radice
+Per capire il segno di un numero è sufficiente guardare la sua cifra più significativa:
+- $a_{n-1} < \frac{\beta^n}{2} \Leftrightarrow 0 \le A < \frac{\beta^n}{2}$;
+- $a_{n-1} < \frac{\beta^n}{2} \Leftrightarrow \frac{\beta^n}{2} \le A < \beta^n$.
 
 ***
 # Reti sequenziali
