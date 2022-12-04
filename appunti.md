@@ -39,6 +39,7 @@
   - [Sottrazione](#sottrazione)
     - [Comparatore di numeri naturali](#comparatore-di-numeri-naturali)
   - [Moltiplicazione](#moltiplicazione)
+    - [Moltiplicatore base 2](#moltiplicatore-base-2)
   - [Divisione](#divisione)
     - [Divisore base 2](#divisore-base-2)
 - [Reti sequenziali](#reti-sequenziali)
@@ -341,6 +342,10 @@ Possiamo moltiplicare un numero ad $n$ cifre con un numero ad una cifra realizza
 ![](img/61.png)
 
 Possiamo quindi realizzare la motiplicazione utlizzando soltanto moltiplicatori con addizionatore ad $n \times 1$ cifra.
+
+### Moltiplicatore base 2
+![](img/64.png)
+![](img/63.png)
 
 ## Divisione
 Dati $X$ naturale in base $\beta$ su $n+m$ cifre (dividendo), quindi $0 \le X \le \beta^{m+n}-1$, e $Y$ naturale in base $\beta$ su $m$ cifre (divisore), quindi $0 \le Y \le \beta^m-1$.
