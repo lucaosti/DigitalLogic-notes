@@ -51,6 +51,7 @@
     - [Da CR a MS](#da-cr-a-ms)
   - [Calcolo dell'opposto](#calcolo-dellopposto)
     - [Calcolo dell'opposto in base 2](#calcolo-dellopposto-in-base-2)
+  - [Estensione di campo](#estensione-di-campo)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -460,6 +461,9 @@ $B = |1+\overline{A}|_{\beta^n}$
 
 In questo caso, per l'overflow, è sufficiente fare una AND: <br>
 $a_{n-1} = b_{n-1} = 1$ NON SI PUÒ FARE
+
+## Estensione di campo
+
 
 ***
 # Reti sequenziali
