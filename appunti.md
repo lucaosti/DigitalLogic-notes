@@ -117,13 +117,13 @@ applicando De Morgan una volta.
 #### Forma SP (Somma di prodotti)
 ![](img/47.png)
 
+La lista degli implicanti principali **costa meno** della forma canonica SP.
+
 #### Forma SP (Prodotto di somme)
 1. Data la legge F, ricavo la legge $\overline{F}$, cioè la legge che fa corrispondere ad ogni stato di ingresso il complemento di quello che farebbe F. In pratica, scrivo la tabella di verità con 1 al posto dello 0.
 2. Realizzo una sintesi SP della legge $\overline{F}$.
 3. Ottengo una sintesi della legge F inserendo un invertitore in uscita alla rete ottenuta al punto precedente, quella cioè che calcolava $\overline{F}$.
 4. Applico i Teoremi di De Morgan all’indietro, a partire dall’ultimo livello di logica.
-
-La lista degli implicanti principali **costa meno** della forma canonica SP.
 
 ## Metodo di Quine-McCluskey
 
