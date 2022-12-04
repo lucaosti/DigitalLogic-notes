@@ -342,7 +342,13 @@ Possiamo moltiplicare un numero ad $n$ cifre con un numero ad una cifra realizza
 Possiamo quindi realizzare la motiplicazione utlizzando soltanto moltiplicatori con addizionatore ad $n \times 1$ cifra.
 
 ## Divisione
-Dati $X$ naturale in base $\beta$ su $n+m$ cifre, quindi $0 \le X \le \beta^{m+n}-1$, e $Y$ naturale in base $\beta$ su $m$ cifre, quindi $0 \le Y \le \beta^m-1$.
+Dati $X$ naturale in base $\beta$ su $n+m$ cifre (dividendo), quindi $0 \le X \le \beta^{m+n}-1$, e $Y$ naturale in base $\beta$ su $m$ cifre (divisore), quindi $0 \le Y \le \beta^m-1$.
+
+Voglio calcolare:
+$$
+X = Q \cdot Y + R
+$$
+
 
 ***
 # Reti sequenziali
