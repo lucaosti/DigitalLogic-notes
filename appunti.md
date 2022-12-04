@@ -399,7 +399,17 @@ $$
 ![](img/67.png)
 
 ### Modulo e segno
+$(s,M) \leftrightarrow a$
 
+$$
+s = 
+\begin{cases}
+0 & a\ge 0 \\
+1 & a < 0
+\end{cases}
+\\
+M = abs(a)
+$$
 
 ***
 # Reti sequenziali
