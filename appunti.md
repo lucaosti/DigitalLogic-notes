@@ -264,6 +264,8 @@ costituito dalle $k$ cifre meno significative del numero di partenza.
 ## Addizione
 Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $C_{in}$, $0\le C_{in}\le 1$, voglio calcolare il numero naturale $Z = X+Y+C_{in}$.
 
+Sempre rappresentabile su $n+1$ cifre, potrebbe non esserlo su $n$. Quindi la mettiamo su $n$ più un eventuale riporto uscente ($C_{out}$).
+
 ![](img/57.png)
 
 Il riporto uscente va interpretato come segue:
@@ -318,7 +320,7 @@ Quindi, il nostro comparatore avrà due uscite:
 - *flag_min*, che vale $1$ se $A < B$.
 
 ## Moltiplicatore
-
+Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $C_{in}$, $0\le C_{in}\le 1$, voglio calcolare il numero naturale $Z = X+Y+C_{in}$.
 
 ***
 # Reti sequenziali
