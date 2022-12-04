@@ -134,24 +134,24 @@ Esiste anche una versione con enabler, che fa diventare $N+1$ gli ingressi, in c
 
 ### Complemento
 $$
-\overline{0} = 1 \newline
+\overline{0} = 1 \\
 \overline{1} = 0
 $$
 
 ### Prodotto logico (AND)
 $$
-0 \cdot 0 = 0 \newline
-0 \cdot 1 = 0 \newline
-1 \cdot 0 = 0 \newline
+0 \cdot 0 = 0 \\
+0 \cdot 1 = 0 \\
+1 \cdot 0 = 0 \\
 1 \cdot 1 = 1
 $$
 
 
 ### Somma logica (OR)
 $$
-0 + 0 = 0 \newline
-0 + 1 = 1 \newline
-1 + 0 = 1 \newline
+0 + 0 = 0 \\
+0 + 1 = 1 \\
+1 + 0 = 1 \\
 1 + 1 = 1
 $$
 
@@ -162,7 +162,7 @@ $$
 $$
 \overline{x_0 \cdot x_1 \cdot... \cdot x_{N-1}} = \overline{x_0} + \overline{x_1} +... + \overline{x_{N-1}}
 
-\newline
+\\
 
 \overline{x_0 + x_1 +... + x_{N-1}} = \overline{x_0} \cdot \overline{x_1} \cdot... \cdot \overline{x_{N-1}}
 $$
@@ -264,7 +264,7 @@ Abbiamo $P^-$, ossia impulso sulla transizione $1\to 0$.
     	- $/preset = /preclear = 0$, errore di pilotaggio.
 
 Quindi:
-$$ Z_s = \overline{/preset}+(/preclear \cdot s) \newline Z_r = \overline{/preclear}+(/preset \cdot s) $$
+$$ Z_s = \overline{/preset}+(/preclear \cdot s) \\ Z_r = \overline{/preclear}+(/preset \cdot s) $$
 
 ![Latch SR](img/6.png)
 <br>
