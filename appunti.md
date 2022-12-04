@@ -50,6 +50,7 @@
   - [Valore assoluto](#valore-assoluto)
     - [Da CR a MS](#da-cr-a-ms)
   - [Calcolo dell'opposto](#calcolo-dellopposto)
+    - [Calcolo dell'opposto in base 2](#calcolo-dellopposto-in-base-2)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -444,7 +445,21 @@ In base $2$ è più semplice, infatti basta controllare la $a_{n-1}$ e invertire
 Sempre fattibile, poiché la rappresentazione in modulo e segno include quella in complemento alla radice.
 
 ## Calcolo dell'opposto
+Dato $A \leftrightarrow a$ e $B \leftrightarrow b$ vogliamo trovare $b = -a$. <br>
+Poiché i numeri negativi hanno un intero in più, non sempre è rappresentabile.
 
+![](img/70.png)
+
+Con *ow* segnale di overflow, che deve essere messo ad $1$ se l'operazione non è possibile.
+
+Il calcolo, assumendo che $a \not= -\frac{\beta^n}{2}$: <br>
+$B = |1+\overline{A}|_{\beta^n}$
+
+### Calcolo dell'opposto in base 2
+![](img/71.png)
+
+In questo caso, per l'overflow, è sufficiente fare una AND: <br>
+$a_{n-1} = b_{n-1} = 1$ NON SI PUÒ FARE
 
 ***
 # Reti sequenziali
