@@ -35,6 +35,8 @@
   - [Moltiplicazione e divisione per una **potenza della base**](#moltiplicazione-e-divisione-per-una-potenza-della-base)
   - [Addizione](#addizione)
     - [Full Adder in base 2](#full-adder-in-base-2)
+    - [Incrementatore](#incrementatore)
+  - [Sottrazione](#sottrazione)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -269,6 +271,15 @@ $X$ e $Y$ **devono** essere dimensionati in modo uguale.
 
 ### Full Adder in base 2
 ![](img/58.png)
+
+Questo montaggio si chiama **ripple carry**, ed i suoi componenti prendono il nome di **full adder**.
+
+### Incrementatore
+Esiste poiché il circuito necessario è molto più semplice dell'*adder*. <br>
+Ha un solo libello di logica.
+
+## Sottrazione
+
 
 ***
 # Reti sequenziali
