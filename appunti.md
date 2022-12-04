@@ -33,7 +33,7 @@
 - [Aritmetica del calcolatore](#aritmetica-del-calcolatore)
   - [Complemento](#complemento-1)
   - [Moltiplicazione e divisione per una **potenza della base**](#moltiplicazione-e-divisione-per-una-potenza-della-base)
-  - [Estensione di campo](#estensione-di-campo)
+  - [Addizione](#addizione)
 - [Reti sequenziali](#reti-sequenziali)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
@@ -256,7 +256,7 @@ In qualunque base $\beta$:
 costituito dalle $k$ cifre meno significative del numero di partenza.
 ![](img/56.png)
 
-## Estensione di campo
+## Addizione
 
 
 ***
