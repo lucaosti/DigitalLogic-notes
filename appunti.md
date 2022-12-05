@@ -61,10 +61,11 @@
     - [Conversione da MS a CR](#conversione-da-ms-a-cr)
     - [Moltiplicazione per interi](#moltiplicazione-per-interi)
     - [Divisione per interi](#divisione-per-interi)
-- [Reti sequenziali](#reti-sequenziali)
+- [Reti sequenziali asincrone](#reti-sequenziali-asincrone)
   - [**Latch SR** detto anche **flip-flop SR**:](#latch-sr-detto-anche-flip-flop-sr)
   - [**D-Latch trasparente**:](#d-latch-trasparente)
   - [**D flip-flop**:](#d-flip-flop)
+  - [**Memorie RAM statiche** (RAM statiche o S-RAM):](#memorie-ram-statiche-ram-statiche-o-s-ram)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
 - [Reti sequenziali sincronizzate (RSS)](#reti-sequenziali-sincronizzate-rss)
@@ -102,7 +103,7 @@ applicando De Morgan una volta.
 
 - La sintesi a **NOR** si ottiene  partendo da **PS** e complementando 2 volte, 
 applicando De Morgan una volta.
-
+***
 # Reti combinatorie
 
 ## Assioma 
@@ -585,10 +586,10 @@ $$
 $$
 
 ***
-# Reti sequenziali
+# Reti sequenziali asincrone
 ## **Latch SR** detto anche **flip-flop SR**:
 
-- $2$ Ingressi, $s$ ed $r$ rispettivamente "set" e "reset", entrambe attive alte;
+- $2$ Ingressi, $s$ e $r$ rispettivamente "set" e "reset", entrambe attive alte;
 - $2$ Uscite, $q$ e $qN$, la seconda la negazione della prima.
 - Tabella di verità:
   | s | r | q | qN |
@@ -625,9 +626,9 @@ Temporizzazione Latch SR.
 
 ## **D-Latch trasparente**:
   
-- $2$ Ingressi, $d$ ed $c$;
+- $2$ Ingressi, $d$ e $c$;
 - $1$ Uscita, $q$.
-- Quando la $c$ è settata, la rete è trasparente, quando $c$ vale $0$, memorizza l'ultimo bit che è passato in $d$.
+- Quando la $c$ è settata, **la rete è trasparente**, quando $c$ vale $0$, memorizza l'ultimo bit che è passato in $d$.
 - Sintetizzabili con un Latch SR e una rete combinatoria.
 - Il pilotaggio deve avvenire nel rispetto di alcune regole:
   - Si deve tenere $d$ costante a cavallo della transizione di $c$ da $1$ a $0$. I tempi per cui deve essere costante (prima e dopo) sono chiamati rispettivamente $T_{setup}$ e $T_{hold}$;
@@ -642,7 +643,7 @@ Temporizzazione D-Latch Trasparente.
 
 ## **D flip-flop**:
 
-- $2$ Ingressi, $d$ ed $p$;
+- $2$ Ingressi, $d$ e $p$;
 - $1$ Uscita, $q$.
 - Quando $p$ ha un fronte in salita, memorizza d, attendi un po' ed adegua l'uscita.
 - Si prende un D-latch, e si premette alla variabile $c$ un formatore di impulsi, in modo tale che, al fronte di salita di $p$, il D-latch vada brevemente in trasparenza e memorizzi $d$. Poi si ritarda l'uscita di un ritardo $\Delta$ maggiore dell'intervallo del $P+$.
@@ -671,56 +672,58 @@ Temporizzazione D flip-flop.
   - $p = 1$, il master conserva e lo slave campiona;
 
 ***
-- **Memorie RAM statiche** (RAM statiche o S-RAM):
-  - Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **NON** simultaneamente;
-  - Dal punto di vista dell'utente, una memoria è dotata dei seguenti collegamenti:
-    - un certo numero di **fili di indirizzo**, che sono ingressi;
-    - un certo numero di **fili di dati**, che sono fili di ingresso/uscita (andranno forchettati con porte tri-state);
-    - Due segnali **attivi bassi** di **memory read** e **memory write**;
-    - Un segnale attivo basso di **select**, che viene attivato quando la memoria è selezionata: quando $/s$ vale $1$, la memoria è insensibile a tutti gli ingressi; quando vale $0$, la memoria è selezionata e quindi reagisce agli ingressi.
-    - Il comportamento della memoria è deciso da $/s, /mw, /mr$:
+
+## **Memorie RAM statiche** (RAM statiche o S-RAM):
   
-		| /s | /mr | /mw | Azione                                                     | b | c |
-		|----|-----|-----|------------------------------------------------------------|---|---|
-		| 1  | -   | -   | Nessuna azione (memoria non selezionata)                   | 0 | 0 |
-		| 0  | 1   | 1   | Nessuna azione (memoria selezionata, nessun ciclo in corso | 0 | 0 |
-		| 0  | 0   | 1   | Ciclo di lettura in corso                                  | 1 | 0 |
-		| 0  | 1   | 0   | Ciclo di scrittura in corso                                | 0 | 1 |
-		| 0  | 0   | 0   | Non definito                                               | - | - |
+- Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **NON** simultaneamente;
+- Dal punto di vista dell'utente, una memoria è dotata dei seguenti collegamenti:
+  - un certo numero di **fili di indirizzo**, che sono ingressi;
+  - un certo numero di **fili di dati**, che sono fili di ingresso/uscita (andranno forchettati con porte tri-state);
+  - Due segnali **attivi bassi** di **memory read** e **memory write**;
+  - Un segnale attivo basso di **select**, che viene attivato quando la memoria è selezionata: quando $/s$ vale $1$, la memoria è insensibile a tutti gli ingressi; quando vale $0$, la memoria è selezionata e quindi reagisce agli ingressi.
+  - Il comportamento della memoria è deciso da $/s, /mw, /mr$:
 
-    <br>
+| /s | /mr | /mw | Azione                                                     | b | c |
+|----|-----|-----|------------------------------------------------------------|---|---|
+| 1  | -   | -   | Nessuna azione (memoria non selezionata)                   | 0 | 0 |
+| 0  | 1   | 1   | Nessuna azione (memoria selezionata, nessun ciclo in corso | 0 | 0 |
+| 0  | 0   | 1   | Ciclo di lettura in corso                                  | 1 | 0 |
+| 0  | 1   | 0   | Ciclo di scrittura in corso                                | 0 | 1 |
+| 0  | 0   | 0   | Non definito                                               | - | - |
 
-    ![RAM Statica](img/9.png)
+<br>
 
-    <br>
+![RAM Statica](img/9.png)
 
-  - Vediamo come è realizzata:
-  	- Disegnare la matrice di D-latch. Una riga è una locazione, bia 0 a destra, bit 3 a sinistra;
-  	- Le uscite dei D-latch dovranno essere selezionate una riga alla volta, per finire sui fili dei dati in uscita. Ci vuole un multiplexer per ogni bit, in cui:
-      	- gli ingressi sono le uscite dei D-latch;
-      	- le variabili di comando sono i **fili di indirizzo**;
-  	- Le uscite di ciascuno dei multiplexer vanno bloccate con porte tri-state. Dovranno essere abilitate quando sto leggendo dalla memoria;
-  	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ($c = 1$).
+<br>
 
-    <br>
+- Vediamo come è realizzata:
+	- Disegnare la matrice di D-latch. Una riga è una locazione, bia 0 a destra, bit 3 a sinistra;
+	- Le uscite dei D-latch dovranno essere selezionate una riga alla volta, per finire sui fili dei dati in uscita. Ci vuole un multiplexer per ogni bit, in cui:
+    	- gli ingressi sono le uscite dei D-latch;
+    	- le variabili di comando sono i **fili di indirizzo**;
+	- Le uscite di ciascuno dei multiplexer vanno bloccate con porte tri-state. Dovranno essere abilitate quando sto leggendo dalla memoria;
+	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ($c = 1$).
 
-    ![RAM](img/10.png)
+  <br>
 
-  - Descriviamo la temporizzazione del **ciclo di lettura della memoria**:
-    - Ad un certo istante, gli indirizzi si stabilizzano al valore della cella che voglio leggere ed arriva il comando di $/mr$.
-	- Nel frattempo, in quando funzione combinatoria di altri bit, $/s$ balla e arriva con un po' di ritardo.
-	- Quando sia $/mr$ che $/s$ sono a $0$, le porte tri-state vanno in conduzione e i multiplexer sulle uscite vanno a regime.
-	- Da quel punto in poi i dati sono buoni.
-	- Quando $/mr$ viene tirato su, i dati tornano in alta impedenza e a quel punto gli indirizzi di $/s$ possono ballare a piacimento, tanto non succede niente.
-  - Descriviamo la temporizazione del **ciclo di scrittura della memoria**:
-    - Devo attendere che $/s$ e gli indirizzi siano stabili prima di portare giù $/mw$.
-    - I dati possono ballare a piacimento ma devono essere stabili prima di portare giù $/mw$, poiché corrisponde, con un minimo ritardo, al fronte di discesa di $c$ all'interno dei D-latch.
+  ![RAM](img/10.png)
 
-    <br>
+- Descriviamo la temporizzazione del **ciclo di lettura della memoria**:
+  - Ad un certo istante, gli indirizzi si stabilizzano al valore della cella che voglio leggere ed arriva il comando di $/mr$.
+- Nel frattempo, in quando funzione combinatoria di altri bit, $/s$ balla e arriva con un po' di ritardo.
+- Quando sia $/mr$ che $/s$ sono a $0$, le porte tri-state vanno in conduzione e i multiplexer sulle uscite vanno a regime.
+- Da quel punto in poi i dati sono buoni.
+- Quando $/mr$ viene tirato su, i dati tornano in alta impedenza e a quel punto gli indirizzi di $/s$ possono ballare a piacimento, tanto non succede niente.
+- Descriviamo la temporizazione del **ciclo di scrittura della memoria**:
+  - Devo attendere che $/s$ e gli indirizzi siano stabili prima di portare giù $/mw$.
+  - I dati possono ballare a piacimento ma devono essere stabili prima di portare giù $/mw$, poiché corrisponde, con un minimo ritardo, al fronte di discesa di $c$ all'interno dei D-latch.
 
-    ![Temporizzazione RAM](img/11.png)
+  <br>
 
-    <br>
+  ![Temporizzazione RAM](img/11.png)
+
+  <br>
 
 - **Collegamento al bus e maschere**:
   - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore (e talvolta altri moduli) ne impostano il valore.
@@ -777,6 +780,7 @@ Temporizzazione D flip-flop.
 
 <br>
 
+***
 ***
 # Reti sequenziali sincronizzate (RSS)
 Si evolvono soltanto in corrispondenza di istanti temporali ben precisi, detti _istanti di sincronizzazione_.<br>
@@ -944,7 +948,7 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 <br>
 
 ***
-
+***
 # La struttura del calcolatore
 Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-calcolatore completo di processore, memoria, interfacce e dispositivi di ingresso-uscita.
 - **Il sottostistema di I/O**: 
