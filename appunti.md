@@ -675,7 +675,7 @@ Temporizzazione D flip-flop.
 
 ## **Memorie RAM statiche** (RAM statiche o S-RAM):
   
-- Sono composte da D-latch montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta o scritta** ma **NON** simultaneamente;
+- Sono composte da [D-latch](#d-latch-trasparente) montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta che scritta** ma **NON** simultaneamente;
 - Dal punto di vista dell'utente, una memoria è dotata dei seguenti collegamenti:
   - un certo numero di **fili di indirizzo**, che sono ingressi;
   - un certo numero di **fili di dati**, che sono fili di ingresso/uscita (andranno forchettati con porte tri-state);
