@@ -527,6 +527,11 @@ Dati $A$ e $B$ in base $\beta$ su $n$ cifre, tali che $a \leftrightarrow A$ e $b
 Quando $D$ è rappresentabile su $n$ cifre, abbiamo:
 $D = |A+\overline{B}+1|_{\beta^n}$
 
+Avrò con certezza:
+$$
+D^{EST} = |A^{EST}+\overline{B^{EST}}+1|_{\beta^{n+1}}
+$$
+In base $2$ posso quindi verificare l'*ow* tramite lo XOR degli ultimi due prestiti.
 
 ## Comparazione di numeri interi
 
