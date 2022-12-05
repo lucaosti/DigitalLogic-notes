@@ -399,6 +399,7 @@ Sotto l'ipotesi $X < 2 \cdot Y$.
 Il rilevatore di fattibilità (la parte di rete che genera l’uscita *no_div*) è l’uscita *flag_min* di un comparatore tra $X$ e $2\cdot Y$ (non disegnata per semplicità).
 
 ## Rappresentazione dei numeri interi
+
 ### Traslazione
 $L: A = a + \frac{\beta^n}{2}$, dove $\frac{\beta^n}{2}$ è il fattore di polarizzazione.
 
@@ -498,7 +499,26 @@ Per moltiplicare e dividere i numeri interi per la base è necessario usare lo s
 ![](img/72.png)
 
 ## Somma per interi
+Dati $A$ e $B$ in base $\beta$ su $n$ cifre, tali che $a \leftrightarrow A$ e $b \leftrightarrow B$, voglio calcolare $S$ su $n$ cifre tale che $s \leftrightarrow S$ ed $s = a+b$.
 
+La somma può non essere rappresentabile su $n$ cifre, anche se lo è sicuramente su $n+1$, per questo motivo lo doteremo di overflow.
+
+Quando la somma è rappresentabile, sarà pari a:
+$S = |A+B|_{\beta^n}$.
+
+La base è il circuito sommatore:
+
+![](img/57.png)
+
+Per calcolare l'overflow, invece, pricediamo come segue:
+- Faccio la somma su $n+1$ cifre, estendendo gli addendi. Calcolo quindi $S^{EST} = |A^{EST}+B^{EST}|_{\beta^{n+1}}$;
+- Controllo la riducibilità della somma.
+
+![](img/73.png)
+
+> In base $2$, l'overflow si controlla mediante lo XOR dei riporti uscenti degli ultimi due full adder.
+
+![](img/74.png)
 
 ## Sottrazione per interi
 
