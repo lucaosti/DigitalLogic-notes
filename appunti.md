@@ -71,6 +71,14 @@
     - [Scrittura:](#scrittura)
   - [**Memomorie Read-Only** (ROM):](#memomorie-read-only-rom)
 - [Reti sequenziali sincronizzate (RSS)](#reti-sequenziali-sincronizzate-rss)
+  - [**Registri**:](#registri)
+  - [**Temporizzazione RSS**:](#temporizzazione-rss)
+  - [**Contatori**:](#contatori)
+  - [**Registri multifunzionali**:](#registri-multifunzionali)
+  - [**Modello di MOORE**:](#modello-di-moore)
+  - [**Flip-Flop JK**:](#flip-flop-jk)
+  - [**Modello di Mealy**:](#modello-di-mealy)
+  - [**Modello di Mealy ritardato**:](#modello-di-mealy-ritardato)
 - [La struttura del calcolatore](#la-struttura-del-calcolatore)
   - [Visione da parte del programmatore](#visione-da-parte-del-programmatore)
   - [Linguaggio macchina](#linguaggio-macchina)
@@ -785,60 +793,54 @@ A seconda del metodo di programmazione.
 Si evolvono soltanto in corrispondenza di istanti temporali ben precisi, detti _istanti di sincronizzazione_.<br>
 L'evento che sincornizza è, di solito, il fronte di salita del clock;
 
-- **Registri**:
-  - Definisco un registro a $W$ bit come una collezione di $W$ D-flip-flop positive-edge-triggered, che hanno:
+## **Registri**:
+  - Definisco un registro a $W$ bit come una collezione di $W$ [D-flip-flop](#d-flip-flop) positive-edge-triggered, che hanno:
     - ingressi $d_i$ ed uscite $q_i$ separati (indipendenti);
     - ingresso $p$ comune (di sincronizzazione), che posso evitare di annoverare tra gli ingressi.
   - Un registro può essere visto come una rete sequenziale sincronizzata, in cui l'ingresso $p$ funge da segnale di sincronizzazione.
-- **Temporizzazione RSS**:
-  - L'unica regola di pilotaggio che dobbiamo garantire è:
-    - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in [$t_i - T_{setup}$ , $t_i + T_{hold}$], $\forall i$.
-  - Questa regola ci dice che non posso fare il clock veloce quanto voglio. <br>
-  Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a formare gli ingressi ai registri, dovrò dare il tempo a chi pilota la rete di:
-    - produrre un nuovo stato di ingresso;
-    - farlo 
-    - arrivare, attraverso le reti combinatorie, fino agli ingressi dei registri.
-  - Definiamo i seguenti ritardi:
-    - $T_{in-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi tra un piedino di ingresso fino all'imgresso di un registro;
-    - $T_{reg-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e l'ingresso di un registro;
-    - $T_{in-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi un piedino di ingresso e un piedino di uscita;
-    - $T_{reg-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e un piedino di uscita.
-  - Ho $3$ vincoli temporali:
-    - ingressi costanti [$t_i-T_{setup}$ , $t_i+T_{hold}$];
-    - vincolo di pilotaggio in ingresso: chi pilota gli ingressi deve avere almeno un $T_{a-monte}$ per poterli cambiare;
-    - vincolo di pilotaggio in uscita: chi usa le uscite deve averle stabili per un tempo $T_{a-valle}$ per poterci fare qualcosa.
 
-<br>
+## **Temporizzazione RSS**:
+- L'unica regola di pilotaggio che dobbiamo garantire è:
+  - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in [$t_i - T_{setup}$ , $t_i + T_{hold}$], $\forall i$.
+- Questa regola ci dice che non posso fare il clock veloce quanto voglio. <br>
+Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a formare gli ingressi ai registri, dovrò dare il tempo a chi pilota la rete di:
+  - produrre un nuovo stato di ingresso;
+  - farlo arrivare, attraverso le reti combinatorie, fino agli ingressi dei registri.
+- Definiamo i seguenti ritardi:
+  - $T_{in-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi tra un piedino di ingresso fino all'imgresso di un registro;
+  - $T_{reg-to-reg}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e l'ingresso di un registro;
+  - $T_{in-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi un piedino di ingresso e un piedino di uscita;
+  - $T_{reg-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e un piedino di uscita.
+- Ho $3$ vincoli temporali:
+  - ingressi costanti [$t_i-T_{setup}$ , $t_i+T_{hold}$];
+  - vincolo di pilotaggio in ingresso: chi pilota gli ingressi deve avere almeno un $T_{a-monte}$ per poterli cambiare;
+  - vincolo di pilotaggio in uscita: chi usa le uscite deve averle stabili per un tempo $T_{a-valle}$ per poterci fare qualcosa.
 
 ![Temporizzazione di una RSS](img/1.png)
 
-<br>
-
-- **Contatori**:
+## **Contatori**:
   - Un contatore è una RSS il cui stato di uscita può essere visto come un numero naturale ad $n$ cifre in base $\beta$, secondo una qualche codifica.
   - Ad ogni ciclo di clock, il contatore fa la seguente cosa:
     - incrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore up);
     - decrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore down);
     - incrementa o decrementa di 1 (modulo $\beta^n$), il valore di uscita a seconda del valore di una variabile di comando (contatore up/down).
 
-- **Registri multifunzionali**:
+## **Registri multifunzionali**:
   - È una rete che, all'arrivo del clock, memorizza nel registro stesso una tra K funzioni combinatorie possibili, scelta impostando un certo numero di variabili di comando $W = \lceil \log_2K \rceil$. Si realizza con un multiplexer a $K$ ingressi;
 
-<br>
-
-- **Modello di MOORE**:
-  1. un insieme di $N$ variabili logiche in ingresso;
-  2. un insieme di $M$ variabili logiche di uscita;
-  3. un _meccanismo di marcatura_, che ad ogni istante marca uno stato interno presente, scelto tra un insieme finito di $K$ stati interni $S = \{S_0,...,S_{K-1} \}$;
-  4. Una legge di _evoluzione del tempo_ del tipo $A : X \times S \rightarrow S$, che mappa quindi una coppia (stato di ingresso, stato interno) in un nuovo stato interno;
-  5. Una legge di _evoluzione del tempo_ del tipo $B : S \rightarrow Z$, che decide lo stato di uscita basandosi sullo stato interno;
-  6. La rete riceve segnali di sincronizzazione, come transizioni da 0 a 1 del segnale di clock;
-  7. Si adegua alla seguente **legge di temporizzazione**:
-     - "Dato $S$, stato interno marcato ad un certo istante, e dato $X$ ingresso ad un certo istante immediatamente precedente all'arrivo di un segnale di sincronizzazione;
-     - individuare il nuovo stato interno da marcare $S' = A(S,X)$;
-     - attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
-     - promuovere $S'$ al rango di stato interno marcato;
-     - E, inoltre, individuare continuamente $Z=B(S)$ e presentarlo in uscita.
+## **Modello di MOORE**:
+1. un insieme di $N$ variabili logiche in ingresso;
+2. un insieme di $M$ variabili logiche di uscita;
+3. un _meccanismo di marcatura_, che ad ogni istante marca uno stato interno presente, scelto tra un insieme finito di $K$ stati interni $S = \{S_0,...,S_{K-1} \}$;
+4. Una legge di _evoluzione del tempo_ del tipo $A : X \times S \rightarrow S$, che mappa quindi una coppia (stato di ingresso, stato interno) in un nuovo stato interno;
+5. Una legge di _evoluzione del tempo_ del tipo $B : S \rightarrow Z$, che decide lo stato di uscita basandosi sullo stato interno;
+6. La rete riceve segnali di sincronizzazione, come transizioni da 0 a 1 del segnale di clock;
+7. Si adegua alla seguente **legge di temporizzazione**:
+   - "Dato $S$, stato interno marcato ad un certo istante, e dato $X$ ingresso ad un certo istante immediatamente precedente all'arrivo di un segnale di sincronizzazione;
+   - individuare il nuovo stato interno da marcare $S' = A(S,X)$;
+   - attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
+   - promuovere $S'$ al rango di stato interno marcato;
+   - E, inoltre, individuare continuamente $Z=B(S)$ e presentarlo in uscita.
 
 |$S[t_{i+1}] = A(X[t_i], S[t_i])$|
 |---|
@@ -862,30 +864,30 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-- **Flip-Flop JK**:
-  - Il FF JK è una rete sequenziale sincronizzata con due ingressi ed un'uscita che, all'arrivo del clock, valuta i suoi due ingressi $j$ e $k$ e si comporta come segue:
+## **Flip-Flop JK**:
+- Il FF JK è una rete sequenziale sincronizzata con due ingressi ed un'uscita che, all'arrivo del clock, valuta i suoi due ingressi $j$ e $k$ e si comporta come segue:
 
-    | jk | Azione in uscita |
-    |----|------------------|
-    | 00 | Conserva         |
-    | 10 | Setta            |
-    | 01 | Resetta          |
-    | 11 | Commuta          |
+ | jk | Azione in uscita |
+ |----|------------------|
+ | 00 | Conserva         |
+ | 10 | Setta            |
+ | 01 | Resetta          |
+ | 11 | Commuta          |
 
-  - Tabella di applicazione:
+- Tabella di applicazione:
 
-    | q  | q' | j  | k  |
-    |----|----|----|----|
-    | 0  | 0  | 0  | -  |
-    | 0  | 1  | 1  | -  |
-    | 1  | 0  | -  | 1  |
-    | 1  | 1  | -  | 0  |
+ | q  | q' | j  | k  |
+ |----|----|----|----|
+ | 0  | 0  | 0  | -  |
+ | 0  | 1  | 1  | -  |
+ | 1  | 0  | -  | 1  |
+ | 1  | 1  | -  | 0  |
 
-  - FF JK è una rete di Moore poiché l'uscita non è funzione combinatoria degli ingressi ma del registro.
+- FF JK è una rete di Moore poiché l'uscita non è funzione combinatoria degli ingressi ma del registro.
 
-- **Modello di Mealy**:
-  - Nel modello di Moore, l'uscita è funzione soltanto dello stato interno presente, tramite la legge $B:S \rightarrow Z$. Se si consente a tale legge di essere più generale, scrivendo $B : X \times S \rightarrow Z$, si ottengono reti realizzate secondo il modello di Mealy.
-  - Il vantaggio di questo modello è che al variare dell'ingresso posso produrre un nuovo stato di uscita senza dover aspettare il succesivo fronte del clock.
+## **Modello di Mealy**:
+- Nel modello di Moore, l'uscita è funzione soltanto dello stato interno presente, tramite la legge $B:S \rightarrow Z$. Se si consente a tale legge di essere più generale, scrivendo $B : X \times S \rightarrow Z$, si ottengono reti realizzate secondo il modello di Mealy.
+- Il vantaggio di questo modello è che al variare dell'ingresso posso produrre un nuovo stato di uscita senza dover aspettare il succesivo fronte del clock.
 
 |$S[t_{i+1}] = A(X[t_i], S[t_i])$|
 |---|
@@ -909,20 +911,20 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-- **Modello di Mealy ritardato**:
-  - Si parte da una rete di Mealy, e si mette in uscita un registro OUTR. In questo modo, le uscite:
-    - variano sempre all'arrivo del clock, dopo un tempo $T_{prop}$ ;
-    - variano in maniera netta, senza oscillazioni;
-    - rimangono stabili per l'intero ciclo di clock;
-    - sono non trasparenti.
-  - Le proprietà:
-    - Ha una legge di evoluzione del tempo del tipo $A:X \times S \rightarrow S$, che mappa quindi una coppia (stato d'ingresso, stato interno) in un nuovo stato di uscita;
-    - Una legge di evoluzione nel tempo del tipo $B: X \times S \rightarrow Z$, che mappa quindi una coppia (stato ingresso, stato interno) in un nuovo stato interno;
-    - Si adegua alla seguente legge di temporizzazione:<br>
-    Dato $S$, stato interno presente (marcato) ad un certo istante, e dato $X$ stato di ingresso ad un certo istante precedente l'arrivo di un segnale di sincronizzazione,
-      1. individuare sia il nuovo stato interno da marcare $S'=A(S,X)$, sia il nuovo stato di uscita $Z = B(S,X)$;
-      2. attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
-      3. promuovere $S'$ al rango di stato interno marcato, e promuovere $Z$ al rango di nuovo stato di uscita.
+## **Modello di Mealy ritardato**:
+- Si parte da una rete di Mealy, e si mette in uscita un registro OUTR. In questo modo, le uscite:
+  - variano sempre all'arrivo del clock, dopo un tempo $T_{prop}$ ;
+  - variano in maniera netta, senza oscillazioni;
+  - rimangono stabili per l'intero ciclo di clock;
+  - sono non trasparenti.
+- Le proprietà:
+  - Ha una legge di evoluzione del tempo del tipo $A:X \times S \rightarrow S$, che mappa quindi una coppia (stato d'ingresso, stato interno) in un nuovo stato di uscita;
+  - Una legge di evoluzione nel tempo del tipo $B: X \times S \rightarrow Z$, che mappa quindi una coppia (stato ingresso, stato interno) in un nuovo stato interno;
+  - Si adegua alla seguente legge di temporizzazione:<br>
+  Dato $S$, stato interno presente (marcato) ad un certo istante, e dato $X$ stato di ingresso ad un certo istante precedente l'arrivo di un segnale di sincronizzazione,
+    1. individuare sia il nuovo stato interno da marcare $S'=A(S,X)$, sia il nuovo stato di uscita $Z = B(S,X)$;
+    2. attendere $T_{prop}$ dopo l'arrivo del segnale di sincronizzazione;
+    3. promuovere $S'$ al rango di stato interno marcato, e promuovere $Z$ al rango di nuovo stato di uscita.
 
 |$S[t_{i+1}] = A(X[t_i], S[t_i])$|
 |---|
@@ -946,7 +948,6 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-***
 ***
 # La struttura del calcolatore
 Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-calcolatore completo di processore, memoria, interfacce e dispositivi di ingresso-uscita.
