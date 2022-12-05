@@ -545,11 +545,30 @@ La comparazione di minoranza tra numeri interi si fa sempre con un **sottrattore
 Conviene riferirsi ai valori assoluti.
 
 ### Conversione da MS a CR
+![](img/76.png)
 
+L'operazione non è sempre fattibile, per questo c'è l'*ow*.
+$$
+ow = 1 \Leftrightarrow (ABS\_a > \beta^n/2)\ OR\ (ABS\_a = \beta^n/2\ AND\ sng\_a = 0)
+$$
+Ossia, setto l'overflow se il valore è fuori dall'intervallo di rappresentazione del CR.
+
+Se l'operazione è fattibile, abbiamo:
+$$
+A = \begin{cases}
+  ABS\_a & sng\_a = 0
+  \\
+  |\overline{ABS\_a}+1|_{\beta^n} & sng\_a = 1
+\end{cases}
+$$
 
 ### Moltiplicazione per interi
+Dati $A$ su $n$ cifre e $B$ su $m$ cifre, voglio calcolare $P$ su $n+m$ cifre tale che $p \leftrightarrow P$ ed $p = a\cdot b$.
+
+![](img/77.png)
 
 ### Divisione per interi
+Dati $A$ su $n+m$ cifre e $B$ su $m$ cifre, voglio calcolare $Q$ su $n$ cifre ed $R$ su $m$ cifre, tali che $q \leftrightarrow Q$, $r \leftrightarrow R$ e $a = q \cdot b + r$.
 
 
 
