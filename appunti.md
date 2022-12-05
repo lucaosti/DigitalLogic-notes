@@ -66,8 +66,10 @@
   - [**D-Latch trasparente**:](#d-latch-trasparente)
   - [**D flip-flop**:](#d-flip-flop)
   - [**Memorie RAM statiche** (RAM statiche o S-RAM):](#memorie-ram-statiche-ram-statiche-o-s-ram)
+    - [**Collegamento al bus e maschere**:](#collegamento-al-bus-e-maschere)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
+  - [**Memomorie Read-Only** (ROM):](#memomorie-read-only-rom)
 - [Reti sequenziali sincronizzate (RSS)](#reti-sequenziali-sincronizzate-rss)
 - [La struttura del calcolatore](#la-struttura-del-calcolatore)
   - [Visione da parte del programmatore](#visione-da-parte-del-programmatore)
@@ -725,13 +727,13 @@ Temporizzazione D flip-flop.
 
   <br>
 
-- **Collegamento al bus e maschere**:
-  - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore (e talvolta altri moduli) ne impostano il valore.
-  - Il piedino $/s$ di un modulo di RAM serve appunto a poter realizzare uno spazio di memoria grande usando moduli di memoria più piccoli.
-  - Supponiamo di avere un bus indirizzi a 32 bit e di voler montare un modulo di RAM 256Mx8 bit a partire dall'indirizzo 0xE0000000. Il modulo avrà 28 fili di indirizzo ed un filo di select $/s$ e dovrà rispondere agli indirizzi nell'intervallo [0xE0000000 - 0xEFFFFFFF]:
-    - I 28 fili di indirizzo meno significativi del bus andranno in ingresso al modulo di RAM;
-    - I restanti 4 fili di indirizzo più significativi andranno in ingresso ad una maschera, che genera il select per il modulo di RAM.
-  - La maschera deve riconoscere la configurazione di bit richiesta (0xE == B1110), pertanto deve essere $/s = \overline{a_{31}}+\overline{a_{30}}+\overline{a_{29}}+a_{28}$.
+### **Collegamento al bus e maschere**:
+- I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore (e talvolta altri moduli) ne impostano il valore.
+- Il piedino $/s$ di un modulo di RAM serve appunto a poter realizzare uno spazio di memoria grande usando moduli di memoria più piccoli.
+- Supponiamo di avere un bus indirizzi a 32 bit e di voler montare un modulo di RAM 256Mx8 bit a partire dall'indirizzo 0xE0000000. Il modulo avrà 28 fili di indirizzo ed un filo di select $/s$ e dovrà rispondere agli indirizzi nell'intervallo [0xE0000000 - 0xEFFFFFFF]:
+  - I 28 fili di indirizzo meno significativi del bus andranno in ingresso al modulo di RAM;
+  - I restanti 4 fili di indirizzo più significativi andranno in ingresso ad una maschera, che genera il select per il modulo di RAM.
+- La maschera deve riconoscere la configurazione di bit richiesta (0xE == B1110), pertanto deve essere $/s = \overline{a_{31}}+\overline{a_{30}}+\overline{a_{29}}+a_{28}$.
 
   <br>
   
@@ -744,28 +746,28 @@ Temporizzazione D flip-flop.
 ### Lettura:
   <br>
   
-  ![Collegamento BUS della RAM](img/38.jpg)
-  ![Collegamento BUS della RAM](img/39.jpg)
+  ![](img/38.jpg)
+  ![](img/39.jpg)
 
   <br>
 
 ### Scrittura:
   <br>
   
-  ![Collegamento BUS della RAM](img/40.jpg)
+  ![](img/40.jpg)
 
   <br>
 
-- **Memomorie Read-Only** (ROM):
-  - Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
-  - Costituiscono la parte non volatile dello spazio di memoria.
-  - Possono essere descritti come memorie RAM tolto tutto quello necessario alla scrittura dei dati.
-  - I D-latch sono sostituiti da generatori di costante. Si distinguono 3 tipi:
-    - PROM;
-    - EPROM;
-    - EEPROM;
+## **Memomorie Read-Only** (ROM):
+- Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
+- Costituiscono la parte non volatile dello spazio di memoria.
+- Possono essere descritti come memorie RAM tolto tutto quello necessario alla scrittura dei dati.
+- I D-latch sono sostituiti da generatori di costante. Si distinguono 3 tipi:
+  - PROM;
+  - EPROM;
+  - EEPROM;
 
-	A seconda del metodo di programmazione.
+A seconda del metodo di programmazione.
 
   <br>
   
@@ -778,9 +780,6 @@ Temporizzazione D flip-flop.
   - **EPROM**: Le connessioni sono fatte non con fusibili, ma con dispositivi elettronici, che sono programmabili per via elettrica e cancellabile tramite esposizione a raggi ultravioletti. [PUÒ ESSERE RIPETUTA, MA NON DALL'UTENTE]
   - **EEPROM**: Possono essere programmate e cancellate tramite segnali elettrici appositi. [PUÒ ESSERE RIPETUTA DALL'UTENTE]
 
-<br>
-
-***
 ***
 # Reti sequenziali sincronizzate (RSS)
 Si evolvono soltanto in corrispondenza di istanti temporali ben precisi, detti _istanti di sincronizzazione_.<br>
