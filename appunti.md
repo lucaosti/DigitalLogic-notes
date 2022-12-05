@@ -521,6 +521,12 @@ Per calcolare l'overflow, invece, pricediamo come segue:
 ![](img/74.png)
 
 ## Sottrazione per interi
+La differenza è sempre rappresentabile su $n+1$ cifre, e non sempre su $n$. <br>
+Dati $A$ e $B$ in base $\beta$ su $n$ cifre, tali che $a \leftrightarrow A$ e $b \leftrightarrow B$, voglio calcolare $D$ su $n$ cifre tale che $d \leftrightarrow D$ ed $d = a-b$.
+
+Quando $D$ è rappresentabile su $n$ cifre, abbiamo:
+$D = |A+\overline{B}+1|_{\beta^n}$
+
 
 ## Comparazione di numeri interi
 
