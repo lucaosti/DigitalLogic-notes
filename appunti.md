@@ -570,7 +570,16 @@ Dati $A$ su $n$ cifre e $B$ su $m$ cifre, voglio calcolare $P$ su $n+m$ cifre ta
 ### Divisione per interi
 Dati $A$ su $n+m$ cifre e $B$ su $m$ cifre, voglio calcolare $Q$ su $n$ cifre ed $R$ su $m$ cifre, tali che $q \leftrightarrow Q$, $r \leftrightarrow R$ e $a = q \cdot b + r$.
 
+![](img/78.png)
 
+In questo circuito ho imposto un'altra condizione:
+$$
+\begin{cases}
+  ABS(r)<ABS(b)
+  \\
+  sgn(r) = sgn(a)
+\end{cases}
+$$
 
 ***
 # Reti sequenziali
