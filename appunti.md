@@ -32,15 +32,15 @@
     - [Impulsi](#impulsi)
 - [Aritmetica del calcolatore](#aritmetica-del-calcolatore)
   - [Complemento](#complemento-1)
-  - [Moltiplicazione e divisione per una **potenza della base**](#moltiplicazione-e-divisione-per-una-potenza-della-base)
-  - [Addizione](#addizione)
+  - [Moltiplicazione e divisione per una **potenza della base** per naturali ed interi](#moltiplicazione-e-divisione-per-una-potenza-della-base-per-naturali-ed-interi)
+  - [Addizione per naturali](#addizione-per-naturali)
     - [Full Adder in base 2](#full-adder-in-base-2)
     - [Incrementatore](#incrementatore)
-  - [Sottrazione](#sottrazione)
+  - [Sottrazione per naturali](#sottrazione-per-naturali)
     - [Comparatore di numeri naturali](#comparatore-di-numeri-naturali)
-  - [Moltiplicazione](#moltiplicazione)
+  - [Moltiplicazione per naturali](#moltiplicazione-per-naturali)
     - [Moltiplicatore base 2](#moltiplicatore-base-2)
-  - [Divisione](#divisione)
+  - [Divisione per naturali](#divisione-per-naturali)
     - [Divisore base 2](#divisore-base-2)
   - [Rappresentazione dei numeri interi](#rappresentazione-dei-numeri-interi)
     - [Traslazione](#traslazione)
@@ -273,7 +273,7 @@ $\overline{A} = (\beta^n-1)-A$
 
 ![](img/53.png)
 
-## Moltiplicazione e divisione per una **potenza della base**
+## Moltiplicazione e divisione per una **potenza della base** per naturali ed interi
 In qualunque base $\beta$:
 - **Moltiplicare** un numero per $\beta^k$ significa costruire un nuovo numero di $n+k$ cifre, di cui le $k$ meno significative sono $0$.
 ![](img/54.png)
@@ -283,7 +283,7 @@ In qualunque base $\beta$:
 costituito dalle $k$ cifre meno significative del numero di partenza.
 ![](img/56.png)
 
-## Addizione
+## Addizione per naturali
 Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $C_{in}$, $0\le C_{in}\le 1$, voglio calcolare il numero naturale $Z = X+Y+C_{in}$.
 
 Sempre rappresentabile su $n+1$ cifre, potrebbe non esserlo su $n$. Quindi la mettiamo su $n$ più un eventuale riporto uscente ($C_{out}$).
@@ -306,7 +306,7 @@ Questo montaggio si chiama **ripple carry**, ed i suoi componenti prendono il no
 Esiste poiché il circuito necessario è molto più semplice dell'*adder*. <br>
 Ha un solo libello di logica.
 
-## Sottrazione
+## Sottrazione per naturali
 Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $b_{in}$, $0\le b_{in}\le 1$, voglio calcolare il numero naturale $Z = X-Y-b_{in}$, **ammesso che esista**.
 
 Per quanto riguarda la rappresentabilità, $-\beta^n \le X-Y-b_{in}\le \beta^n-1$. Quindi, $Z$ può anche non essere un numero naturale, cosa che sappiamo bene dall’aritmetica (i naturali non sono un insieme chiuso rispetto alla sottrazione).
@@ -341,7 +341,7 @@ Quindi, il nostro comparatore avrà due uscite:
 - *flag_eq*, che vale $1$ se i due numeri da comparare sono uguali;
 - *flag_min*, che vale $1$ se $A < B$.
 
-## Moltiplicazione
+## Moltiplicazione per naturali
 Dati $X, C$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, C \le \beta^n-1$, e $Y$ naturale in base $\beta$ su $m$ cifre, quindi $0 \le Y \le \beta^m-1$.
 
 Voglio calcolare:
@@ -366,7 +366,7 @@ Possiamo quindi realizzare la motiplicazione utlizzando soltanto moltiplicatori 
 ![](img/64.png)
 ![](img/63.png)
 
-## Divisione
+## Divisione per naturali
 Dati $X$ naturale in base $\beta$ su $n+m$ cifre (dividendo), quindi $0 \le X \le \beta^{m+n}-1$, e $Y$ naturale in base $\beta$ su $m$ cifre (divisore), quindi $0 \le Y \le \beta^m-1$.
 
 Voglio calcolare:
@@ -498,6 +498,7 @@ Per moltiplicare e dividere i numeri interi per la base è necessario usare lo s
 ![](img/72.png)
 
 ## Somma per interi
+
 
 ## Sottrazione per interi
 
