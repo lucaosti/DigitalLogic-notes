@@ -534,10 +534,18 @@ $$
 In base $2$ posso quindi verificare l'*ow* tramite lo XOR degli ultimi due prestiti.
 
 ## Comparazione di numeri interi
+La comparazione di minoranza tra numeri interi si fa sempre con un **sottrattore**, ma non si deve guardare il prestito uscente. Si deve guardare il **segno della differenza**, per svolgere la quale è necessario estendere gli operandi.
+
+- L'estensione richiede della logica;
+- Il calcolo del segno della differenza richiede della logica.
+
+![](img/75.png)
 
 ## Moltiplicazione e Divisione per interi
+Conviene riferirsi ai valori assoluti.
 
 ### Conversione da MS a CR
+
 
 ### Moltiplicazione per interi
 
