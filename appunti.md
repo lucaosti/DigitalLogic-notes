@@ -79,6 +79,8 @@
   - [**Flip-Flop JK**:](#flip-flop-jk)
   - [**Modello di Mealy**:](#modello-di-mealy)
   - [**Modello di Mealy ritardato**:](#modello-di-mealy-ritardato)
+  - [Sintesi della parte di controllo](#sintesi-della-parte-di-controllo)
+  - [Reintroduzione dei $\\mu$-salti a piùà vie](#reintroduzione-dei-mu-salti-a-piùà-vie)
 - [La struttura del calcolatore](#la-struttura-del-calcolatore)
   - [Visione da parte del programmatore](#visione-da-parte-del-programmatore)
   - [Linguaggio macchina](#linguaggio-macchina)
@@ -949,6 +951,13 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 <br>
 
 ***
+
+## Sintesi della parte di controllo
+
+
+## Reintroduzione dei $\mu$-salti a piùà vie
+
+
 # La struttura del calcolatore
 Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-calcolatore completo di processore, memoria, interfacce e dispositivi di ingresso-uscita.
 - **Il sottostistema di I/O**: 
