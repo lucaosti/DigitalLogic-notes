@@ -996,6 +996,7 @@ Per quanto riguarda la parte controllo della rete, mi fa comodo mantenere la con
 
 Nella ROM serve una variabile in più, che discrimina se il $\mu$-salto che sto per fare è guidato dalle variabili di condizionamento o da MJR. Tale variabile si chiama $\mu$-tipo del $\mu$-salto. Nell’esempio di sopra, in S0 il $\mu$-tipo sarà pari a 0 (μ-salto guidato dalle variabili di condizionamento – peraltro 𝑐𝑒𝑓𝑓 sarà non specificata perché il salto è incondizionato), ed in S0_1 sarà pari ad 1 ($\mu$-salto guidato da MJR).
 
+***
 # La struttura del calcolatore
 Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-calcolatore completo di processore, memoria, interfacce e dispositivi di ingresso-uscita.
 - **Il sottostistema di I/O**: 
