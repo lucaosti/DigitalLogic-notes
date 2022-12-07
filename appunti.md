@@ -80,7 +80,9 @@
   - [**Modello di Mealy**:](#modello-di-mealy)
   - [**Modello di Mealy ritardato**:](#modello-di-mealy-ritardato)
   - [Sintesi della parte di controllo](#sintesi-della-parte-di-controllo)
-  - [Reintroduzione dei $\\mu$-salti a piùà vie](#reintroduzione-dei-mu-salti-a-piùà-vie)
+    - [Sintesi parte di controllo $\\mu$-address based](#sintesi-parte-di-controllo-mu-address-based)
+    - [Sintesi parte di controllo $\\mu$-instruction based](#sintesi-parte-di-controllo-mu-instruction-based)
+    - [Reintroduzione dei $\\mu$-salti a più vie](#reintroduzione-dei-mu-salti-a-più-vie)
 - [La struttura del calcolatore](#la-struttura-del-calcolatore)
   - [Visione da parte del programmatore](#visione-da-parte-del-programmatore)
   - [Linguaggio macchina](#linguaggio-macchina)
@@ -953,9 +955,29 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 ***
 
 ## Sintesi della parte di controllo
+Tutti i $\mu$-salti sono:
+- Incodinzionati, tipo \`STAR <= S2;` oppure;
+- A due vie, del tipo \`STAR <= (c1 == 1)?S0:S1;`.
 
+Dato questo vincolo, faccio come segue:
+1. prendo la codifica degli stati interni, che chiamo $\mu$-indirizzo;
+2. In corrispondenza di un $\mu$-indirizzo, posso individuare, nella parte di controllo:
+   1. Lo stato delle variabili, detto $\mu$-codice;
+   2. Associo una codifica in base 2 ai pedici delle variabili di condizionamento, detta $c_{eff}$;
+   3. Il $\mu$-indirizzo cui si salta nel caso di **condizione vera**;
+   4. Il $\mu$-indirizzo cui si salta nel caso di **condizione falsa**.
 
-## Reintroduzione dei $\mu$-salti a piùà vie
+Questo è, a tutti gli effetti, la tabella di una **ROM**:
+
+![](img/79.png)
+
+Il contenuto di una cella è detto $\mu$-istruzione, in quanto descrive compiutamente tutto quello che la parte di controllo deve fare nello stato codificato dal $\mu$-indirizzo.
+
+### Sintesi parte di controllo $\mu$-address based 
+![](img/80.png)
+### Sintesi parte di controllo $\mu$-instruction based 
+![](img/81.png)
+### Reintroduzione dei $\mu$-salti a più vie
 
 
 # La struttura del calcolatore
