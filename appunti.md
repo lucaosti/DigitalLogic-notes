@@ -974,11 +974,27 @@ Questo è, a tutti gli effetti, la tabella di una **ROM**:
 Il contenuto di una cella è detto $\mu$-istruzione, in quanto descrive compiutamente tutto quello che la parte di controllo deve fare nello stato codificato dal $\mu$-indirizzo.
 
 ### Sintesi parte di controllo $\mu$-address based 
-![](img/80.png)
-### Sintesi parte di controllo $\mu$-instruction based 
-![](img/81.png)
-### Reintroduzione dei $\mu$-salti a più vie
+In questo caso, la ROM e la RC operativa sono in cascata. Visto che queste sono, normalmente, le reti più pesanti dal punto di vista del tempo di attraversamento, il periodo di clock va tenuto largo. Per contro, abbiamo un registro di stato piccolo.
 
+![](img/80.png)
+
+### Sintesi parte di controllo $\mu$-instruction based 
+In questo modello, invece, il registro è grande (la codifica degli stati è ridondante). Per reti neanche troppo complesse si arriva facilmente a registri di 100 bit ed oltre, mentre nell’altro caso difficilmente si va sopra la decina. Però la ROM e la RC operativa non sono più in cascata, il che consente normalmente di far andare il clock più velocemente. In quest’ultimo caso, però, sono in cascata la RC di condizionamento e la ROM. La RC di condizionamento è di norma meno pesante di quella operativa, e quindi il problema si pone meno.
+
+![](img/81.png)
+
+### Reintroduzione dei $\mu$-salti a più vie
+![](img/83.png)
+
+Il problema di questa implementazione è che mentre scorro questi stati il tempo passa. Il problema lo risolviamo mediante il registro **MJR** (Multiway Jump Register).
+
+![](img/82.png)
+
+Per  quanto  riguarda  la  parte  controllo  della rete,  mi  fa  comodo  mantenere la consueta struttura con $\mu$-salti  a  due  vie  (perché  la  maggior  parte dei $\mu$-salti sarà a due vie), aggiungendo in più la possibilità di guidare un salto con il contenuto di MJR.
+
+![](img/84.png)
+
+Nella  ROM  serve  una  variabile  in  più,  che  discrimina  se  il  $\mu$-salto  che  sto  per  fare  è  guidato  dalle variabili di condizionamento o da MJR. Tale variabile si chiama  $\mu$-tipo del $\mu$-salto. Nell’esempio di sopra, in S0 il $\mu$-tipo sarà pari a 0 (μ-salto guidato dalle variabili di condizionamento – peraltro 𝑐𝑒𝑓𝑓 sarà  non  specificata  perché  il  salto  è  incondizionato),  ed  in  S0_1  sarà  pari  ad  1  ($\mu$-salto  guidato  da MJR).
 
 # La struttura del calcolatore
 Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-calcolatore completo di processore, memoria, interfacce e dispositivi di ingresso-uscita.
