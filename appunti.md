@@ -1151,15 +1151,18 @@ I cicli di scrittura e lettura nello spazio di I/O, rispetto a quelli in memoria
 ***
 # Interfacce
 Sono di 3 tipi:
-- **Parallele**, che sono in grado di inviare/ricevere $1$ byte alla volta;
-- **Seriali**, che sono in grado di inviare/ricevere $1$ bit alla volta;
-- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**, che trasformano gruppi di bit in tensioni e viceversa;<br>
+- **Parallele**, che sono in grado di inviare/ricevere $1$ **byte** alla volta;
+- **Seriali**, che sono in grado di inviare/ricevere $1$ **bit** alla volta;
+- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**, che trasformano gruppi di bit in tensioni e viceversa.<br>
 
 ## Le interfacce hanno alcuni dettagli in comune:
-- 2 Registri per permettere il passaggio dei dati:
-  - Recive Buffer Register **RBR**;
-  - Transmit Buffer Register **TBR**;
-- Ciò, però, non permette la sincronizzazione tra il processore ed il dispositivo, quindi integriamo il collegamento con:
+- 2 Registri per permettere il passaggio dei dati, nel caso di ingresso uscita, o solo uno, in caso di monofunzionalità:
+  - Recive Buffer Register **RBR**, in caso di ingresso;
+  - Transmit Buffer Register **TBR**, in caso di uscita;
+
+I due registri sono distinti dall’indirizzo interno (0 per RBR, 1 per TBR), che viene portato dal filo a0 del bus (gli altri 15 fili di indirizzo contribuiscono a generare il select).
+
+Ciò, però, non permette la sincronizzazione tra il processore ed il dispositivo, quindi integriamo il collegamento con:
   - Recive Status Register;
   - Transmit Status Register;
   - Spesso collassati in un unico registro: **RTSR**.
