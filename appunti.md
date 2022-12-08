@@ -1153,9 +1153,7 @@ I cicli di scrittura e lettura nello spazio di I/O, rispetto a quelli in memoria
 Sono di 3 tipi:
 - **Parallele**, che sono in grado di inviare/ricevere $1$ byte alla volta;
 - **Seriali**, che sono in grado di inviare/ricevere $1$ bit alla volta;
-- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**, che trasformano gruppi di bit in tensioni e viceversa;
-
-<br>
+- **conversione analogica/digitale [lenta] e digitale/analogico [veloce]**, che trasformano gruppi di bit in tensioni e viceversa;<br>
 
 ## Le interfacce hanno alcuni dettagli in comune:
 - 2 Registri per permettere il passaggio dei dati:
