@@ -1106,7 +1106,7 @@ Contiene un certo numero di registri, tra cui:
 - **Instraction registers**, vengono riempiti in fase di fetch:
   - **OPCODE**: codice operativo dell'istruzione;
   - **SOURCE**: l'operando sorgente;
-  - **DEST_ADDR**: indirizzo dell'operando destinatario;
+  - **DEST_ADDR**: **indirizzo** dell'operando destinatario;
 - Ho dei registri che sostengono le **uscite**, come deve essere in una RSS;
 - Un registro **DIR**, per abilitare la tri-state quando il processore deve effettuare scritture sul bus;
 - Dei registri di appoggio **APPx** e **NUMLOC**, che servono per i cicli di lettura/scrittura;
