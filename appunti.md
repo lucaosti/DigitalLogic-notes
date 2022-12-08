@@ -1075,7 +1075,8 @@ In particolare, i formati sono:
 
 ## Architettura del calcolatore
 - **Fili di indirizzo**: 24, sono uscite per il processore, il quale imposterà gli indirizzi delle locazioni di memoria o delle porte di I/O dove vuole leggere e scrivere, ed ingressi per il resto del mondo;
-- **Fili di dati**: tutti attivi bassi, /mr, /mw (per leggere e scrivere in memoria), /ior, /iow (per leggere e scrivere in I/O); sono uscite per il processore ingressi per gli altri;
+- **Fili di dati**: 8, poiché ci interessa elaborare byte;
+- **Fili di controllo**: tutti attivi bassi, /mr, /mw (per leggere e scrivere in memoria), /ior, /iow (per leggere e scrivere in I/O); sono uscite per il processore ingressi per gli altri;
 - **Segnale di clock**;
 - **Fili di comunicazione tra la memoria video e l'adattatore grafico**;
 
