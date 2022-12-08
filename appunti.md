@@ -1038,16 +1038,20 @@ $$OPCODE\ source,\ destination$$
 $source$ potrebbe mancare.
 
 - Per le **istruzioni operative**:
-  - Indirizzamento a registro: uno o entrambi gli operandi sono registri;
-  - Indirizzamento immediato: l'operando $sorgente$ è specificato direttamente nell'istruzione come costante (es: $0x10$);
-  - Indirizzamento di memoria:<br>
+  - Indirizzamento **a registro**: uno o entrambi gli operandi sono registri;
+  - Indirizzamento **immediato**: l'operando $sorgente$ è specificato direttamente nell'istruzione come costante (es: $0x10$);
+  - Indirizzamento **di memoria**:<br>
   valido per sorgente **o** destinatario, MAI entrambi
     - diretto: l'indirizzo è specificato direttamente nell'istruzione;
     - indiretto: la locazione di memoria ha indirizzo contenuto nel registro DP;
-  - Indirizzamento porte I/O:
+  - Indirizzamento **porte I/O**:
     - si indirizzano in modo diretto, specificando l'offset della porta dentro l'istruzione stessa;
 - Per le **istruzioni di conttrollo**:
-  - Alterano il flusso dell'esecuzione del programma, che normalmente procederebbe in sequenza;
+  - Alterano il flusso dell'esecuzione del programma, che normalmente procederebbe in sequenza:
+    - JMP;
+    - Jcon;
+    - CALL;
+    - RET.
 
 Ciascuna istruzione macchina è lunga almeno un byte, che codifica:
 - Il tipo di operazione, rilevante in fase di esecuzione;
