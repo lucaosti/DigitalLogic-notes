@@ -1190,6 +1190,8 @@ Dal punto di vista dei collegamenti con il processore essa avrà bisogno di:
 Dal lato del dispositivo con il quale si interfaccia, ci saranno 8 fili di ingresso, che chiamiamo _"byte_in"_, tramite i quali il dispositivo interno fa arrivare i dati. <br>
 Questi dati saranno inseriti dal dispositivo nel registro _RBR_.
 
+![](img/85.png)
+
 Dualmente, il tipo più semplice di interfaccia parallela di uscita è un'interfaccia che da corpo ad una sola porta, nella quale si può solo scrivere; dal punto di vista dei collegamenti col processore, abbiamo:
 - un segnale di **select**, al quale va l'uscita della maschera tramite la quale il progettista decide quale deve essere l'offset della porta di uscita dell'interfaccia;
 - un filo di /iow;
@@ -1199,6 +1201,10 @@ Dualmente, il tipo più semplice di interfaccia parallela di uscita è un'interf
 
 Dal lato del dispositivo con il quale si interfaccia, ci saranno 8 fili di uscita, che chiamiamo _"byte_out"_, tramite i quali il interfaccia fa arrivare i dati al dispositivo. <br>
 Questi dati saranno scritti dal processore nel registro _TBR_.
+
+![](img/86.png)
+
+Possiamo anche ovviamente avere interfacce di ingresso/uscita, che contengono sia porte di ingresso che di uscita. La porta di indirizzo pari è accessibile in lettura, mentre la porta accessibile in scrittura è quella di indirizzo dispari. Ci vuole un po’ di logica combinatoria per produrre i due select.
 
 ### Intefaccie parallele con HandShake - Ingresso
 Sono dotate di meccanismi di sincronizzazione: dal lato del processore, hanno un flag di ingresso pieno, che il processore accede a controllo di programma. <br>
@@ -1213,7 +1219,7 @@ Le due tri-state non sono mai in conduzione contemporaneamente, e sono entrambe 
 ### Intefaccie parallele con HandShake - Uscita
 Il flag FO vale uno quando nel registro TBR può essere scritto un nuovo dato. Ci vuole un filo di indirizzo, perché ci sono due registri, e quindi è necessario distinguerli.<br>
 Vediamo come è fatta l'interfaccia al suo interno:
-- C'è una rete combinatoria che ha un ruolo analogo a quella dell'interfaccia di ingresso. L'unica differenza è che stavolta $e_B$ non serve ad abilitare le tri-state, perché i dati vanno nella direzione opposta.
+- C'è una rete combinatoria che ha un ruolo analogo a quella dell'interfaccia di ingresso. L'unica differenza è che stavolta $e_B$ non serve ad abilitare le tri-state, perché i dati vanno nella direzione opposta;
 - Si gestisce prima l'handshake con il processore e, finito quello, quello con il dispositivo; si noti che il contenuto di TBR balla, ma /dav viene tenuto a 1, quindi il dispositivo non può leggerlo.
 
 ![Intefaccie parallele con HandShake - Uscita](img/34.jpeg)
