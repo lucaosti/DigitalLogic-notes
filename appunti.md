@@ -1145,8 +1145,8 @@ I cicli di scrittura e lettura nello spazio di I/O, rispetto a quelli in memoria
 ![Lettura](img/29.jpeg)
 
 ### Scrittura:
-![Lettura](img/30.jpeg)
-![Lettura](img/31.jpeg)
+![Scrittura](img/30.jpeg)
+![Scrittura](img/31.jpeg)
 
 ***
 # Interfacce
