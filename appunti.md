@@ -1078,6 +1078,7 @@ In particolare, i formati sono:
 - **Fili di dati**: 8, poiché ci interessa elaborare byte;
 - **Fili di controllo**: tutti attivi bassi, /mr, /mw (per leggere e scrivere in memoria), /ior, /iow (per leggere e scrivere in I/O); sono uscite per il processore ingressi per gli altri;
 - **Segnale di clock**;
+- **Fili di interconnessione tra interfacce e dispositivi**;
 - **Fili di comunicazione tra la memoria video e l'adattatore grafico**;
 
 ## Spazio di memoria
