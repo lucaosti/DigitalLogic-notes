@@ -1102,7 +1102,7 @@ Dal lato dispositivo, i collegamenti variano da interfaccia a interfaccia. Il mo
 ## Processore
 Contiene un certo numero di registri, tra cui:
 - **STAR**, registro di stato, essento il processore una RSS;
-- **MJR**;
+- **MJR**, per gesire $\mu$-salti a più vie e sottoprogrammi;
 - **Instraction registers** (OPCODE, SOURCE; DEST_ADDR), vengono riempiti in fase di fetch:
   - **OPCODE**: codice operativo dell'istruzione;
   - **SOURCE**: l'operando sorgente;
