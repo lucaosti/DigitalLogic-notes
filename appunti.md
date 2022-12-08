@@ -1120,7 +1120,7 @@ Al reset, si inizializzano:
 Fase di Fetch, il professore:
 - Preleva un byte, quello indicato da **IP**;
 - **Incrementa IP**, modulo $2^{24}$;
-- controlla che quel **byte corrisponda ad un opcode**, sennò si ferma;
+- controlla che quel **byte corrisponda ad un opcode**, sennò si ferma (HLT);
 - **inserisce il byte letto nel registro OPCODE**, e valuta il formato dell'istruzione, a seconda di questo:
   - **si procura un operando sorgente** a 8 bit e lo inserisce in SOURCE;
   - **si procura l'indirizzo dell'operando destinatario** e lo inserisce in DEST_ADDR;
