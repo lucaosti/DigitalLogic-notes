@@ -1088,9 +1088,8 @@ La logica combinatoria che genera il segnale di abilitazione (/s) per un modulo 
 - Il chip RAM copre anche gli indirizzi coperti da EPROM e dalla memoria video, quando però il processore imposta uno di quelli indirizzi, la maschera che produce il select del chip di RAM non risponde (e quindi non gli abilita).
 
 ## Spazio di I/O
-Lo spazio di I/O è realizzato fisicamente tramite interfacce, che fungono da raccordo tra il bus e i dispositivi di I/O.
-
-Per quanto riguarda i collegamenti dal lato del bus, saranno del tutto identici a quelli di una piccola memoria RAM, di poche locazioni. Le poche locazioni che si trovano nelle interfacce prendono il nome di porte di ingresso uscita.
+Lo spazio di I/O è realizzato fisicamente tramite interfacce, che fungono da raccordo tra il bus e i dispositivi di I/O. <br>
+Per quanto riguarda i collegamenti dal lato del bus, saranno del tutto identici a quelli di una piccola memoria RAM, di poche locazioni. Le poche locazioni che si trovano nelle interfacce prendono il nome di porte di ingresso uscita. <br>
 
 Saranno simili anche le temporizzazioni per i cicli di lettura e scrittura:
 - in una RAM si può leggere e scrivere qualunque locazione, mentre spesso nell'interfacce solo alcune porte supportano  soltanto la lettura (IN) o soltanto la scrittura (OUT). Se un'interfaccia ha invece solo porte di lettura o solo porte di scrittura, possiamo fare a meno di uno dei due fili */iow* / */ior*;
