@@ -1012,7 +1012,7 @@ Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-
     - Deve iniziare a leggere la memoria da una locazione ben precisa;
     - In quella locazione ci deve essere già scritto del codice, in maniera indelebile;
 - **La rete di interconnessione**:
-  - Mette in comunicazione tutti questi moduli, trasportando i segnali generati da uno verso l'altro;
+  - Mette in comunicazione tutti questi moduli, trasportando i segnali generati da uno verso l'altro.
 
 ## Visione da parte del programmatore
 - La memoria appare come uno spazio lineare di $2^{24}$ locazioni di un byte, per un totale di $16$ MB;
