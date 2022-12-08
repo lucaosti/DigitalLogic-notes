@@ -421,6 +421,8 @@ Il rilevatore di fattibilità (la parte di rete che genera l’uscita *no_div*) 
 ### Traslazione
 $L: A = a + \frac{\beta^n}{2}$, dove $\frac{\beta^n}{2}$ è il fattore di polarizzazione.
 
+Per passare da traslazione a complemento alla radice in base 2, basta complementare il bit più significativo.
+
 ### Modulo e segno
 $n$ cifre per il modulo, $1$ per il segno.
 
@@ -1309,11 +1311,12 @@ Per quanto riguarda l'handshake con la sottointerfaccia parallela di ingresso:
 Nel mondo fisico, di norma, l'informazione è associata a grandezze analogiche che variano con continuità; <br>
 All'interno del computer, invece, le informazioni sono associate a stringhe di bit, cioé grandezze digitali, che variano in modo discreto.
 
-La tensione *v* da convertire sarà su una scala di FSR volts (Full-Scale Range). Il numero *x* nel quale la tensione sarà convertita è su N bit; tipicamente 8 o 16, mentre FSR tra 5 e 30.
+La tensione *v* da convertire sarà su una scala di FSR volts (Full-Scale Range). <br>
+Il numero *x* nel quale la tensione sarà convertita è su N bit; tipicamente 8 o 16, mentre FSR tra 5 e 30.
 
 Si possono distinguere:
 - la **conversione unipolare**: $v \in [0,\ FSR],\ x \in [0,\ 2^N-1]$;
-- la **conversione bipolare**: $v \in [-\frac{FSR}{2},\ \frac{FSR}{2}],\ x \in [-2^{N-1},\ 2^{N-1}-1]$;
+- la **conversione bipolare**: $v \in [-\frac{FSR}{2},\ \frac{FSR}{2}],\ x \in [-2^{N-1},\ 2^{N-1}-1]$.
 
 Definiamo $K = \frac{FSR}{2^N}$, costante di proporzionalità tra i due intervalli. Una conversione *ideale*, sarebbe $v = K \cdot x$.<br>
 In realtà, dovremo accontentarci di $|v-K \cdot x| \leq err$; con $err$ detto errore di conversione.
