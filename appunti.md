@@ -1290,7 +1290,7 @@ Le ipotesi al reset, sono:
 - Ciclicamente:
   - Deve campionare i bit a metà del tempo di bit;
   - Capisce che la trama è iniziata quando vede un fronte di discesa da marking a spacing;
-  - Quindi, campiona il primo bit dopo $\frac{3}{2}T$ da quando vede l'inizio della trama e poi i bit successivi ogni $T$.
+  - Quindi, campiona il primo bit dopo $\frac{3}{2}\cdot T$ da quando vede l'inizio della trama e poi i bit successivi ogni $T$.
 
 Ci vogliono i registri:
 - **DAV_**, che sostiene l'uscita;
