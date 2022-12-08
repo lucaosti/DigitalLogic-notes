@@ -1347,8 +1347,10 @@ $$i_0 = \frac{FSR}{2^N} \cdot \frac{1}{R} = \frac{K}{R}$$
 
 Abbiamo un amplificatore operazionale, cioé un oggetto attivo che:
 - Non fa passare corrente al suo interno;
-- in uscita da una tensione $V^{OUT} = \alpha \cdot (V^+ - V^-)$ con $\alpha > 1$
+- in uscita da una tensione $V^{OUT} = \alpha \cdot (V^+ - V^-)$ con $\alpha > 1$.
+
 ![D/A](img/44.png)
+
 Da che si conclude che:
 $$i = i_0 \cdot \sum_{i = 0}^{N - 1} 2^i \cdot x_i$$
 Altro non è che la rappresentazione posizionale in base 2 di un naturale X, sostituendo il valore trovato prima di $i_0$ si trova subito:
