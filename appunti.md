@@ -1271,7 +1271,7 @@ Per campionare i bit, mi conviene farlo a **circa metà del tempo di bit**, per 
 - Trasmette tutti i bit di quel byte sul mezzo trasmissivo tramite il filo txd.
 
 Il tramettitore ha pertanto bisogno di alcuni registri:
-- **TXD**, registro ad 1 bit per sostenere l'uscita;
+- **TXD**, registro ad 1 bit che contiene il bit da trasmettere ad un dato istante;
 - **RFD**, registro ad 1 bit che sostiene il segnale di uscita dell'handshake;
 - **BUFFER**, è il registro nel quale tengo tutto il byte da trasmettere. Pertanto, deve essere largo almeno 8 bit. Conviene fargli contenere l'intera trama (*n+1*);
 - **COUNT**, nel quale tengo il conto dei bit che ancora devo inviare, tipicamente 4 bit per contenere 10.
@@ -1280,7 +1280,7 @@ Posso ipotizzare che il tramettitore abbia un clock pari al tempo di bit.
 
 Le ipotesi al reset, sono:
 - */dav = 1*, dalla parte dell'interfaccia;
-- *rfd = 1* e *txd = 1*, da parte del trasmettitore.
+- *rfd = 1* e *txd in marking*, da parte del trasmettitore.
 
 ![Verilog trasmettitore](img/41.png)
 
