@@ -1112,7 +1112,7 @@ Contiene un certo numero di registri, tra cui:
 - Dei registri di appoggio **APPx** e **NUMLOC**, che servono per i cicli di lettura/scrittura;
 
 Al reset, si inizializzano:
-- i registri **IP** ed **F**, in modo da partire con un'evoluzione consistente;
+- i registri **IP** ed **F**, in modo da partire con un'evoluzione consistente, il primo inizializzato ad $'HFF0000$;
 - tutti i registri che hanno a che fare con variabili di controllo del bus dovranno essere inizializzati in modo coerente: **/MR**, **/MW**, **/IOR**, **/IOW** dovranno contenere tutti 1;
 - I **fili di dati** vanno posti in alta impedenza. **DIR** deve contenere 0;
 - **STAR** verrà inizializzato con l'etichetta del promo statement della fase di fetch;
