@@ -1185,7 +1185,7 @@ Dal punto di vista dei collegamenti con il processore essa avrà bisogno di:
 - un filo di /ior;
 - otto fili di dati;
 - nessun filo di indirizzo, poiché ha;
-- una porta sola;
+- una porta sola.
 
 Dal lato del dispositivo con il quale si interfaccia, ci saranno 8 fili di ingresso, che chiamiamo _"byte_in"_, tramite i quali il dispositivo interno fa arrivare i dati. <br>
 Questi dati saranno inseriti dal dispositivo nel registro _RBR_.
@@ -1195,7 +1195,7 @@ Dualmente, il tipo più semplice di interfaccia parallela di uscita è un'interf
 - un filo di /iow;
 - otto fili di dati;
 - nessun filo di indirizzo, poiché ha;
-- una porta sola;
+- una porta sola.
 
 Dal lato del dispositivo con il quale si interfaccia, ci saranno 8 fili di uscita, che chiamiamo _"byte_out"_, tramite i quali il interfaccia fa arrivare i dati al dispositivo. <br>
 Questi dati saranno scritti dal processore nel registro _TBR_.
