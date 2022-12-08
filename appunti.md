@@ -1117,7 +1117,7 @@ Al reset, si inizializzano:
 - I **fili di dati** vanno posti in alta impedenza. **DIR** deve contenere 0;
 - **STAR** verrà inizializzato con l'etichetta del promo statement della fase di fetch;
 
-Fase di Fetch:
+Fase di Fetch, il professore:
 - Preleva un byte, quello indicato da **IP**;
 - **Incrementa IP**, modulo $2^{24}$;
 - controlla che quel **byte corrisponda ad un opcode**, sennò si ferma;
