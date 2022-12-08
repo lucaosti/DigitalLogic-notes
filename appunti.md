@@ -1011,6 +1011,9 @@ Scopo del prossimo blocco di lezioni è la descrizione in verilog di un sistema-
   - Al reset deve partire in modo consistente, cioé:
     - Deve iniziare a leggere la memoria da una locazione ben precisa;
     - In quella locazione ci deve essere già scritto del codice, in maniera indelebile;
+  Ciò si ottiene facendo in modo che:
+	- Al reset, il processore abbia inizializzato l’instruction pointer;
+	- Parte della memoria sia implementata con tecnologia EPROM, e contenga cablato al suo interno un programma  bootstrap che viene eseguito alla partenza del calcolatore;
 - **La rete di interconnessione**:
   - Mette in comunicazione tutti questi moduli, trasportando i segnali generati da uno verso l'altro.
 
