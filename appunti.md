@@ -1082,7 +1082,7 @@ In particolare, i formati sono:
 - **Fili di comunicazione tra la memoria video e l'adattatore grafico**;
 
 ## Spazio di memoria
-Lo spazio di memoria fisica, grande 16MB, è implementato con tecnologia RAM, in parte EPROM ed in parte come memoria video;
+Lo spazio di memoria fisica, grande 16MB, è implementato in parte con tecnologia RAM, in parte EPROM ed in parte come memoria video; <br>
 La logica combinatoria che genera il segnale di abilitazione (/s) per un modulo a partire dagli indirizzi prende il nome di maschera:
 - Sul bus non c'è nessun filo di select, ma verrà generato in modo combinatorio a partire da _alcuni_ fili di indirizzo più significativi;
 - Il chip RAM copre anche gli indirizzi coperti da EPROM e dalla memoria video, quando però il processore imposta uno di quelli indirizzi, la maschera che produce il select del chip di RAM non risponde (e quindi non gli abilita).
