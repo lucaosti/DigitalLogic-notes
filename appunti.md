@@ -717,7 +717,7 @@ Temporizzazione D flip-flop.
 <br>
 
 - Vediamo come è realizzata:
-	- Disegnare la matrice di D-latch. Una riga è una locazione, bia 0 a destra, bit 3 a sinistra;
+	- Disegnare la matrice di D-latch. Una riga è una locazione, bit 0 a destra, bit 3 a sinistra;
 	- Le uscite dei D-latch dovranno essere selezionate una riga alla volta, per finire sui fili dei dati in uscita. Ci vuole un multiplexer per ogni bit, in cui:
     	- gli ingressi sono le uscite dei D-latch;
     	- le variabili di comando sono i **fili di indirizzo**;
