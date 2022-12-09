@@ -616,9 +616,7 @@ In questo circuito ho imposto un'altra condizione:
 $$
 \begin{cases}
 ABS(r)<ABS(b)
-$$
-
-$$
+\\
 sgn(r) = sgn(a)
 \end{cases}
 $$
