@@ -182,15 +182,15 @@ Esiste anche una versione con enabler, che fa diventare $N+1$ gli ingressi, in c
 
 ### Complemento
 $$
-\overline{0} = 1 \newline
+\overline{0} = 1 \\
 \overline{1} = 0
 $$
 
 ### Prodotto logico (AND)
 $$
-0 \cdot 0 = 0 \newline
-0 \cdot 1 = 0 \newline
-1 \cdot 0 = 0 \newline
+0 \cdot 0 = 0 \\
+0 \cdot 1 = 0 \\
+1 \cdot 0 = 0 \\
 1 \cdot 1 = 1
 $$
 
@@ -651,7 +651,7 @@ $$
 
 Quindi:
 
-$$ Z_s = \overline{/preset}+(/preclear \cdot s) \newline Z_r = \overline{/preclear}+(/preset \cdot s) $$
+$$ Z_s = \overline{/preset}+(/preclear \cdot s) \\ Z_r = \overline{/preclear}+(/preset \cdot s) $$
 
 ![Latch SR](img/6.png)
 <br>
