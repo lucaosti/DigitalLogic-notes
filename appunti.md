@@ -182,15 +182,27 @@ Esiste anche una versione con enabler, che fa diventare $N+1$ gli ingressi, in c
 
 ### Complemento
 $$
-\overline{0} = 1 \\
+\overline{0} = 1 
+$$
+
+$$
 \overline{1} = 0
 $$
 
 ### Prodotto logico (AND)
 $$
-0 \cdot 0 = 0 \\
-0 \cdot 1 = 0 \\
-1 \cdot 0 = 0 \\
+0 \cdot 0 = 0 
+$$
+
+$$
+0 \cdot 1 = 0 
+$$
+
+$$
+1 \cdot 0 = 0 
+$$
+
+$$
 1 \cdot 1 = 1
 $$
 
@@ -198,11 +210,17 @@ $$
 ### Somma logica (OR)
 $$
 0 + 0 = 0 
-\\
+$$
+
+$$
 0 + 1 = 1 
-\\
+$$
+
+$$
 1 + 0 = 1 
-\\
+$$
+
+$$
 1 + 1 = 1
 $$
 
