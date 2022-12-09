@@ -176,7 +176,7 @@ Esiste anche una versione con enabler, che fa diventare $N+1$ gli ingressi, in c
 
 ### Multiplexer
 - $N+2^N$ ingresssi: $2^N$ $x$ (variabili da commutare), $N$ variabili di comando, codifica in base $2$ (della variabile che va commutata);
-- $1$ uscita: $z$ prende il valore di ($x_i$) selezionato dalle variabili di comando.
+- $1$ uscita: $z$ prende il valore di ( $x_i$ ) selezionato dalle variabili di comando.
 
 ## Algebra di Boole
 
@@ -197,9 +197,12 @@ $$
 
 ### Somma logica (OR)
 $$
-0 + 0 = 0 \newline
-0 + 1 = 1 \newline
-1 + 0 = 1 \newline
+0 + 0 = 0 
+\\
+0 + 1 = 1 
+\\
+1 + 0 = 1 
+\\
 1 + 1 = 1
 $$
 
@@ -207,13 +210,15 @@ $$
 ![](img/45.png)
 
 ### Teoremi di De Morgan
+
 $$
 \overline{x_0 \cdot x_1 \cdot... \cdot x_{N-1}} = \overline{x_0} + \overline{x_1} +... + \overline{x_{N-1}}
 
-\newline
+\\
 
 \overline{x_0 + x_1 +... + x_{N-1}} = \overline{x_0} \cdot \overline{x_1} \cdot... \cdot \overline{x_{N-1}}
 $$
+
 Dimostrazione:
 ![](img/46.png)
 
@@ -307,7 +312,7 @@ costituito dalle $k$ cifre meno significative del numero di partenza.
 ## Addizione per naturali
 Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^n-1$, e dato $C_{in}$, $0\le C_{in}\le 1$, voglio calcolare il numero naturale $Z = X+Y+C_{in}$.
 
-Sempre rappresentabile su $n+1$ cifre, potrebbe non esserlo su $n$. Quindi la mettiamo su $n$ più un eventuale riporto uscente ($C_{out}$).
+Sempre rappresentabile su $n+1$ cifre, potrebbe non esserlo su $n$. Quindi la mettiamo su $n$ più un eventuale riporto uscente ( $C_{out}$ ).
 
 ![](img/57.png)
 
@@ -333,14 +338,17 @@ Dati $X, Y$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, Y \le \beta^
 Per quanto riguarda la rappresentabilità, $-\beta^n \le X-Y-b_{in}\le \beta^n-1$. Quindi, $Z$ può anche non essere un numero naturale, cosa che sappiamo bene dall’aritmetica (i naturali non sono un insieme chiuso rispetto alla sottrazione).
 
 Pertanto, definisco:
+
 $$
 -b_{out} = \biggr\lfloor \frac{X-Y-b_{in}}{\beta^n} \biggr\rfloor
 $$
+
 ed ottengo che $b_{out} \in \{0,1\}$, indipendentemente dalla base.
 
 Per calcolare la differenza di due numeri, procedo come segue: <br>
 Osservo che $Y+\overline{Y} = \beta^n-1$ (definizione di complemento). Dal che derivo che $-Y = \overline{Y}-\beta^n+1$. <br>
-Sostituendo questìultima  nell'espressione riquadrata sopra, si ottiene:
+Sostituendo quest'ultima  nell'espressione riquadrata sopra, si ottiene:
+
 $$
 (1-b_{out})\cdot \beta^n+D = X+\overline{Y}+(1-b_{in}) \\ \Rightarrow \\\overline{b_{out}} \cdot \beta^n+D = X+\overline{Y}+\overline{b_{in}}
 $$
@@ -366,6 +374,7 @@ Quindi, il nostro comparatore avrà due uscite:
 Dati $X, C$ naturali in base $\beta$ su $n$ cifre, quindi $0 \le X, C \le \beta^n-1$, e $Y$ naturale in base $\beta$ su $m$ cifre, quindi $0 \le Y \le \beta^m-1$.
 
 Voglio calcolare:
+
 $$
 P = X\cdot Y + C
 $$
@@ -373,6 +382,7 @@ $$
 ![](img/60.png)
 
 Il prodotto è rappresentabile su $n+m$ cifre poiché:
+
 $$
 P = X\cdot Y + C \le (\beta^n-1) \cdot (\beta^m-1) + (\beta^n-1) = \beta^m \cdot (\beta^n-1) < \beta^{n+m}-1
 $$
@@ -391,6 +401,7 @@ Possiamo quindi realizzare la motiplicazione utlizzando soltanto moltiplicatori 
 Dati $X$ naturale in base $\beta$ su $n+m$ cifre (dividendo), quindi $0 \le X \le \beta^{m+n}-1$, e $Y$ naturale in base $\beta$ su $m$ cifre (divisore), quindi $0 \le Y \le \beta^m-1$.
 
 Voglio calcolare:
+
 $$
 X = Q \cdot Y + R
 $$
@@ -551,9 +562,11 @@ Quando $D$ è rappresentabile su $n$ cifre, abbiamo:
 $D = |A+\overline{B}+1|_{\beta^n}$
 
 Avrò con certezza:
+
 $$
 D^{EST} = |A^{EST}+\overline{B^{EST}}+1|_{\beta^{n+1}}
 $$
+
 In base $2$ posso quindi verificare l'*ow* tramite lo XOR degli ultimi due prestiti.
 
 ## Comparazione di numeri interi
@@ -571,12 +584,15 @@ Conviene riferirsi ai valori assoluti.
 ![](img/76.png)
 
 L'operazione non è sempre fattibile, per questo c'è l'*ow*.
+
 $$
 ow = 1 \Leftrightarrow (ABS\_a > \beta^n/2)\ OR\ (ABS\_a = \beta^n/2\ AND\ sng\_a = 0)
 $$
+
 Ossia, setto l'overflow se il valore è fuori dall'intervallo di rappresentazione del CR.
 
 Se l'operazione è fattibile, abbiamo:
+
 $$
 A = \begin{cases}
   ABS\_a & sng\_a = 0
@@ -596,6 +612,7 @@ Dati $A$ su $n+m$ cifre e $B$ su $m$ cifre, voglio calcolare $Q$ su $n$ cifre ed
 ![](img/78.png)
 
 In questo circuito ho imposto un'altra condizione:
+
 $$
 \begin{cases}
   ABS(r)<ABS(b)
@@ -633,6 +650,7 @@ $$
   - $/preset = /preclear = 0$, errore di pilotaggio.
 
 Quindi:
+
 $$ Z_s = \overline{/preset}+(/preclear \cdot s) \newline Z_r = \overline{/preclear}+(/preset \cdot s) $$
 
 ![Latch SR](img/6.png)
@@ -722,7 +740,7 @@ Temporizzazione D flip-flop.
     	- gli ingressi sono le uscite dei D-latch;
     	- le variabili di comando sono i **fili di indirizzo**;
 	- Le uscite di ciascuno dei multiplexer vanno bloccate con porte tri-state. Dovranno essere abilitate quando sto leggendo dalla memoria;
-	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ($c = 1$).
+	- Per quanto riguarda gli ingressi: posso portare a ciascuna colonna di D-latch i fili di dati sull'ingresso $d$. Basta fare in modo che quando voglio scrivere, soltanto una riga di D-latch sia abilitata ( $c = 1$ ).
 
   <br>
 
@@ -810,7 +828,7 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 
 ## **Temporizzazione RSS**:
 - L'unica regola di pilotaggio che dobbiamo garantire è:
-  - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in [$t_i - T_{setup}$ , $t_i + T_{hold}$], $\forall i$.
+  - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in $[t_i - T_{setup} , t_i + T_{hold}],\ \forall i$.
 - Questa regola ci dice che non posso fare il clock veloce quanto voglio. <br>
 Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a formare gli ingressi ai registri, dovrò dare il tempo a chi pilota la rete di:
   - produrre un nuovo stato di ingresso;
@@ -821,7 +839,7 @@ Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a f
   - $T_{in-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi un piedino di ingresso e un piedino di uscita;
   - $T_{reg-to-out}$: il tempo di attraversamento della più lunga catena fatta di sole reti combinatorie che si trovi l'uscita di un registro e un piedino di uscita.
 - Ho $3$ vincoli temporali:
-  - ingressi costanti [$t_i-T_{setup}$ , $t_i+T_{hold}$];
+  - ingressi costanti $[t_i-T_{setup} , t_i+T_{hold}]$;
   - vincolo di pilotaggio in ingresso: chi pilota gli ingressi deve avere almeno un $T_{a-monte}$ per poterli cambiare;
   - vincolo di pilotaggio in uscita: chi usa le uscite deve averle stabili per un tempo $T_{a-valle}$ per poterci fare qualcosa.
 
@@ -999,7 +1017,7 @@ Per quanto riguarda la parte controllo della rete, mi fa comodo mantenere la con
 
 ![](img/84.png)
 
-Nella ROM serve una variabile in più, che discrimina se il $\mu$-salto che sto per fare è guidato dalle variabili di condizionamento o da MJR. Tale variabile si chiama $\mu$-tipo del $\mu$-salto. Nell’esempio di sopra, in S0 il $\mu$-tipo sarà pari a 0 (μ-salto guidato dalle variabili di condizionamento – peraltro 𝑐𝑒𝑓𝑓 sarà non specificata perché il salto è incondizionato), ed in S0_1 sarà pari ad 1 ($\mu$-salto guidato da MJR).
+Nella ROM serve una variabile in più, che discrimina se il $\mu$-salto che sto per fare è guidato dalle variabili di condizionamento o da MJR. Tale variabile si chiama $\mu$-tipo del $\mu$-salto. Nell’esempio di sopra, in S0 il $\mu$-tipo sarà pari a 0 ( $\mu$-salto guidato dalle variabili di condizionamento – peraltro 𝑐𝑒𝑓𝑓 sarà non specificata perché il salto è incondizionato), ed in S0_1 sarà pari ad 1 ( $\mu$-salto guidato da MJR).
 
 ***
 # La struttura del calcolatore
