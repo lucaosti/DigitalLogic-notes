@@ -368,7 +368,7 @@ Osservo che $Y+\overline{Y} = \beta^n-1$ (definizione di complemento). Dal che d
 Sostituendo quest'ultima  nell'espressione riquadrata sopra, si ottiene:
 
 $$
-(1-b_{out})\cdot \beta^n+D = X+\overline{Y}+(1-b_{in}) \\ \Rightarrow \\\overline{b_{out}} \cdot \beta^n+D = X+\overline{Y}+\overline{b_{in}}
+(1-b_{out})\cdot \beta^n+D = X+\overline{Y}+(1-b_{in}) \\ \Rightarrow \\ \overline{b_{out}} \cdot \beta^n+D = X+\overline{Y}+\overline{b_{in}}
 $$
 
 Ossia:
