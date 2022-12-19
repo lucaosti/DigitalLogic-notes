@@ -873,7 +873,7 @@ Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a f
 ## **Registri multifunzionali**:
   - È una rete che, all'arrivo del clock, memorizza nel registro stesso una tra K funzioni combinatorie possibili, scelta impostando un certo numero di variabili di comando $W = \lceil \log_2K \rceil$. Si realizza con un multiplexer a $K$ ingressi;
 
-## **Modello di MOORE**:
+## **Modello di Moore**:
 1. un insieme di $N$ variabili logiche in ingresso;
 2. un insieme di $M$ variabili logiche di uscita;
 3. un _meccanismo di marcatura_, che ad ogni istante marca uno stato interno presente, scelto tra un insieme finito di $K$ stati interni $S = \{S_0,...,S_{K-1} \}$;
