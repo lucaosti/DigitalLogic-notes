@@ -32,7 +32,7 @@
     - [Impulsi](#impulsi)
 - [Aritmetica del calcolatore](#aritmetica-del-calcolatore)
   - [Complemento](#complemento-1)
-  - [Moltiplicazione e divisione per una **potenza della base** per naturali ed interi](#moltiplicazione-e-divisione-per-una-potenza-della-base-per-naturali-ed-interi)
+  - [Moltiplicazione e divisione per una potenza della base per naturali ed interi](#moltiplicazione-e-divisione-per-una-potenza-della-base-per-naturali-ed-interi)
   - [Addizione per naturali](#addizione-per-naturali)
     - [Full Adder in base 2](#full-adder-in-base-2)
     - [Incrementatore](#incrementatore)
@@ -62,23 +62,23 @@
     - [Moltiplicazione per interi](#moltiplicazione-per-interi)
     - [Divisione per interi](#divisione-per-interi)
 - [Reti sequenziali asincrone](#reti-sequenziali-asincrone)
-  - [**Latch SR** detto anche **flip-flop SR**:](#latch-sr-detto-anche-flip-flop-sr)
-  - [**D-Latch trasparente**:](#d-latch-trasparente)
-  - [**D flip-flop**:](#d-flip-flop)
-  - [**Memorie RAM statiche** (RAM statiche o S-RAM):](#memorie-ram-statiche-ram-statiche-o-s-ram)
-    - [**Collegamento al bus e maschere**:](#collegamento-al-bus-e-maschere)
+  - [Latch SR detto anche flip-flop SR:](#latch-sr-detto-anche-flip-flop-sr)
+  - [D-Latch trasparente:](#d-latch-trasparente)
+  - [D flip-flop:](#d-flip-flop)
+  - [Memorie RAM statiche (RAM statiche o S-RAM):](#memorie-ram-statiche-ram-statiche-o-s-ram)
+    - [Collegamento al bus e maschere:](#collegamento-al-bus-e-maschere)
     - [Lettura:](#lettura)
     - [Scrittura:](#scrittura)
-  - [**Memomorie Read-Only** (ROM):](#memomorie-read-only-rom)
+  - [Memomorie Read-Only (ROM):](#memomorie-read-only-rom)
 - [Reti sequenziali sincronizzate (RSS)](#reti-sequenziali-sincronizzate-rss)
-  - [**Registri**:](#registri)
-  - [**Temporizzazione RSS**:](#temporizzazione-rss)
-  - [**Contatori**:](#contatori)
-  - [**Registri multifunzionali**:](#registri-multifunzionali)
-  - [**Modello di MOORE**:](#modello-di-moore)
-  - [**Flip-Flop JK**:](#flip-flop-jk)
-  - [**Modello di Mealy**:](#modello-di-mealy)
-  - [**Modello di Mealy ritardato**:](#modello-di-mealy-ritardato)
+  - [Registri:](#registri)
+  - [Temporizzazione RSS:](#temporizzazione-rss)
+  - [Contatori:](#contatori)
+  - [Registri multifunzionali:](#registri-multifunzionali)
+  - [Modello di Moore:](#modello-di-moore)
+  - [Flip-Flop JK:](#flip-flop-jk)
+  - [Modello di Mealy:](#modello-di-mealy)
+  - [Modello di Mealy ritardato:](#modello-di-mealy-ritardato)
   - [Sintesi della parte di controllo](#sintesi-della-parte-di-controllo)
     - [Sintesi parte di controllo $\\mu$-address based](#sintesi-parte-di-controllo-mu-address-based)
     - [Sintesi parte di controllo $\\mu$-instruction based](#sintesi-parte-di-controllo-mu-instruction-based)
@@ -314,7 +314,7 @@ $\overline{A} = (\beta^n-1)-A$
 
 ![](img/53.png)
 
-## Moltiplicazione e divisione per una **potenza della base** per naturali ed interi
+## Moltiplicazione e divisione per una potenza della base per naturali ed interi
 In qualunque base $\beta$:
 - **Moltiplicare** un numero per $\beta^k$ significa costruire un nuovo numero di $n+k$ cifre, di cui le $k$ meno significative sono $0$.
 
@@ -641,7 +641,7 @@ $$
 
 ***
 # Reti sequenziali asincrone
-## **Latch SR** detto anche **flip-flop SR**:
+## Latch SR detto anche flip-flop SR:
 
 - $2$ Ingressi, $s$ e $r$ rispettivamente "set" e "reset", entrambe attive alte;
 - $2$ Uscite, $q$ e $qN$, la seconda la negazione della prima.
@@ -679,7 +679,7 @@ Temporizzazione Latch SR.
 
 <br>
 
-## **D-Latch trasparente**:
+## D-Latch trasparente:
   
 - $2$ Ingressi, $d$ e $c$;
 - $1$ Uscita, $q$.
@@ -696,7 +696,7 @@ Temporizzazione D-Latch Trasparente.
 
 <br>
 
-## **D flip-flop**:
+## D flip-flop:
 
 - $2$ Ingressi, $d$ e $p$;
 - $1$ Uscita, $q$.
@@ -728,7 +728,7 @@ Temporizzazione D flip-flop.
 
 ***
 
-## **Memorie RAM statiche** (RAM statiche o S-RAM):
+## Memorie RAM statiche (RAM statiche o S-RAM):
   
 - Sono composte da [D-latch](#d-latch-trasparente) montati a matrice: una riga costituisce una locazione di memoria che può essere sia **letta che scritta** ma **NON** simultaneamente;
 - Dal punto di vista dell'utente, una memoria è dotata dei seguenti collegamenti:
@@ -780,7 +780,7 @@ Temporizzazione D flip-flop.
 
   <br>
 
-### **Collegamento al bus e maschere**:
+### Collegamento al bus e maschere:
 - I fili di indirizzo della memoria provengono da un bus indirizzi, dove il processore (e talvolta altri moduli) ne impostano il valore.
 - Il piedino $/s$ di un modulo di RAM serve appunto a poter realizzare uno spazio di memoria grande usando moduli di memoria più piccoli.
 - Supponiamo di avere un bus indirizzi a 32 bit e di voler montare un modulo di RAM 256Mx8 bit a partire dall'indirizzo 0xE0000000. Il modulo avrà 28 fili di indirizzo ed un filo di select $/s$ e dovrà rispondere agli indirizzi nell'intervallo [0xE0000000 - 0xEFFFFFFF]:
@@ -811,7 +811,7 @@ Temporizzazione D flip-flop.
 
   <br>
 
-## **Memomorie Read-Only** (ROM):
+## Memomorie Read-Only (ROM):
 - Sono circuiti combinatori, infatti cisacuna locazione contiene dei valori costanti inseriti in modo indelebile.
 - Costituiscono la parte non volatile dello spazio di memoria.
 - Possono essere descritti come memorie RAM tolto tutto quello necessario alla scrittura dei dati.
@@ -838,13 +838,13 @@ A seconda del metodo di programmazione.
 Si evolvono soltanto in corrispondenza di istanti temporali ben precisi, detti _istanti di sincronizzazione_.<br>
 L'evento che sincornizza è, di solito, il fronte di salita del clock;
 
-## **Registri**:
+## Registri:
   - Definisco un registro a $W$ bit come una collezione di $W$ [D-flip-flop](#d-flip-flop) positive-edge-triggered, che hanno:
     - ingressi $d_i$ ed uscite $q_i$ separati (indipendenti);
     - ingresso $p$ comune (di sincronizzazione), che posso evitare di annoverare tra gli ingressi.
   - Un registro può essere visto come una rete sequenziale sincronizzata, in cui l'ingresso $p$ funge da segnale di sincronizzazione.
 
-## **Temporizzazione RSS**:
+## Temporizzazione RSS:
 - L'unica regola di pilotaggio che dobbiamo garantire è:
   - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in $[t_i - T_{setup} , t_i + T_{hold}],\ \forall i$.
 - Questa regola ci dice che non posso fare il clock veloce quanto voglio. <br>
@@ -863,17 +863,17 @@ Se voglio che un stato di ingresso attraverso le reti combinatorie, concorra a f
 
 ![Temporizzazione di una RSS](img/1.png)
 
-## **Contatori**:
+## Contatori:
   - Un contatore è una RSS il cui stato di uscita può essere visto come un numero naturale ad $n$ cifre in base $\beta$, secondo una qualche codifica.
   - Ad ogni ciclo di clock, il contatore fa la seguente cosa:
     - incrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore up);
     - decrementa di 1 (modulo $\beta^n$), il valore di uscita (contatore down);
     - incrementa o decrementa di 1 (modulo $\beta^n$), il valore di uscita a seconda del valore di una variabile di comando (contatore up/down).
 
-## **Registri multifunzionali**:
+## Registri multifunzionali:
   - È una rete che, all'arrivo del clock, memorizza nel registro stesso una tra K funzioni combinatorie possibili, scelta impostando un certo numero di variabili di comando $W = \lceil \log_2K \rceil$. Si realizza con un multiplexer a $K$ ingressi;
 
-## **Modello di Moore**:
+## Modello di Moore:
 1. un insieme di $N$ variabili logiche in ingresso;
 2. un insieme di $M$ variabili logiche di uscita;
 3. un _meccanismo di marcatura_, che ad ogni istante marca uno stato interno presente, scelto tra un insieme finito di $K$ stati interni $S = \{S_0,...,S_{K-1} \}$;
@@ -909,7 +909,7 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-## **Flip-Flop JK**:
+## Flip-Flop JK:
 - Il FF JK è una rete sequenziale sincronizzata con due ingressi ed un'uscita che, all'arrivo del clock, valuta i suoi due ingressi $j$ e $k$ e si comporta come segue:
 
  | jk | Azione in uscita |
@@ -930,7 +930,7 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 - FF JK è una rete di Moore poiché l'uscita non è funzione combinatoria degli ingressi ma del registro.
 
-## **Modello di Mealy**:
+## Modello di Mealy:
 - Nel modello di Moore, l'uscita è funzione soltanto dello stato interno presente, tramite la legge $B:S \rightarrow Z$. Se si consente a tale legge di essere più generale, scrivendo $B : X \times S \rightarrow Z$, si ottengono reti realizzate secondo il modello di Mealy.
 - Il vantaggio di questo modello è che al variare dell'ingresso posso produrre un nuovo stato di uscita senza dover aspettare il succesivo fronte del clock.
 
@@ -956,7 +956,7 @@ Poiché $T_{prop} \approx T_{hold}$ e $T_{a-monte} >> T_{prop}$, la seconda può
 
 <br>
 
-## **Modello di Mealy ritardato**:
+## Modello di Mealy ritardato:
 - Si parte da una rete di Mealy, e si mette in uscita un registro OUTR. In questo modo, le uscite:
   - variano sempre all'arrivo del clock, dopo un tempo $T_{prop}$ ;
   - variano in maniera netta, senza oscillazioni;
