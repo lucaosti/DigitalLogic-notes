@@ -846,10 +846,9 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
 
   - Temporizzazione:
     - $T_{setup}$ = intervallo antecedente al posedge del clock, in cui gli ingressi dei registri devono rimanere stabili;
-    - $T_{hold}$ = intervallo successivo al posedge del clock, in cui gli ingressi dei registri devono rimanere stabili.
-    - $T_{prop}$ = intervallo necessario ad adeguare l'uscita al valore che era in ingresso quando è stato fatto il posedge del clock.
-
-T_{prop} > T_{hold}
+    - $T_{hold}$ = intervallo successivo al posedge del clock, in cui gli ingressi dei registri devono rimanere stabili;
+    - $T_{prop}$ = intervallo necessario ad adeguare l'uscita al valore che era in ingresso quando è stato fatto il posedge del clock;
+    - con $T_{prop} > T_{hold}$.
 
 ## Temporizzazione RSS:
 - L'unica regola di pilotaggio che dobbiamo garantire è:
