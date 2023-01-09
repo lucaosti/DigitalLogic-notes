@@ -844,6 +844,13 @@ L'evento che sincornizza è, di solito, il fronte di salita del clock;
     - ingresso $p$ comune (di sincronizzazione), che posso evitare di annoverare tra gli ingressi.
   - Un registro può essere visto come una rete sequenziale sincronizzata, in cui l'ingresso $p$ funge da segnale di sincronizzazione.
 
+  - Temporizzazione:
+    - $T_{setup}$ = intervallo antecedente al posedge del clock, in cui gli ingressi dei registri devono rimanere stabili;
+    - $T_{hold}$ = intervallo successivo al posedge del clock, in cui gli ingressi dei registri devono rimanere stabili.
+    - $T_{prop}$ = intervallo necessario ad adeguare l'uscita al valore che era in ingresso quando è stato fatto il posedge del clock.
+
+T_{prop} > T_{hold}
+
 ## Temporizzazione RSS:
 - L'unica regola di pilotaggio che dobbiamo garantire è:
   - Detto $t_i$ l'i-esimo fronte di salita del clock, lo stato di ingresso ai registri deve essere stabile in $[t_i - T_{setup} , t_i + T_{hold}],\ \forall i$.
